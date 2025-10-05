@@ -78,6 +78,35 @@ class AuthRepositoryRemote extends AuthRepository {
     }
   }
 
+  @override
+  Future<bool> refreshToken() async {
+    try {
+      final result = await _authApiClient.refresh(_jwt);
+      switch (result) {
+        case Ok<LoginResponse>():
+          _log.info('Token refreshed');
+          _jwt = result.value.jwt;
+          _isAuthenticated = true;
+          await _sharedPreferencesService.saveJWT(_jwt);
+          return true;
+        case Error<LoginResponse>():
+          _log.warning('Failed to refresh token: ${result.error}');
+          _isAuthenticated = false;
+          _jwt = null;
+          await _sharedPreferencesService.saveJWT(null);
+          return false;
+      }
+    } on Exception catch (e) {
+      _log.severe('Exception during token refresh', e);
+      _isAuthenticated = false;
+      _jwt = null;
+      await _sharedPreferencesService.saveJWT(null);
+      return false;
+    } finally {
+      notifyListeners();
+    }
+  }
+
    @override
   Future<Result<void>> logout() async {
     _log.info('User logged out');

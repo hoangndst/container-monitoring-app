@@ -3,7 +3,15 @@ import 'auth_repository.dart';
 
 class AuthRepositoryDev extends AuthRepository {
   @override
-  Future<bool> get isAuthenticated => Future.value(true);
+  Future<bool> get isAuthenticated => Future.value(false);
+
+  @override
+  Future<bool> refreshToken() async {
+    // In dev, we don't have a refresh endpoint. Return false to indicate
+    // refresh not available. If you want auto-refresh in dev, change this
+    // to return true and set a dummy token in SharedPreferences.
+    return Future.value(false);
+  }
 
   @override
   Future<Result<void>> login({

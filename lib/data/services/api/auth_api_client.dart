@@ -42,4 +42,31 @@ class AuthApiClient {
       client.close(force: true);
     }
   }
+
+  /// Attempts to refresh a JWT token via POST /api/auth/refresh.
+  /// Expects the same LoginResponse shape on success.
+  Future<Result<LoginResponse>> refresh(String? currentJwt) async {
+    final client = _clientFactory();
+    try {
+      final uri = Uri(scheme: 'https', host: _baseUrl, path: '/api/auth/refresh');
+      final request = await client.postUrl(uri);
+      request.headers.set(HttpHeaders.contentTypeHeader, 'application/json');
+      if (currentJwt != null) {
+        request.headers.set(HttpHeaders.authorizationHeader, currentJwt);
+      }
+      final response = await request.close();
+
+      final respBody = await response.transform(utf8.decoder).join();
+      if (response.statusCode == 200) {
+        final Map<String, dynamic> data = jsonDecode(respBody);
+        return Result.ok(LoginResponse.fromJson(data));
+      } else {
+        return const Result.error(HttpException('Refresh failed'));
+      }
+    } on Exception catch (error) {
+      return Result.error(error);
+    } finally {
+      client.close(force: true);
+    }
+  }
 }

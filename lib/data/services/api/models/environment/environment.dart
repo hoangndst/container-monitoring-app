@@ -5,53 +5,58 @@ part 'environment.g.dart';
 
 @freezed
 abstract class Environment with _$Environment {
+  @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory Environment({
     required int id,
     required String name,
     required int type,
-    required String containerEngine,
-    required String url,
+    String? containerEngine,
+    required String uRL,
     required int groupId,
-    required String publicUrl,
-    required List<String> gpus,
-    required TLSConfig tlsConfig,
+    String? publicUrl,
+    List<String>? gpus,
+    TLSConfig? tlsConfig,
     required AzureCredentials azureCredentials,
-    required List<int> tagIds,
+    List<int>? tagIds,
     required int status,
     required List<Snapshot> snapshots,
   }) = _Environment;
 
-  factory Environment.fromJson(Map<String, dynamic> json) => _$EnvironmentFromJson(json);
+  factory Environment.fromJson(Map<String, dynamic> json) =>
+      _$EnvironmentFromJson(json);
 }
 
 @freezed
 abstract class TLSConfig with _$TLSConfig {
-  const factory TLSConfig({
-    required bool tls,
-    required bool tlsSkipVerify,
-  }) = _TLSConfig;
+  @JsonSerializable(fieldRename: FieldRename.pascal)
+  const factory TLSConfig({required bool tls, required bool tlsSkipVerify}) =
+      _TLSConfig;
 
-  factory TLSConfig.fromJson(Map<String, dynamic> json) => _$TLSConfigFromJson(json);
+  factory TLSConfig.fromJson(Map<String, dynamic> json) =>
+      _$TLSConfigFromJson(json);
 }
 
 @freezed
 abstract class AzureCredentials with _$AzureCredentials {
+  @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory AzureCredentials({
-    required String applicationId,
-    required String tenantId,
-    required String authenticationKey,
+    String? applicationID,
+    String? tenantID,
+    String? authenticationKey,
   }) = _AzureCredentials;
 
-  factory AzureCredentials.fromJson(Map<String, dynamic> json) => _$AzureCredentialsFromJson(json);
+  factory AzureCredentials.fromJson(Map<String, dynamic> json) =>
+      _$AzureCredentialsFromJson(json);
 }
 
 @freezed
 abstract class Snapshot with _$Snapshot {
+  @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory Snapshot({
     required int time,
     required String dockerVersion,
     required bool swarm,
-    required int totalCpu,
+    required int totalCPU,
     required int totalMemory,
     required int containerCount,
     required int runningContainerCount,
@@ -65,11 +70,13 @@ abstract class Snapshot with _$Snapshot {
     required DockerSnapshotRaw dockerSnapshotRaw,
   }) = _Snapshot;
 
-  factory Snapshot.fromJson(Map<String, dynamic> json) => _$SnapshotFromJson(json);
+  factory Snapshot.fromJson(Map<String, dynamic> json) =>
+      _$SnapshotFromJson(json);
 }
 
 @freezed
 abstract class DockerSnapshotRaw with _$DockerSnapshotRaw {
+  @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory DockerSnapshotRaw({
     required List<ContainerInfo> containers,
     required VolumeData volumes,
@@ -79,16 +86,18 @@ abstract class DockerSnapshotRaw with _$DockerSnapshotRaw {
     required DockerVersionInfo version,
   }) = _DockerSnapshotRaw;
 
-  factory DockerSnapshotRaw.fromJson(Map<String, dynamic> json) => _$DockerSnapshotRawFromJson(json);
+  factory DockerSnapshotRaw.fromJson(Map<String, dynamic> json) =>
+      _$DockerSnapshotRawFromJson(json);
 }
 
 @freezed
 abstract class ContainerInfo with _$ContainerInfo {
+  @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory ContainerInfo({
     required String id,
     required List<String> names,
     required String image,
-    required String imageId,
+    required String imageID,
     required String command,
     required int created,
     required List<PortInfo> ports,
@@ -100,11 +109,13 @@ abstract class ContainerInfo with _$ContainerInfo {
     required List<MountInfo> mounts,
   }) = _ContainerInfo;
 
-  factory ContainerInfo.fromJson(Map<String, dynamic> json) => _$ContainerInfoFromJson(json);
+  factory ContainerInfo.fromJson(Map<String, dynamic> json) =>
+      _$ContainerInfoFromJson(json);
 }
 
 @freezed
 abstract class PortInfo with _$PortInfo {
+  @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory PortInfo({
     String? ip,
     required int privatePort,
@@ -112,51 +123,57 @@ abstract class PortInfo with _$PortInfo {
     required String type,
   }) = _PortInfo;
 
-  factory PortInfo.fromJson(Map<String, dynamic> json) => _$PortInfoFromJson(json);
+  factory PortInfo.fromJson(Map<String, dynamic> json) =>
+      _$PortInfoFromJson(json);
 }
 
 @freezed
 abstract class HostConfigInfo with _$HostConfigInfo {
-  const factory HostConfigInfo({
-    required String networkMode,
-  }) = _HostConfigInfo;
+  @JsonSerializable(fieldRename: FieldRename.pascal)
+  const factory HostConfigInfo({required String networkMode}) = _HostConfigInfo;
 
-  factory HostConfigInfo.fromJson(Map<String, dynamic> json) => _$HostConfigInfoFromJson(json);
+  factory HostConfigInfo.fromJson(Map<String, dynamic> json) =>
+      _$HostConfigInfoFromJson(json);
 }
 
 @freezed
 abstract class NetworkSettingsInfo with _$NetworkSettingsInfo {
+  @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory NetworkSettingsInfo({
     required Map<String, NetworkDetailInfo> networks,
   }) = _NetworkSettingsInfo;
 
-  factory NetworkSettingsInfo.fromJson(Map<String, dynamic> json) => _$NetworkSettingsInfoFromJson(json);
+  factory NetworkSettingsInfo.fromJson(Map<String, dynamic> json) =>
+      _$NetworkSettingsInfoFromJson(json);
 }
 
 @freezed
 abstract class NetworkDetailInfo with _$NetworkDetailInfo {
+  @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory NetworkDetailInfo({
     dynamic ipamConfig,
     dynamic links,
     dynamic aliases,
     required String macAddress,
     dynamic driverOpts,
-    required String networkId,
-    required String endpointId,
+    required String networkID,
+    required String endpointID,
     required String gateway,
-    required String ipAddress,
-    required int ipPrefixLen,
-    required String ipv6Gateway,
-    required String globalIpv6Address,
-    required int globalIpv6PrefixLen,
+    required String iPAddress,
+    int? iPPrefixLen,
+    String? iPv6Gateway,
+    String? globalIPv6Address,
+    int? globalIPv6PrefixLen,
     dynamic dnsNames,
   }) = _NetworkDetailInfo;
 
-  factory NetworkDetailInfo.fromJson(Map<String, dynamic> json) => _$NetworkDetailInfoFromJson(json);
+  factory NetworkDetailInfo.fromJson(Map<String, dynamic> json) =>
+      _$NetworkDetailInfoFromJson(json);
 }
 
 @freezed
 abstract class MountInfo with _$MountInfo {
+  @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory MountInfo({
     required String type,
     String? name,
@@ -164,93 +181,90 @@ abstract class MountInfo with _$MountInfo {
     required String destination,
     String? driver,
     required String mode,
-    required bool rw,
-    required String propagation,
+    required bool rW,
+    String? propagation,
   }) = _MountInfo;
 
-  factory MountInfo.fromJson(Map<String, dynamic> json) => _$MountInfoFromJson(json);
+  factory MountInfo.fromJson(Map<String, dynamic> json) =>
+      _$MountInfoFromJson(json);
 }
 
 @freezed
 abstract class VolumeData with _$VolumeData {
+  @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory VolumeData({
     required List<VolumeInfo> volumes,
     dynamic warnings,
   }) = _VolumeData;
 
-  factory VolumeData.fromJson(Map<String, dynamic> json) => _$VolumeDataFromJson(json);
+  factory VolumeData.fromJson(Map<String, dynamic> json) =>
+      _$VolumeDataFromJson(json);
 }
 
 @freezed
 abstract class VolumeInfo with _$VolumeInfo {
+  @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory VolumeInfo({
     required String createdAt,
     required String driver,
     Map<String, String>? labels,
     required String mountpoint,
     required String name,
-    Map<String, String>? options,
     required String scope,
   }) = _VolumeInfo;
 
-  factory VolumeInfo.fromJson(Map<String, dynamic> json) => _$VolumeInfoFromJson(json);
+  factory VolumeInfo.fromJson(Map<String, dynamic> json) =>
+      _$VolumeInfoFromJson(json);
 }
 
 @freezed
 abstract class NetworkInfo with _$NetworkInfo {
+  @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory NetworkInfo({
     required String name,
     required String id,
     required String created,
     required String scope,
     required String driver,
-    required bool enableIpv6,
-    required IPAMInfo ipam,
+    required bool enableIPv6,
     required bool internal,
     required bool attachable,
     required bool ingress,
     required ConfigFromInfo configFrom,
     required bool configOnly,
     required Map<String, dynamic> containers,
-    required Map<String, dynamic> options,
+    Map<String, dynamic>? options,
     required Map<String, dynamic> labels,
   }) = _NetworkInfo;
 
-  factory NetworkInfo.fromJson(Map<String, dynamic> json) => _$NetworkInfoFromJson(json);
-}
-
-@freezed
-abstract class IPAMInfo with _$IPAMInfo {
-  const factory IPAMInfo({
-    required String driver,
-    required Map<String, dynamic> options,
-    required List<IPAMConfigInfo> config,
-  }) = _IPAMInfo;
-
-  factory IPAMInfo.fromJson(Map<String, dynamic> json) => _$IPAMInfoFromJson(json);
+  factory NetworkInfo.fromJson(Map<String, dynamic> json) =>
+      _$NetworkInfoFromJson(json);
 }
 
 @freezed
 abstract class IPAMConfigInfo with _$IPAMConfigInfo {
+  @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory IPAMConfigInfo({
     required String subnet,
     required String gateway,
   }) = _IPAMConfigInfo;
 
-  factory IPAMConfigInfo.fromJson(Map<String, dynamic> json) => _$IPAMConfigInfoFromJson(json);
+  factory IPAMConfigInfo.fromJson(Map<String, dynamic> json) =>
+      _$IPAMConfigInfoFromJson(json);
 }
 
 @freezed
 abstract class ConfigFromInfo with _$ConfigFromInfo {
-  const factory ConfigFromInfo({
-    required String network,
-  }) = _ConfigFromInfo;
+  @JsonSerializable(fieldRename: FieldRename.pascal)
+  const factory ConfigFromInfo({required String network}) = _ConfigFromInfo;
 
-  factory ConfigFromInfo.fromJson(Map<String, dynamic> json) => _$ConfigFromInfoFromJson(json);
+  factory ConfigFromInfo.fromJson(Map<String, dynamic> json) =>
+      _$ConfigFromInfoFromJson(json);
 }
 
 @freezed
 abstract class ImageInfo with _$ImageInfo {
+  @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory ImageInfo({
     required int containers,
     required int created,
@@ -263,34 +277,38 @@ abstract class ImageInfo with _$ImageInfo {
     required int size,
   }) = _ImageInfo;
 
-  factory ImageInfo.fromJson(Map<String, dynamic> json) => _$ImageInfoFromJson(json);
+  factory ImageInfo.fromJson(Map<String, dynamic> json) =>
+      _$ImageInfoFromJson(json);
 }
 
 @freezed
 abstract class DockerInfo with _$DockerInfo {
+  @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory DockerInfo({
-    required String id,
+    @JsonKey(name: "ID") required String id,
     required int containers,
     required int containersRunning,
     required int containersPaused,
     required int containersStopped,
     required int images,
     required String driver,
-    required int ncpu,
+    required int nCPU,
     required int memTotal,
     required String name,
     required String serverVersion,
   }) = _DockerInfo;
 
-  factory DockerInfo.fromJson(Map<String, dynamic> json) => _$DockerInfoFromJson(json);
+  factory DockerInfo.fromJson(Map<String, dynamic> json) =>
+      _$DockerInfoFromJson(json);
 }
 
 @freezed
 abstract class DockerVersionInfo with _$DockerVersionInfo {
+  @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory DockerVersionInfo({
     required String version,
     required String apiVersion,
-    required String minApiVersion,
+    required String minAPIVersion,
     required String gitCommit,
     required String goVersion,
     required String os,
@@ -299,5 +317,6 @@ abstract class DockerVersionInfo with _$DockerVersionInfo {
     required String buildTime,
   }) = _DockerVersionInfo;
 
-  factory DockerVersionInfo.fromJson(Map<String, dynamic> json) => _$DockerVersionInfoFromJson(json);
+  factory DockerVersionInfo.fromJson(Map<String, dynamic> json) =>
+      _$DockerVersionInfoFromJson(json);
 }

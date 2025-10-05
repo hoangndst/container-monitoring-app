@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$Environment {
 
- int get id; String get name; int get type; String get containerEngine; String get url; int get groupId; String get publicUrl; List<String> get gpus; TLSConfig get tlsConfig; AzureCredentials get azureCredentials; List<int> get tagIds; int get status; List<Snapshot> get snapshots;
+ int get id; String get name; int get type; String? get containerEngine; String get uRL; int get groupId; String? get publicUrl; List<String>? get gpus; TLSConfig? get tlsConfig; AzureCredentials get azureCredentials; List<int>? get tagIds; int get status; List<Snapshot> get snapshots;
 /// Create a copy of Environment
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $EnvironmentCopyWith<Environment> get copyWith => _$EnvironmentCopyWithImpl<Envi
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Environment&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.type, type) || other.type == type)&&(identical(other.containerEngine, containerEngine) || other.containerEngine == containerEngine)&&(identical(other.url, url) || other.url == url)&&(identical(other.groupId, groupId) || other.groupId == groupId)&&(identical(other.publicUrl, publicUrl) || other.publicUrl == publicUrl)&&const DeepCollectionEquality().equals(other.gpus, gpus)&&(identical(other.tlsConfig, tlsConfig) || other.tlsConfig == tlsConfig)&&(identical(other.azureCredentials, azureCredentials) || other.azureCredentials == azureCredentials)&&const DeepCollectionEquality().equals(other.tagIds, tagIds)&&(identical(other.status, status) || other.status == status)&&const DeepCollectionEquality().equals(other.snapshots, snapshots));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Environment&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.type, type) || other.type == type)&&(identical(other.containerEngine, containerEngine) || other.containerEngine == containerEngine)&&(identical(other.uRL, uRL) || other.uRL == uRL)&&(identical(other.groupId, groupId) || other.groupId == groupId)&&(identical(other.publicUrl, publicUrl) || other.publicUrl == publicUrl)&&const DeepCollectionEquality().equals(other.gpus, gpus)&&(identical(other.tlsConfig, tlsConfig) || other.tlsConfig == tlsConfig)&&(identical(other.azureCredentials, azureCredentials) || other.azureCredentials == azureCredentials)&&const DeepCollectionEquality().equals(other.tagIds, tagIds)&&(identical(other.status, status) || other.status == status)&&const DeepCollectionEquality().equals(other.snapshots, snapshots));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name,type,containerEngine,url,groupId,publicUrl,const DeepCollectionEquality().hash(gpus),tlsConfig,azureCredentials,const DeepCollectionEquality().hash(tagIds),status,const DeepCollectionEquality().hash(snapshots));
+int get hashCode => Object.hash(runtimeType,id,name,type,containerEngine,uRL,groupId,publicUrl,const DeepCollectionEquality().hash(gpus),tlsConfig,azureCredentials,const DeepCollectionEquality().hash(tagIds),status,const DeepCollectionEquality().hash(snapshots));
 
 @override
 String toString() {
-  return 'Environment(id: $id, name: $name, type: $type, containerEngine: $containerEngine, url: $url, groupId: $groupId, publicUrl: $publicUrl, gpus: $gpus, tlsConfig: $tlsConfig, azureCredentials: $azureCredentials, tagIds: $tagIds, status: $status, snapshots: $snapshots)';
+  return 'Environment(id: $id, name: $name, type: $type, containerEngine: $containerEngine, uRL: $uRL, groupId: $groupId, publicUrl: $publicUrl, gpus: $gpus, tlsConfig: $tlsConfig, azureCredentials: $azureCredentials, tagIds: $tagIds, status: $status, snapshots: $snapshots)';
 }
 
 
@@ -48,11 +48,11 @@ abstract mixin class $EnvironmentCopyWith<$Res>  {
   factory $EnvironmentCopyWith(Environment value, $Res Function(Environment) _then) = _$EnvironmentCopyWithImpl;
 @useResult
 $Res call({
- int id, String name, int type, String containerEngine, String url, int groupId, String publicUrl, List<String> gpus, TLSConfig tlsConfig, AzureCredentials azureCredentials, List<int> tagIds, int status, List<Snapshot> snapshots
+ int id, String name, int type, String? containerEngine, String uRL, int groupId, String? publicUrl, List<String>? gpus, TLSConfig? tlsConfig, AzureCredentials azureCredentials, List<int>? tagIds, int status, List<Snapshot> snapshots
 });
 
 
-$TLSConfigCopyWith<$Res> get tlsConfig;$AzureCredentialsCopyWith<$Res> get azureCredentials;
+$TLSConfigCopyWith<$Res>? get tlsConfig;$AzureCredentialsCopyWith<$Res> get azureCredentials;
 
 }
 /// @nodoc
@@ -65,20 +65,20 @@ class _$EnvironmentCopyWithImpl<$Res>
 
 /// Create a copy of Environment
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? type = null,Object? containerEngine = null,Object? url = null,Object? groupId = null,Object? publicUrl = null,Object? gpus = null,Object? tlsConfig = null,Object? azureCredentials = null,Object? tagIds = null,Object? status = null,Object? snapshots = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? type = null,Object? containerEngine = freezed,Object? uRL = null,Object? groupId = null,Object? publicUrl = freezed,Object? gpus = freezed,Object? tlsConfig = freezed,Object? azureCredentials = null,Object? tagIds = freezed,Object? status = null,Object? snapshots = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,type: null == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
-as int,containerEngine: null == containerEngine ? _self.containerEngine : containerEngine // ignore: cast_nullable_to_non_nullable
-as String,url: null == url ? _self.url : url // ignore: cast_nullable_to_non_nullable
+as int,containerEngine: freezed == containerEngine ? _self.containerEngine : containerEngine // ignore: cast_nullable_to_non_nullable
+as String?,uRL: null == uRL ? _self.uRL : uRL // ignore: cast_nullable_to_non_nullable
 as String,groupId: null == groupId ? _self.groupId : groupId // ignore: cast_nullable_to_non_nullable
-as int,publicUrl: null == publicUrl ? _self.publicUrl : publicUrl // ignore: cast_nullable_to_non_nullable
-as String,gpus: null == gpus ? _self.gpus : gpus // ignore: cast_nullable_to_non_nullable
-as List<String>,tlsConfig: null == tlsConfig ? _self.tlsConfig : tlsConfig // ignore: cast_nullable_to_non_nullable
-as TLSConfig,azureCredentials: null == azureCredentials ? _self.azureCredentials : azureCredentials // ignore: cast_nullable_to_non_nullable
-as AzureCredentials,tagIds: null == tagIds ? _self.tagIds : tagIds // ignore: cast_nullable_to_non_nullable
-as List<int>,status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as int,publicUrl: freezed == publicUrl ? _self.publicUrl : publicUrl // ignore: cast_nullable_to_non_nullable
+as String?,gpus: freezed == gpus ? _self.gpus : gpus // ignore: cast_nullable_to_non_nullable
+as List<String>?,tlsConfig: freezed == tlsConfig ? _self.tlsConfig : tlsConfig // ignore: cast_nullable_to_non_nullable
+as TLSConfig?,azureCredentials: null == azureCredentials ? _self.azureCredentials : azureCredentials // ignore: cast_nullable_to_non_nullable
+as AzureCredentials,tagIds: freezed == tagIds ? _self.tagIds : tagIds // ignore: cast_nullable_to_non_nullable
+as List<int>?,status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
 as int,snapshots: null == snapshots ? _self.snapshots : snapshots // ignore: cast_nullable_to_non_nullable
 as List<Snapshot>,
   ));
@@ -87,9 +87,12 @@ as List<Snapshot>,
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$TLSConfigCopyWith<$Res> get tlsConfig {
-  
-  return $TLSConfigCopyWith<$Res>(_self.tlsConfig, (value) {
+$TLSConfigCopyWith<$Res>? get tlsConfig {
+    if (_self.tlsConfig == null) {
+    return null;
+  }
+
+  return $TLSConfigCopyWith<$Res>(_self.tlsConfig!, (value) {
     return _then(_self.copyWith(tlsConfig: value));
   });
 }/// Create a copy of Environment
@@ -183,10 +186,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String name,  int type,  String containerEngine,  String url,  int groupId,  String publicUrl,  List<String> gpus,  TLSConfig tlsConfig,  AzureCredentials azureCredentials,  List<int> tagIds,  int status,  List<Snapshot> snapshots)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String name,  int type,  String? containerEngine,  String uRL,  int groupId,  String? publicUrl,  List<String>? gpus,  TLSConfig? tlsConfig,  AzureCredentials azureCredentials,  List<int>? tagIds,  int status,  List<Snapshot> snapshots)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Environment() when $default != null:
-return $default(_that.id,_that.name,_that.type,_that.containerEngine,_that.url,_that.groupId,_that.publicUrl,_that.gpus,_that.tlsConfig,_that.azureCredentials,_that.tagIds,_that.status,_that.snapshots);case _:
+return $default(_that.id,_that.name,_that.type,_that.containerEngine,_that.uRL,_that.groupId,_that.publicUrl,_that.gpus,_that.tlsConfig,_that.azureCredentials,_that.tagIds,_that.status,_that.snapshots);case _:
   return orElse();
 
 }
@@ -204,10 +207,10 @@ return $default(_that.id,_that.name,_that.type,_that.containerEngine,_that.url,_
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String name,  int type,  String containerEngine,  String url,  int groupId,  String publicUrl,  List<String> gpus,  TLSConfig tlsConfig,  AzureCredentials azureCredentials,  List<int> tagIds,  int status,  List<Snapshot> snapshots)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String name,  int type,  String? containerEngine,  String uRL,  int groupId,  String? publicUrl,  List<String>? gpus,  TLSConfig? tlsConfig,  AzureCredentials azureCredentials,  List<int>? tagIds,  int status,  List<Snapshot> snapshots)  $default,) {final _that = this;
 switch (_that) {
 case _Environment():
-return $default(_that.id,_that.name,_that.type,_that.containerEngine,_that.url,_that.groupId,_that.publicUrl,_that.gpus,_that.tlsConfig,_that.azureCredentials,_that.tagIds,_that.status,_that.snapshots);case _:
+return $default(_that.id,_that.name,_that.type,_that.containerEngine,_that.uRL,_that.groupId,_that.publicUrl,_that.gpus,_that.tlsConfig,_that.azureCredentials,_that.tagIds,_that.status,_that.snapshots);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -224,10 +227,10 @@ return $default(_that.id,_that.name,_that.type,_that.containerEngine,_that.url,_
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String name,  int type,  String containerEngine,  String url,  int groupId,  String publicUrl,  List<String> gpus,  TLSConfig tlsConfig,  AzureCredentials azureCredentials,  List<int> tagIds,  int status,  List<Snapshot> snapshots)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String name,  int type,  String? containerEngine,  String uRL,  int groupId,  String? publicUrl,  List<String>? gpus,  TLSConfig? tlsConfig,  AzureCredentials azureCredentials,  List<int>? tagIds,  int status,  List<Snapshot> snapshots)?  $default,) {final _that = this;
 switch (_that) {
 case _Environment() when $default != null:
-return $default(_that.id,_that.name,_that.type,_that.containerEngine,_that.url,_that.groupId,_that.publicUrl,_that.gpus,_that.tlsConfig,_that.azureCredentials,_that.tagIds,_that.status,_that.snapshots);case _:
+return $default(_that.id,_that.name,_that.type,_that.containerEngine,_that.uRL,_that.groupId,_that.publicUrl,_that.gpus,_that.tlsConfig,_that.azureCredentials,_that.tagIds,_that.status,_that.snapshots);case _:
   return null;
 
 }
@@ -236,33 +239,37 @@ return $default(_that.id,_that.name,_that.type,_that.containerEngine,_that.url,_
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(fieldRename: FieldRename.pascal)
 class _Environment implements Environment {
-  const _Environment({required this.id, required this.name, required this.type, required this.containerEngine, required this.url, required this.groupId, required this.publicUrl, required final  List<String> gpus, required this.tlsConfig, required this.azureCredentials, required final  List<int> tagIds, required this.status, required final  List<Snapshot> snapshots}): _gpus = gpus,_tagIds = tagIds,_snapshots = snapshots;
+  const _Environment({required this.id, required this.name, required this.type, this.containerEngine, required this.uRL, required this.groupId, this.publicUrl, final  List<String>? gpus, this.tlsConfig, required this.azureCredentials, final  List<int>? tagIds, required this.status, required final  List<Snapshot> snapshots}): _gpus = gpus,_tagIds = tagIds,_snapshots = snapshots;
   factory _Environment.fromJson(Map<String, dynamic> json) => _$EnvironmentFromJson(json);
 
 @override final  int id;
 @override final  String name;
 @override final  int type;
-@override final  String containerEngine;
-@override final  String url;
+@override final  String? containerEngine;
+@override final  String uRL;
 @override final  int groupId;
-@override final  String publicUrl;
- final  List<String> _gpus;
-@override List<String> get gpus {
+@override final  String? publicUrl;
+ final  List<String>? _gpus;
+@override List<String>? get gpus {
+  final value = _gpus;
+  if (value == null) return null;
   if (_gpus is EqualUnmodifiableListView) return _gpus;
   // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(_gpus);
+  return EqualUnmodifiableListView(value);
 }
 
-@override final  TLSConfig tlsConfig;
+@override final  TLSConfig? tlsConfig;
 @override final  AzureCredentials azureCredentials;
- final  List<int> _tagIds;
-@override List<int> get tagIds {
+ final  List<int>? _tagIds;
+@override List<int>? get tagIds {
+  final value = _tagIds;
+  if (value == null) return null;
   if (_tagIds is EqualUnmodifiableListView) return _tagIds;
   // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(_tagIds);
+  return EqualUnmodifiableListView(value);
 }
 
 @override final  int status;
@@ -287,16 +294,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Environment&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.type, type) || other.type == type)&&(identical(other.containerEngine, containerEngine) || other.containerEngine == containerEngine)&&(identical(other.url, url) || other.url == url)&&(identical(other.groupId, groupId) || other.groupId == groupId)&&(identical(other.publicUrl, publicUrl) || other.publicUrl == publicUrl)&&const DeepCollectionEquality().equals(other._gpus, _gpus)&&(identical(other.tlsConfig, tlsConfig) || other.tlsConfig == tlsConfig)&&(identical(other.azureCredentials, azureCredentials) || other.azureCredentials == azureCredentials)&&const DeepCollectionEquality().equals(other._tagIds, _tagIds)&&(identical(other.status, status) || other.status == status)&&const DeepCollectionEquality().equals(other._snapshots, _snapshots));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Environment&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.type, type) || other.type == type)&&(identical(other.containerEngine, containerEngine) || other.containerEngine == containerEngine)&&(identical(other.uRL, uRL) || other.uRL == uRL)&&(identical(other.groupId, groupId) || other.groupId == groupId)&&(identical(other.publicUrl, publicUrl) || other.publicUrl == publicUrl)&&const DeepCollectionEquality().equals(other._gpus, _gpus)&&(identical(other.tlsConfig, tlsConfig) || other.tlsConfig == tlsConfig)&&(identical(other.azureCredentials, azureCredentials) || other.azureCredentials == azureCredentials)&&const DeepCollectionEquality().equals(other._tagIds, _tagIds)&&(identical(other.status, status) || other.status == status)&&const DeepCollectionEquality().equals(other._snapshots, _snapshots));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name,type,containerEngine,url,groupId,publicUrl,const DeepCollectionEquality().hash(_gpus),tlsConfig,azureCredentials,const DeepCollectionEquality().hash(_tagIds),status,const DeepCollectionEquality().hash(_snapshots));
+int get hashCode => Object.hash(runtimeType,id,name,type,containerEngine,uRL,groupId,publicUrl,const DeepCollectionEquality().hash(_gpus),tlsConfig,azureCredentials,const DeepCollectionEquality().hash(_tagIds),status,const DeepCollectionEquality().hash(_snapshots));
 
 @override
 String toString() {
-  return 'Environment(id: $id, name: $name, type: $type, containerEngine: $containerEngine, url: $url, groupId: $groupId, publicUrl: $publicUrl, gpus: $gpus, tlsConfig: $tlsConfig, azureCredentials: $azureCredentials, tagIds: $tagIds, status: $status, snapshots: $snapshots)';
+  return 'Environment(id: $id, name: $name, type: $type, containerEngine: $containerEngine, uRL: $uRL, groupId: $groupId, publicUrl: $publicUrl, gpus: $gpus, tlsConfig: $tlsConfig, azureCredentials: $azureCredentials, tagIds: $tagIds, status: $status, snapshots: $snapshots)';
 }
 
 
@@ -307,11 +314,11 @@ abstract mixin class _$EnvironmentCopyWith<$Res> implements $EnvironmentCopyWith
   factory _$EnvironmentCopyWith(_Environment value, $Res Function(_Environment) _then) = __$EnvironmentCopyWithImpl;
 @override @useResult
 $Res call({
- int id, String name, int type, String containerEngine, String url, int groupId, String publicUrl, List<String> gpus, TLSConfig tlsConfig, AzureCredentials azureCredentials, List<int> tagIds, int status, List<Snapshot> snapshots
+ int id, String name, int type, String? containerEngine, String uRL, int groupId, String? publicUrl, List<String>? gpus, TLSConfig? tlsConfig, AzureCredentials azureCredentials, List<int>? tagIds, int status, List<Snapshot> snapshots
 });
 
 
-@override $TLSConfigCopyWith<$Res> get tlsConfig;@override $AzureCredentialsCopyWith<$Res> get azureCredentials;
+@override $TLSConfigCopyWith<$Res>? get tlsConfig;@override $AzureCredentialsCopyWith<$Res> get azureCredentials;
 
 }
 /// @nodoc
@@ -324,20 +331,20 @@ class __$EnvironmentCopyWithImpl<$Res>
 
 /// Create a copy of Environment
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? type = null,Object? containerEngine = null,Object? url = null,Object? groupId = null,Object? publicUrl = null,Object? gpus = null,Object? tlsConfig = null,Object? azureCredentials = null,Object? tagIds = null,Object? status = null,Object? snapshots = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? type = null,Object? containerEngine = freezed,Object? uRL = null,Object? groupId = null,Object? publicUrl = freezed,Object? gpus = freezed,Object? tlsConfig = freezed,Object? azureCredentials = null,Object? tagIds = freezed,Object? status = null,Object? snapshots = null,}) {
   return _then(_Environment(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,type: null == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
-as int,containerEngine: null == containerEngine ? _self.containerEngine : containerEngine // ignore: cast_nullable_to_non_nullable
-as String,url: null == url ? _self.url : url // ignore: cast_nullable_to_non_nullable
+as int,containerEngine: freezed == containerEngine ? _self.containerEngine : containerEngine // ignore: cast_nullable_to_non_nullable
+as String?,uRL: null == uRL ? _self.uRL : uRL // ignore: cast_nullable_to_non_nullable
 as String,groupId: null == groupId ? _self.groupId : groupId // ignore: cast_nullable_to_non_nullable
-as int,publicUrl: null == publicUrl ? _self.publicUrl : publicUrl // ignore: cast_nullable_to_non_nullable
-as String,gpus: null == gpus ? _self._gpus : gpus // ignore: cast_nullable_to_non_nullable
-as List<String>,tlsConfig: null == tlsConfig ? _self.tlsConfig : tlsConfig // ignore: cast_nullable_to_non_nullable
-as TLSConfig,azureCredentials: null == azureCredentials ? _self.azureCredentials : azureCredentials // ignore: cast_nullable_to_non_nullable
-as AzureCredentials,tagIds: null == tagIds ? _self._tagIds : tagIds // ignore: cast_nullable_to_non_nullable
-as List<int>,status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as int,publicUrl: freezed == publicUrl ? _self.publicUrl : publicUrl // ignore: cast_nullable_to_non_nullable
+as String?,gpus: freezed == gpus ? _self._gpus : gpus // ignore: cast_nullable_to_non_nullable
+as List<String>?,tlsConfig: freezed == tlsConfig ? _self.tlsConfig : tlsConfig // ignore: cast_nullable_to_non_nullable
+as TLSConfig?,azureCredentials: null == azureCredentials ? _self.azureCredentials : azureCredentials // ignore: cast_nullable_to_non_nullable
+as AzureCredentials,tagIds: freezed == tagIds ? _self._tagIds : tagIds // ignore: cast_nullable_to_non_nullable
+as List<int>?,status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
 as int,snapshots: null == snapshots ? _self._snapshots : snapshots // ignore: cast_nullable_to_non_nullable
 as List<Snapshot>,
   ));
@@ -347,9 +354,12 @@ as List<Snapshot>,
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$TLSConfigCopyWith<$Res> get tlsConfig {
-  
-  return $TLSConfigCopyWith<$Res>(_self.tlsConfig, (value) {
+$TLSConfigCopyWith<$Res>? get tlsConfig {
+    if (_self.tlsConfig == null) {
+    return null;
+  }
+
+  return $TLSConfigCopyWith<$Res>(_self.tlsConfig!, (value) {
     return _then(_self.copyWith(tlsConfig: value));
   });
 }/// Create a copy of Environment
@@ -560,8 +570,8 @@ return $default(_that.tls,_that.tlsSkipVerify);case _:
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(fieldRename: FieldRename.pascal)
 class _TLSConfig implements TLSConfig {
   const _TLSConfig({required this.tls, required this.tlsSkipVerify});
   factory _TLSConfig.fromJson(Map<String, dynamic> json) => _$TLSConfigFromJson(json);
@@ -634,7 +644,7 @@ as bool,
 /// @nodoc
 mixin _$AzureCredentials {
 
- String get applicationId; String get tenantId; String get authenticationKey;
+ String? get applicationID; String? get tenantID; String? get authenticationKey;
 /// Create a copy of AzureCredentials
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -647,16 +657,16 @@ $AzureCredentialsCopyWith<AzureCredentials> get copyWith => _$AzureCredentialsCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is AzureCredentials&&(identical(other.applicationId, applicationId) || other.applicationId == applicationId)&&(identical(other.tenantId, tenantId) || other.tenantId == tenantId)&&(identical(other.authenticationKey, authenticationKey) || other.authenticationKey == authenticationKey));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AzureCredentials&&(identical(other.applicationID, applicationID) || other.applicationID == applicationID)&&(identical(other.tenantID, tenantID) || other.tenantID == tenantID)&&(identical(other.authenticationKey, authenticationKey) || other.authenticationKey == authenticationKey));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,applicationId,tenantId,authenticationKey);
+int get hashCode => Object.hash(runtimeType,applicationID,tenantID,authenticationKey);
 
 @override
 String toString() {
-  return 'AzureCredentials(applicationId: $applicationId, tenantId: $tenantId, authenticationKey: $authenticationKey)';
+  return 'AzureCredentials(applicationID: $applicationID, tenantID: $tenantID, authenticationKey: $authenticationKey)';
 }
 
 
@@ -667,7 +677,7 @@ abstract mixin class $AzureCredentialsCopyWith<$Res>  {
   factory $AzureCredentialsCopyWith(AzureCredentials value, $Res Function(AzureCredentials) _then) = _$AzureCredentialsCopyWithImpl;
 @useResult
 $Res call({
- String applicationId, String tenantId, String authenticationKey
+ String? applicationID, String? tenantID, String? authenticationKey
 });
 
 
@@ -684,12 +694,12 @@ class _$AzureCredentialsCopyWithImpl<$Res>
 
 /// Create a copy of AzureCredentials
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? applicationId = null,Object? tenantId = null,Object? authenticationKey = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? applicationID = freezed,Object? tenantID = freezed,Object? authenticationKey = freezed,}) {
   return _then(_self.copyWith(
-applicationId: null == applicationId ? _self.applicationId : applicationId // ignore: cast_nullable_to_non_nullable
-as String,tenantId: null == tenantId ? _self.tenantId : tenantId // ignore: cast_nullable_to_non_nullable
-as String,authenticationKey: null == authenticationKey ? _self.authenticationKey : authenticationKey // ignore: cast_nullable_to_non_nullable
-as String,
+applicationID: freezed == applicationID ? _self.applicationID : applicationID // ignore: cast_nullable_to_non_nullable
+as String?,tenantID: freezed == tenantID ? _self.tenantID : tenantID // ignore: cast_nullable_to_non_nullable
+as String?,authenticationKey: freezed == authenticationKey ? _self.authenticationKey : authenticationKey // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
@@ -774,10 +784,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String applicationId,  String tenantId,  String authenticationKey)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? applicationID,  String? tenantID,  String? authenticationKey)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _AzureCredentials() when $default != null:
-return $default(_that.applicationId,_that.tenantId,_that.authenticationKey);case _:
+return $default(_that.applicationID,_that.tenantID,_that.authenticationKey);case _:
   return orElse();
 
 }
@@ -795,10 +805,10 @@ return $default(_that.applicationId,_that.tenantId,_that.authenticationKey);case
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String applicationId,  String tenantId,  String authenticationKey)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? applicationID,  String? tenantID,  String? authenticationKey)  $default,) {final _that = this;
 switch (_that) {
 case _AzureCredentials():
-return $default(_that.applicationId,_that.tenantId,_that.authenticationKey);case _:
+return $default(_that.applicationID,_that.tenantID,_that.authenticationKey);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -815,10 +825,10 @@ return $default(_that.applicationId,_that.tenantId,_that.authenticationKey);case
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String applicationId,  String tenantId,  String authenticationKey)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? applicationID,  String? tenantID,  String? authenticationKey)?  $default,) {final _that = this;
 switch (_that) {
 case _AzureCredentials() when $default != null:
-return $default(_that.applicationId,_that.tenantId,_that.authenticationKey);case _:
+return $default(_that.applicationID,_that.tenantID,_that.authenticationKey);case _:
   return null;
 
 }
@@ -827,15 +837,15 @@ return $default(_that.applicationId,_that.tenantId,_that.authenticationKey);case
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(fieldRename: FieldRename.pascal)
 class _AzureCredentials implements AzureCredentials {
-  const _AzureCredentials({required this.applicationId, required this.tenantId, required this.authenticationKey});
+  const _AzureCredentials({this.applicationID, this.tenantID, this.authenticationKey});
   factory _AzureCredentials.fromJson(Map<String, dynamic> json) => _$AzureCredentialsFromJson(json);
 
-@override final  String applicationId;
-@override final  String tenantId;
-@override final  String authenticationKey;
+@override final  String? applicationID;
+@override final  String? tenantID;
+@override final  String? authenticationKey;
 
 /// Create a copy of AzureCredentials
 /// with the given fields replaced by the non-null parameter values.
@@ -850,16 +860,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AzureCredentials&&(identical(other.applicationId, applicationId) || other.applicationId == applicationId)&&(identical(other.tenantId, tenantId) || other.tenantId == tenantId)&&(identical(other.authenticationKey, authenticationKey) || other.authenticationKey == authenticationKey));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AzureCredentials&&(identical(other.applicationID, applicationID) || other.applicationID == applicationID)&&(identical(other.tenantID, tenantID) || other.tenantID == tenantID)&&(identical(other.authenticationKey, authenticationKey) || other.authenticationKey == authenticationKey));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,applicationId,tenantId,authenticationKey);
+int get hashCode => Object.hash(runtimeType,applicationID,tenantID,authenticationKey);
 
 @override
 String toString() {
-  return 'AzureCredentials(applicationId: $applicationId, tenantId: $tenantId, authenticationKey: $authenticationKey)';
+  return 'AzureCredentials(applicationID: $applicationID, tenantID: $tenantID, authenticationKey: $authenticationKey)';
 }
 
 
@@ -870,7 +880,7 @@ abstract mixin class _$AzureCredentialsCopyWith<$Res> implements $AzureCredentia
   factory _$AzureCredentialsCopyWith(_AzureCredentials value, $Res Function(_AzureCredentials) _then) = __$AzureCredentialsCopyWithImpl;
 @override @useResult
 $Res call({
- String applicationId, String tenantId, String authenticationKey
+ String? applicationID, String? tenantID, String? authenticationKey
 });
 
 
@@ -887,12 +897,12 @@ class __$AzureCredentialsCopyWithImpl<$Res>
 
 /// Create a copy of AzureCredentials
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? applicationId = null,Object? tenantId = null,Object? authenticationKey = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? applicationID = freezed,Object? tenantID = freezed,Object? authenticationKey = freezed,}) {
   return _then(_AzureCredentials(
-applicationId: null == applicationId ? _self.applicationId : applicationId // ignore: cast_nullable_to_non_nullable
-as String,tenantId: null == tenantId ? _self.tenantId : tenantId // ignore: cast_nullable_to_non_nullable
-as String,authenticationKey: null == authenticationKey ? _self.authenticationKey : authenticationKey // ignore: cast_nullable_to_non_nullable
-as String,
+applicationID: freezed == applicationID ? _self.applicationID : applicationID // ignore: cast_nullable_to_non_nullable
+as String?,tenantID: freezed == tenantID ? _self.tenantID : tenantID // ignore: cast_nullable_to_non_nullable
+as String?,authenticationKey: freezed == authenticationKey ? _self.authenticationKey : authenticationKey // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
@@ -903,7 +913,7 @@ as String,
 /// @nodoc
 mixin _$Snapshot {
 
- int get time; String get dockerVersion; bool get swarm; int get totalCpu; int get totalMemory; int get containerCount; int get runningContainerCount; int get stoppedContainerCount; int get healthyContainerCount; int get unhealthyContainerCount; int get volumeCount; int get imageCount; int get serviceCount; int get stackCount; DockerSnapshotRaw get dockerSnapshotRaw;
+ int get time; String get dockerVersion; bool get swarm; int get totalCPU; int get totalMemory; int get containerCount; int get runningContainerCount; int get stoppedContainerCount; int get healthyContainerCount; int get unhealthyContainerCount; int get volumeCount; int get imageCount; int get serviceCount; int get stackCount; DockerSnapshotRaw get dockerSnapshotRaw;
 /// Create a copy of Snapshot
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -916,16 +926,16 @@ $SnapshotCopyWith<Snapshot> get copyWith => _$SnapshotCopyWithImpl<Snapshot>(thi
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Snapshot&&(identical(other.time, time) || other.time == time)&&(identical(other.dockerVersion, dockerVersion) || other.dockerVersion == dockerVersion)&&(identical(other.swarm, swarm) || other.swarm == swarm)&&(identical(other.totalCpu, totalCpu) || other.totalCpu == totalCpu)&&(identical(other.totalMemory, totalMemory) || other.totalMemory == totalMemory)&&(identical(other.containerCount, containerCount) || other.containerCount == containerCount)&&(identical(other.runningContainerCount, runningContainerCount) || other.runningContainerCount == runningContainerCount)&&(identical(other.stoppedContainerCount, stoppedContainerCount) || other.stoppedContainerCount == stoppedContainerCount)&&(identical(other.healthyContainerCount, healthyContainerCount) || other.healthyContainerCount == healthyContainerCount)&&(identical(other.unhealthyContainerCount, unhealthyContainerCount) || other.unhealthyContainerCount == unhealthyContainerCount)&&(identical(other.volumeCount, volumeCount) || other.volumeCount == volumeCount)&&(identical(other.imageCount, imageCount) || other.imageCount == imageCount)&&(identical(other.serviceCount, serviceCount) || other.serviceCount == serviceCount)&&(identical(other.stackCount, stackCount) || other.stackCount == stackCount)&&(identical(other.dockerSnapshotRaw, dockerSnapshotRaw) || other.dockerSnapshotRaw == dockerSnapshotRaw));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Snapshot&&(identical(other.time, time) || other.time == time)&&(identical(other.dockerVersion, dockerVersion) || other.dockerVersion == dockerVersion)&&(identical(other.swarm, swarm) || other.swarm == swarm)&&(identical(other.totalCPU, totalCPU) || other.totalCPU == totalCPU)&&(identical(other.totalMemory, totalMemory) || other.totalMemory == totalMemory)&&(identical(other.containerCount, containerCount) || other.containerCount == containerCount)&&(identical(other.runningContainerCount, runningContainerCount) || other.runningContainerCount == runningContainerCount)&&(identical(other.stoppedContainerCount, stoppedContainerCount) || other.stoppedContainerCount == stoppedContainerCount)&&(identical(other.healthyContainerCount, healthyContainerCount) || other.healthyContainerCount == healthyContainerCount)&&(identical(other.unhealthyContainerCount, unhealthyContainerCount) || other.unhealthyContainerCount == unhealthyContainerCount)&&(identical(other.volumeCount, volumeCount) || other.volumeCount == volumeCount)&&(identical(other.imageCount, imageCount) || other.imageCount == imageCount)&&(identical(other.serviceCount, serviceCount) || other.serviceCount == serviceCount)&&(identical(other.stackCount, stackCount) || other.stackCount == stackCount)&&(identical(other.dockerSnapshotRaw, dockerSnapshotRaw) || other.dockerSnapshotRaw == dockerSnapshotRaw));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,time,dockerVersion,swarm,totalCpu,totalMemory,containerCount,runningContainerCount,stoppedContainerCount,healthyContainerCount,unhealthyContainerCount,volumeCount,imageCount,serviceCount,stackCount,dockerSnapshotRaw);
+int get hashCode => Object.hash(runtimeType,time,dockerVersion,swarm,totalCPU,totalMemory,containerCount,runningContainerCount,stoppedContainerCount,healthyContainerCount,unhealthyContainerCount,volumeCount,imageCount,serviceCount,stackCount,dockerSnapshotRaw);
 
 @override
 String toString() {
-  return 'Snapshot(time: $time, dockerVersion: $dockerVersion, swarm: $swarm, totalCpu: $totalCpu, totalMemory: $totalMemory, containerCount: $containerCount, runningContainerCount: $runningContainerCount, stoppedContainerCount: $stoppedContainerCount, healthyContainerCount: $healthyContainerCount, unhealthyContainerCount: $unhealthyContainerCount, volumeCount: $volumeCount, imageCount: $imageCount, serviceCount: $serviceCount, stackCount: $stackCount, dockerSnapshotRaw: $dockerSnapshotRaw)';
+  return 'Snapshot(time: $time, dockerVersion: $dockerVersion, swarm: $swarm, totalCPU: $totalCPU, totalMemory: $totalMemory, containerCount: $containerCount, runningContainerCount: $runningContainerCount, stoppedContainerCount: $stoppedContainerCount, healthyContainerCount: $healthyContainerCount, unhealthyContainerCount: $unhealthyContainerCount, volumeCount: $volumeCount, imageCount: $imageCount, serviceCount: $serviceCount, stackCount: $stackCount, dockerSnapshotRaw: $dockerSnapshotRaw)';
 }
 
 
@@ -936,7 +946,7 @@ abstract mixin class $SnapshotCopyWith<$Res>  {
   factory $SnapshotCopyWith(Snapshot value, $Res Function(Snapshot) _then) = _$SnapshotCopyWithImpl;
 @useResult
 $Res call({
- int time, String dockerVersion, bool swarm, int totalCpu, int totalMemory, int containerCount, int runningContainerCount, int stoppedContainerCount, int healthyContainerCount, int unhealthyContainerCount, int volumeCount, int imageCount, int serviceCount, int stackCount, DockerSnapshotRaw dockerSnapshotRaw
+ int time, String dockerVersion, bool swarm, int totalCPU, int totalMemory, int containerCount, int runningContainerCount, int stoppedContainerCount, int healthyContainerCount, int unhealthyContainerCount, int volumeCount, int imageCount, int serviceCount, int stackCount, DockerSnapshotRaw dockerSnapshotRaw
 });
 
 
@@ -953,12 +963,12 @@ class _$SnapshotCopyWithImpl<$Res>
 
 /// Create a copy of Snapshot
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? time = null,Object? dockerVersion = null,Object? swarm = null,Object? totalCpu = null,Object? totalMemory = null,Object? containerCount = null,Object? runningContainerCount = null,Object? stoppedContainerCount = null,Object? healthyContainerCount = null,Object? unhealthyContainerCount = null,Object? volumeCount = null,Object? imageCount = null,Object? serviceCount = null,Object? stackCount = null,Object? dockerSnapshotRaw = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? time = null,Object? dockerVersion = null,Object? swarm = null,Object? totalCPU = null,Object? totalMemory = null,Object? containerCount = null,Object? runningContainerCount = null,Object? stoppedContainerCount = null,Object? healthyContainerCount = null,Object? unhealthyContainerCount = null,Object? volumeCount = null,Object? imageCount = null,Object? serviceCount = null,Object? stackCount = null,Object? dockerSnapshotRaw = null,}) {
   return _then(_self.copyWith(
 time: null == time ? _self.time : time // ignore: cast_nullable_to_non_nullable
 as int,dockerVersion: null == dockerVersion ? _self.dockerVersion : dockerVersion // ignore: cast_nullable_to_non_nullable
 as String,swarm: null == swarm ? _self.swarm : swarm // ignore: cast_nullable_to_non_nullable
-as bool,totalCpu: null == totalCpu ? _self.totalCpu : totalCpu // ignore: cast_nullable_to_non_nullable
+as bool,totalCPU: null == totalCPU ? _self.totalCPU : totalCPU // ignore: cast_nullable_to_non_nullable
 as int,totalMemory: null == totalMemory ? _self.totalMemory : totalMemory // ignore: cast_nullable_to_non_nullable
 as int,containerCount: null == containerCount ? _self.containerCount : containerCount // ignore: cast_nullable_to_non_nullable
 as int,runningContainerCount: null == runningContainerCount ? _self.runningContainerCount : runningContainerCount // ignore: cast_nullable_to_non_nullable
@@ -1064,10 +1074,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int time,  String dockerVersion,  bool swarm,  int totalCpu,  int totalMemory,  int containerCount,  int runningContainerCount,  int stoppedContainerCount,  int healthyContainerCount,  int unhealthyContainerCount,  int volumeCount,  int imageCount,  int serviceCount,  int stackCount,  DockerSnapshotRaw dockerSnapshotRaw)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int time,  String dockerVersion,  bool swarm,  int totalCPU,  int totalMemory,  int containerCount,  int runningContainerCount,  int stoppedContainerCount,  int healthyContainerCount,  int unhealthyContainerCount,  int volumeCount,  int imageCount,  int serviceCount,  int stackCount,  DockerSnapshotRaw dockerSnapshotRaw)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Snapshot() when $default != null:
-return $default(_that.time,_that.dockerVersion,_that.swarm,_that.totalCpu,_that.totalMemory,_that.containerCount,_that.runningContainerCount,_that.stoppedContainerCount,_that.healthyContainerCount,_that.unhealthyContainerCount,_that.volumeCount,_that.imageCount,_that.serviceCount,_that.stackCount,_that.dockerSnapshotRaw);case _:
+return $default(_that.time,_that.dockerVersion,_that.swarm,_that.totalCPU,_that.totalMemory,_that.containerCount,_that.runningContainerCount,_that.stoppedContainerCount,_that.healthyContainerCount,_that.unhealthyContainerCount,_that.volumeCount,_that.imageCount,_that.serviceCount,_that.stackCount,_that.dockerSnapshotRaw);case _:
   return orElse();
 
 }
@@ -1085,10 +1095,10 @@ return $default(_that.time,_that.dockerVersion,_that.swarm,_that.totalCpu,_that.
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int time,  String dockerVersion,  bool swarm,  int totalCpu,  int totalMemory,  int containerCount,  int runningContainerCount,  int stoppedContainerCount,  int healthyContainerCount,  int unhealthyContainerCount,  int volumeCount,  int imageCount,  int serviceCount,  int stackCount,  DockerSnapshotRaw dockerSnapshotRaw)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int time,  String dockerVersion,  bool swarm,  int totalCPU,  int totalMemory,  int containerCount,  int runningContainerCount,  int stoppedContainerCount,  int healthyContainerCount,  int unhealthyContainerCount,  int volumeCount,  int imageCount,  int serviceCount,  int stackCount,  DockerSnapshotRaw dockerSnapshotRaw)  $default,) {final _that = this;
 switch (_that) {
 case _Snapshot():
-return $default(_that.time,_that.dockerVersion,_that.swarm,_that.totalCpu,_that.totalMemory,_that.containerCount,_that.runningContainerCount,_that.stoppedContainerCount,_that.healthyContainerCount,_that.unhealthyContainerCount,_that.volumeCount,_that.imageCount,_that.serviceCount,_that.stackCount,_that.dockerSnapshotRaw);case _:
+return $default(_that.time,_that.dockerVersion,_that.swarm,_that.totalCPU,_that.totalMemory,_that.containerCount,_that.runningContainerCount,_that.stoppedContainerCount,_that.healthyContainerCount,_that.unhealthyContainerCount,_that.volumeCount,_that.imageCount,_that.serviceCount,_that.stackCount,_that.dockerSnapshotRaw);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -1105,10 +1115,10 @@ return $default(_that.time,_that.dockerVersion,_that.swarm,_that.totalCpu,_that.
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int time,  String dockerVersion,  bool swarm,  int totalCpu,  int totalMemory,  int containerCount,  int runningContainerCount,  int stoppedContainerCount,  int healthyContainerCount,  int unhealthyContainerCount,  int volumeCount,  int imageCount,  int serviceCount,  int stackCount,  DockerSnapshotRaw dockerSnapshotRaw)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int time,  String dockerVersion,  bool swarm,  int totalCPU,  int totalMemory,  int containerCount,  int runningContainerCount,  int stoppedContainerCount,  int healthyContainerCount,  int unhealthyContainerCount,  int volumeCount,  int imageCount,  int serviceCount,  int stackCount,  DockerSnapshotRaw dockerSnapshotRaw)?  $default,) {final _that = this;
 switch (_that) {
 case _Snapshot() when $default != null:
-return $default(_that.time,_that.dockerVersion,_that.swarm,_that.totalCpu,_that.totalMemory,_that.containerCount,_that.runningContainerCount,_that.stoppedContainerCount,_that.healthyContainerCount,_that.unhealthyContainerCount,_that.volumeCount,_that.imageCount,_that.serviceCount,_that.stackCount,_that.dockerSnapshotRaw);case _:
+return $default(_that.time,_that.dockerVersion,_that.swarm,_that.totalCPU,_that.totalMemory,_that.containerCount,_that.runningContainerCount,_that.stoppedContainerCount,_that.healthyContainerCount,_that.unhealthyContainerCount,_that.volumeCount,_that.imageCount,_that.serviceCount,_that.stackCount,_that.dockerSnapshotRaw);case _:
   return null;
 
 }
@@ -1117,16 +1127,16 @@ return $default(_that.time,_that.dockerVersion,_that.swarm,_that.totalCpu,_that.
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(fieldRename: FieldRename.pascal)
 class _Snapshot implements Snapshot {
-  const _Snapshot({required this.time, required this.dockerVersion, required this.swarm, required this.totalCpu, required this.totalMemory, required this.containerCount, required this.runningContainerCount, required this.stoppedContainerCount, required this.healthyContainerCount, required this.unhealthyContainerCount, required this.volumeCount, required this.imageCount, required this.serviceCount, required this.stackCount, required this.dockerSnapshotRaw});
+  const _Snapshot({required this.time, required this.dockerVersion, required this.swarm, required this.totalCPU, required this.totalMemory, required this.containerCount, required this.runningContainerCount, required this.stoppedContainerCount, required this.healthyContainerCount, required this.unhealthyContainerCount, required this.volumeCount, required this.imageCount, required this.serviceCount, required this.stackCount, required this.dockerSnapshotRaw});
   factory _Snapshot.fromJson(Map<String, dynamic> json) => _$SnapshotFromJson(json);
 
 @override final  int time;
 @override final  String dockerVersion;
 @override final  bool swarm;
-@override final  int totalCpu;
+@override final  int totalCPU;
 @override final  int totalMemory;
 @override final  int containerCount;
 @override final  int runningContainerCount;
@@ -1152,16 +1162,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Snapshot&&(identical(other.time, time) || other.time == time)&&(identical(other.dockerVersion, dockerVersion) || other.dockerVersion == dockerVersion)&&(identical(other.swarm, swarm) || other.swarm == swarm)&&(identical(other.totalCpu, totalCpu) || other.totalCpu == totalCpu)&&(identical(other.totalMemory, totalMemory) || other.totalMemory == totalMemory)&&(identical(other.containerCount, containerCount) || other.containerCount == containerCount)&&(identical(other.runningContainerCount, runningContainerCount) || other.runningContainerCount == runningContainerCount)&&(identical(other.stoppedContainerCount, stoppedContainerCount) || other.stoppedContainerCount == stoppedContainerCount)&&(identical(other.healthyContainerCount, healthyContainerCount) || other.healthyContainerCount == healthyContainerCount)&&(identical(other.unhealthyContainerCount, unhealthyContainerCount) || other.unhealthyContainerCount == unhealthyContainerCount)&&(identical(other.volumeCount, volumeCount) || other.volumeCount == volumeCount)&&(identical(other.imageCount, imageCount) || other.imageCount == imageCount)&&(identical(other.serviceCount, serviceCount) || other.serviceCount == serviceCount)&&(identical(other.stackCount, stackCount) || other.stackCount == stackCount)&&(identical(other.dockerSnapshotRaw, dockerSnapshotRaw) || other.dockerSnapshotRaw == dockerSnapshotRaw));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Snapshot&&(identical(other.time, time) || other.time == time)&&(identical(other.dockerVersion, dockerVersion) || other.dockerVersion == dockerVersion)&&(identical(other.swarm, swarm) || other.swarm == swarm)&&(identical(other.totalCPU, totalCPU) || other.totalCPU == totalCPU)&&(identical(other.totalMemory, totalMemory) || other.totalMemory == totalMemory)&&(identical(other.containerCount, containerCount) || other.containerCount == containerCount)&&(identical(other.runningContainerCount, runningContainerCount) || other.runningContainerCount == runningContainerCount)&&(identical(other.stoppedContainerCount, stoppedContainerCount) || other.stoppedContainerCount == stoppedContainerCount)&&(identical(other.healthyContainerCount, healthyContainerCount) || other.healthyContainerCount == healthyContainerCount)&&(identical(other.unhealthyContainerCount, unhealthyContainerCount) || other.unhealthyContainerCount == unhealthyContainerCount)&&(identical(other.volumeCount, volumeCount) || other.volumeCount == volumeCount)&&(identical(other.imageCount, imageCount) || other.imageCount == imageCount)&&(identical(other.serviceCount, serviceCount) || other.serviceCount == serviceCount)&&(identical(other.stackCount, stackCount) || other.stackCount == stackCount)&&(identical(other.dockerSnapshotRaw, dockerSnapshotRaw) || other.dockerSnapshotRaw == dockerSnapshotRaw));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,time,dockerVersion,swarm,totalCpu,totalMemory,containerCount,runningContainerCount,stoppedContainerCount,healthyContainerCount,unhealthyContainerCount,volumeCount,imageCount,serviceCount,stackCount,dockerSnapshotRaw);
+int get hashCode => Object.hash(runtimeType,time,dockerVersion,swarm,totalCPU,totalMemory,containerCount,runningContainerCount,stoppedContainerCount,healthyContainerCount,unhealthyContainerCount,volumeCount,imageCount,serviceCount,stackCount,dockerSnapshotRaw);
 
 @override
 String toString() {
-  return 'Snapshot(time: $time, dockerVersion: $dockerVersion, swarm: $swarm, totalCpu: $totalCpu, totalMemory: $totalMemory, containerCount: $containerCount, runningContainerCount: $runningContainerCount, stoppedContainerCount: $stoppedContainerCount, healthyContainerCount: $healthyContainerCount, unhealthyContainerCount: $unhealthyContainerCount, volumeCount: $volumeCount, imageCount: $imageCount, serviceCount: $serviceCount, stackCount: $stackCount, dockerSnapshotRaw: $dockerSnapshotRaw)';
+  return 'Snapshot(time: $time, dockerVersion: $dockerVersion, swarm: $swarm, totalCPU: $totalCPU, totalMemory: $totalMemory, containerCount: $containerCount, runningContainerCount: $runningContainerCount, stoppedContainerCount: $stoppedContainerCount, healthyContainerCount: $healthyContainerCount, unhealthyContainerCount: $unhealthyContainerCount, volumeCount: $volumeCount, imageCount: $imageCount, serviceCount: $serviceCount, stackCount: $stackCount, dockerSnapshotRaw: $dockerSnapshotRaw)';
 }
 
 
@@ -1172,7 +1182,7 @@ abstract mixin class _$SnapshotCopyWith<$Res> implements $SnapshotCopyWith<$Res>
   factory _$SnapshotCopyWith(_Snapshot value, $Res Function(_Snapshot) _then) = __$SnapshotCopyWithImpl;
 @override @useResult
 $Res call({
- int time, String dockerVersion, bool swarm, int totalCpu, int totalMemory, int containerCount, int runningContainerCount, int stoppedContainerCount, int healthyContainerCount, int unhealthyContainerCount, int volumeCount, int imageCount, int serviceCount, int stackCount, DockerSnapshotRaw dockerSnapshotRaw
+ int time, String dockerVersion, bool swarm, int totalCPU, int totalMemory, int containerCount, int runningContainerCount, int stoppedContainerCount, int healthyContainerCount, int unhealthyContainerCount, int volumeCount, int imageCount, int serviceCount, int stackCount, DockerSnapshotRaw dockerSnapshotRaw
 });
 
 
@@ -1189,12 +1199,12 @@ class __$SnapshotCopyWithImpl<$Res>
 
 /// Create a copy of Snapshot
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? time = null,Object? dockerVersion = null,Object? swarm = null,Object? totalCpu = null,Object? totalMemory = null,Object? containerCount = null,Object? runningContainerCount = null,Object? stoppedContainerCount = null,Object? healthyContainerCount = null,Object? unhealthyContainerCount = null,Object? volumeCount = null,Object? imageCount = null,Object? serviceCount = null,Object? stackCount = null,Object? dockerSnapshotRaw = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? time = null,Object? dockerVersion = null,Object? swarm = null,Object? totalCPU = null,Object? totalMemory = null,Object? containerCount = null,Object? runningContainerCount = null,Object? stoppedContainerCount = null,Object? healthyContainerCount = null,Object? unhealthyContainerCount = null,Object? volumeCount = null,Object? imageCount = null,Object? serviceCount = null,Object? stackCount = null,Object? dockerSnapshotRaw = null,}) {
   return _then(_Snapshot(
 time: null == time ? _self.time : time // ignore: cast_nullable_to_non_nullable
 as int,dockerVersion: null == dockerVersion ? _self.dockerVersion : dockerVersion // ignore: cast_nullable_to_non_nullable
 as String,swarm: null == swarm ? _self.swarm : swarm // ignore: cast_nullable_to_non_nullable
-as bool,totalCpu: null == totalCpu ? _self.totalCpu : totalCpu // ignore: cast_nullable_to_non_nullable
+as bool,totalCPU: null == totalCPU ? _self.totalCPU : totalCPU // ignore: cast_nullable_to_non_nullable
 as int,totalMemory: null == totalMemory ? _self.totalMemory : totalMemory // ignore: cast_nullable_to_non_nullable
 as int,containerCount: null == containerCount ? _self.containerCount : containerCount // ignore: cast_nullable_to_non_nullable
 as int,runningContainerCount: null == runningContainerCount ? _self.runningContainerCount : runningContainerCount // ignore: cast_nullable_to_non_nullable
@@ -1449,8 +1459,8 @@ return $default(_that.containers,_that.volumes,_that.networks,_that.images,_that
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(fieldRename: FieldRename.pascal)
 class _DockerSnapshotRaw implements DockerSnapshotRaw {
   const _DockerSnapshotRaw({required final  List<ContainerInfo> containers, required this.volumes, required final  List<NetworkInfo> networks, required final  List<ImageInfo> images, required this.info, required this.version}): _containers = containers,_networks = networks,_images = images;
   factory _DockerSnapshotRaw.fromJson(Map<String, dynamic> json) => _$DockerSnapshotRawFromJson(json);
@@ -1576,7 +1586,7 @@ $DockerVersionInfoCopyWith<$Res> get version {
 /// @nodoc
 mixin _$ContainerInfo {
 
- String get id; List<String> get names; String get image; String get imageId; String get command; int get created; List<PortInfo> get ports; Map<String, String> get labels; String get state; String get status; HostConfigInfo get hostConfig; NetworkSettingsInfo get networkSettings; List<MountInfo> get mounts;
+ String get id; List<String> get names; String get image; String get imageID; String get command; int get created; List<PortInfo> get ports; Map<String, String> get labels; String get state; String get status; HostConfigInfo get hostConfig; NetworkSettingsInfo get networkSettings; List<MountInfo> get mounts;
 /// Create a copy of ContainerInfo
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -1589,16 +1599,16 @@ $ContainerInfoCopyWith<ContainerInfo> get copyWith => _$ContainerInfoCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ContainerInfo&&(identical(other.id, id) || other.id == id)&&const DeepCollectionEquality().equals(other.names, names)&&(identical(other.image, image) || other.image == image)&&(identical(other.imageId, imageId) || other.imageId == imageId)&&(identical(other.command, command) || other.command == command)&&(identical(other.created, created) || other.created == created)&&const DeepCollectionEquality().equals(other.ports, ports)&&const DeepCollectionEquality().equals(other.labels, labels)&&(identical(other.state, state) || other.state == state)&&(identical(other.status, status) || other.status == status)&&(identical(other.hostConfig, hostConfig) || other.hostConfig == hostConfig)&&(identical(other.networkSettings, networkSettings) || other.networkSettings == networkSettings)&&const DeepCollectionEquality().equals(other.mounts, mounts));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ContainerInfo&&(identical(other.id, id) || other.id == id)&&const DeepCollectionEquality().equals(other.names, names)&&(identical(other.image, image) || other.image == image)&&(identical(other.imageID, imageID) || other.imageID == imageID)&&(identical(other.command, command) || other.command == command)&&(identical(other.created, created) || other.created == created)&&const DeepCollectionEquality().equals(other.ports, ports)&&const DeepCollectionEquality().equals(other.labels, labels)&&(identical(other.state, state) || other.state == state)&&(identical(other.status, status) || other.status == status)&&(identical(other.hostConfig, hostConfig) || other.hostConfig == hostConfig)&&(identical(other.networkSettings, networkSettings) || other.networkSettings == networkSettings)&&const DeepCollectionEquality().equals(other.mounts, mounts));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,const DeepCollectionEquality().hash(names),image,imageId,command,created,const DeepCollectionEquality().hash(ports),const DeepCollectionEquality().hash(labels),state,status,hostConfig,networkSettings,const DeepCollectionEquality().hash(mounts));
+int get hashCode => Object.hash(runtimeType,id,const DeepCollectionEquality().hash(names),image,imageID,command,created,const DeepCollectionEquality().hash(ports),const DeepCollectionEquality().hash(labels),state,status,hostConfig,networkSettings,const DeepCollectionEquality().hash(mounts));
 
 @override
 String toString() {
-  return 'ContainerInfo(id: $id, names: $names, image: $image, imageId: $imageId, command: $command, created: $created, ports: $ports, labels: $labels, state: $state, status: $status, hostConfig: $hostConfig, networkSettings: $networkSettings, mounts: $mounts)';
+  return 'ContainerInfo(id: $id, names: $names, image: $image, imageID: $imageID, command: $command, created: $created, ports: $ports, labels: $labels, state: $state, status: $status, hostConfig: $hostConfig, networkSettings: $networkSettings, mounts: $mounts)';
 }
 
 
@@ -1609,7 +1619,7 @@ abstract mixin class $ContainerInfoCopyWith<$Res>  {
   factory $ContainerInfoCopyWith(ContainerInfo value, $Res Function(ContainerInfo) _then) = _$ContainerInfoCopyWithImpl;
 @useResult
 $Res call({
- String id, List<String> names, String image, String imageId, String command, int created, List<PortInfo> ports, Map<String, String> labels, String state, String status, HostConfigInfo hostConfig, NetworkSettingsInfo networkSettings, List<MountInfo> mounts
+ String id, List<String> names, String image, String imageID, String command, int created, List<PortInfo> ports, Map<String, String> labels, String state, String status, HostConfigInfo hostConfig, NetworkSettingsInfo networkSettings, List<MountInfo> mounts
 });
 
 
@@ -1626,12 +1636,12 @@ class _$ContainerInfoCopyWithImpl<$Res>
 
 /// Create a copy of ContainerInfo
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? names = null,Object? image = null,Object? imageId = null,Object? command = null,Object? created = null,Object? ports = null,Object? labels = null,Object? state = null,Object? status = null,Object? hostConfig = null,Object? networkSettings = null,Object? mounts = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? names = null,Object? image = null,Object? imageID = null,Object? command = null,Object? created = null,Object? ports = null,Object? labels = null,Object? state = null,Object? status = null,Object? hostConfig = null,Object? networkSettings = null,Object? mounts = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,names: null == names ? _self.names : names // ignore: cast_nullable_to_non_nullable
 as List<String>,image: null == image ? _self.image : image // ignore: cast_nullable_to_non_nullable
-as String,imageId: null == imageId ? _self.imageId : imageId // ignore: cast_nullable_to_non_nullable
+as String,imageID: null == imageID ? _self.imageID : imageID // ignore: cast_nullable_to_non_nullable
 as String,command: null == command ? _self.command : command // ignore: cast_nullable_to_non_nullable
 as String,created: null == created ? _self.created : created // ignore: cast_nullable_to_non_nullable
 as int,ports: null == ports ? _self.ports : ports // ignore: cast_nullable_to_non_nullable
@@ -1744,10 +1754,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  List<String> names,  String image,  String imageId,  String command,  int created,  List<PortInfo> ports,  Map<String, String> labels,  String state,  String status,  HostConfigInfo hostConfig,  NetworkSettingsInfo networkSettings,  List<MountInfo> mounts)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  List<String> names,  String image,  String imageID,  String command,  int created,  List<PortInfo> ports,  Map<String, String> labels,  String state,  String status,  HostConfigInfo hostConfig,  NetworkSettingsInfo networkSettings,  List<MountInfo> mounts)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ContainerInfo() when $default != null:
-return $default(_that.id,_that.names,_that.image,_that.imageId,_that.command,_that.created,_that.ports,_that.labels,_that.state,_that.status,_that.hostConfig,_that.networkSettings,_that.mounts);case _:
+return $default(_that.id,_that.names,_that.image,_that.imageID,_that.command,_that.created,_that.ports,_that.labels,_that.state,_that.status,_that.hostConfig,_that.networkSettings,_that.mounts);case _:
   return orElse();
 
 }
@@ -1765,10 +1775,10 @@ return $default(_that.id,_that.names,_that.image,_that.imageId,_that.command,_th
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  List<String> names,  String image,  String imageId,  String command,  int created,  List<PortInfo> ports,  Map<String, String> labels,  String state,  String status,  HostConfigInfo hostConfig,  NetworkSettingsInfo networkSettings,  List<MountInfo> mounts)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  List<String> names,  String image,  String imageID,  String command,  int created,  List<PortInfo> ports,  Map<String, String> labels,  String state,  String status,  HostConfigInfo hostConfig,  NetworkSettingsInfo networkSettings,  List<MountInfo> mounts)  $default,) {final _that = this;
 switch (_that) {
 case _ContainerInfo():
-return $default(_that.id,_that.names,_that.image,_that.imageId,_that.command,_that.created,_that.ports,_that.labels,_that.state,_that.status,_that.hostConfig,_that.networkSettings,_that.mounts);case _:
+return $default(_that.id,_that.names,_that.image,_that.imageID,_that.command,_that.created,_that.ports,_that.labels,_that.state,_that.status,_that.hostConfig,_that.networkSettings,_that.mounts);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -1785,10 +1795,10 @@ return $default(_that.id,_that.names,_that.image,_that.imageId,_that.command,_th
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  List<String> names,  String image,  String imageId,  String command,  int created,  List<PortInfo> ports,  Map<String, String> labels,  String state,  String status,  HostConfigInfo hostConfig,  NetworkSettingsInfo networkSettings,  List<MountInfo> mounts)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  List<String> names,  String image,  String imageID,  String command,  int created,  List<PortInfo> ports,  Map<String, String> labels,  String state,  String status,  HostConfigInfo hostConfig,  NetworkSettingsInfo networkSettings,  List<MountInfo> mounts)?  $default,) {final _that = this;
 switch (_that) {
 case _ContainerInfo() when $default != null:
-return $default(_that.id,_that.names,_that.image,_that.imageId,_that.command,_that.created,_that.ports,_that.labels,_that.state,_that.status,_that.hostConfig,_that.networkSettings,_that.mounts);case _:
+return $default(_that.id,_that.names,_that.image,_that.imageID,_that.command,_that.created,_that.ports,_that.labels,_that.state,_that.status,_that.hostConfig,_that.networkSettings,_that.mounts);case _:
   return null;
 
 }
@@ -1797,10 +1807,10 @@ return $default(_that.id,_that.names,_that.image,_that.imageId,_that.command,_th
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(fieldRename: FieldRename.pascal)
 class _ContainerInfo implements ContainerInfo {
-  const _ContainerInfo({required this.id, required final  List<String> names, required this.image, required this.imageId, required this.command, required this.created, required final  List<PortInfo> ports, required final  Map<String, String> labels, required this.state, required this.status, required this.hostConfig, required this.networkSettings, required final  List<MountInfo> mounts}): _names = names,_ports = ports,_labels = labels,_mounts = mounts;
+  const _ContainerInfo({required this.id, required final  List<String> names, required this.image, required this.imageID, required this.command, required this.created, required final  List<PortInfo> ports, required final  Map<String, String> labels, required this.state, required this.status, required this.hostConfig, required this.networkSettings, required final  List<MountInfo> mounts}): _names = names,_ports = ports,_labels = labels,_mounts = mounts;
   factory _ContainerInfo.fromJson(Map<String, dynamic> json) => _$ContainerInfoFromJson(json);
 
 @override final  String id;
@@ -1812,7 +1822,7 @@ class _ContainerInfo implements ContainerInfo {
 }
 
 @override final  String image;
-@override final  String imageId;
+@override final  String imageID;
 @override final  String command;
 @override final  int created;
  final  List<PortInfo> _ports;
@@ -1854,16 +1864,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ContainerInfo&&(identical(other.id, id) || other.id == id)&&const DeepCollectionEquality().equals(other._names, _names)&&(identical(other.image, image) || other.image == image)&&(identical(other.imageId, imageId) || other.imageId == imageId)&&(identical(other.command, command) || other.command == command)&&(identical(other.created, created) || other.created == created)&&const DeepCollectionEquality().equals(other._ports, _ports)&&const DeepCollectionEquality().equals(other._labels, _labels)&&(identical(other.state, state) || other.state == state)&&(identical(other.status, status) || other.status == status)&&(identical(other.hostConfig, hostConfig) || other.hostConfig == hostConfig)&&(identical(other.networkSettings, networkSettings) || other.networkSettings == networkSettings)&&const DeepCollectionEquality().equals(other._mounts, _mounts));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ContainerInfo&&(identical(other.id, id) || other.id == id)&&const DeepCollectionEquality().equals(other._names, _names)&&(identical(other.image, image) || other.image == image)&&(identical(other.imageID, imageID) || other.imageID == imageID)&&(identical(other.command, command) || other.command == command)&&(identical(other.created, created) || other.created == created)&&const DeepCollectionEquality().equals(other._ports, _ports)&&const DeepCollectionEquality().equals(other._labels, _labels)&&(identical(other.state, state) || other.state == state)&&(identical(other.status, status) || other.status == status)&&(identical(other.hostConfig, hostConfig) || other.hostConfig == hostConfig)&&(identical(other.networkSettings, networkSettings) || other.networkSettings == networkSettings)&&const DeepCollectionEquality().equals(other._mounts, _mounts));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,const DeepCollectionEquality().hash(_names),image,imageId,command,created,const DeepCollectionEquality().hash(_ports),const DeepCollectionEquality().hash(_labels),state,status,hostConfig,networkSettings,const DeepCollectionEquality().hash(_mounts));
+int get hashCode => Object.hash(runtimeType,id,const DeepCollectionEquality().hash(_names),image,imageID,command,created,const DeepCollectionEquality().hash(_ports),const DeepCollectionEquality().hash(_labels),state,status,hostConfig,networkSettings,const DeepCollectionEquality().hash(_mounts));
 
 @override
 String toString() {
-  return 'ContainerInfo(id: $id, names: $names, image: $image, imageId: $imageId, command: $command, created: $created, ports: $ports, labels: $labels, state: $state, status: $status, hostConfig: $hostConfig, networkSettings: $networkSettings, mounts: $mounts)';
+  return 'ContainerInfo(id: $id, names: $names, image: $image, imageID: $imageID, command: $command, created: $created, ports: $ports, labels: $labels, state: $state, status: $status, hostConfig: $hostConfig, networkSettings: $networkSettings, mounts: $mounts)';
 }
 
 
@@ -1874,7 +1884,7 @@ abstract mixin class _$ContainerInfoCopyWith<$Res> implements $ContainerInfoCopy
   factory _$ContainerInfoCopyWith(_ContainerInfo value, $Res Function(_ContainerInfo) _then) = __$ContainerInfoCopyWithImpl;
 @override @useResult
 $Res call({
- String id, List<String> names, String image, String imageId, String command, int created, List<PortInfo> ports, Map<String, String> labels, String state, String status, HostConfigInfo hostConfig, NetworkSettingsInfo networkSettings, List<MountInfo> mounts
+ String id, List<String> names, String image, String imageID, String command, int created, List<PortInfo> ports, Map<String, String> labels, String state, String status, HostConfigInfo hostConfig, NetworkSettingsInfo networkSettings, List<MountInfo> mounts
 });
 
 
@@ -1891,12 +1901,12 @@ class __$ContainerInfoCopyWithImpl<$Res>
 
 /// Create a copy of ContainerInfo
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? names = null,Object? image = null,Object? imageId = null,Object? command = null,Object? created = null,Object? ports = null,Object? labels = null,Object? state = null,Object? status = null,Object? hostConfig = null,Object? networkSettings = null,Object? mounts = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? names = null,Object? image = null,Object? imageID = null,Object? command = null,Object? created = null,Object? ports = null,Object? labels = null,Object? state = null,Object? status = null,Object? hostConfig = null,Object? networkSettings = null,Object? mounts = null,}) {
   return _then(_ContainerInfo(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,names: null == names ? _self._names : names // ignore: cast_nullable_to_non_nullable
 as List<String>,image: null == image ? _self.image : image // ignore: cast_nullable_to_non_nullable
-as String,imageId: null == imageId ? _self.imageId : imageId // ignore: cast_nullable_to_non_nullable
+as String,imageID: null == imageID ? _self.imageID : imageID // ignore: cast_nullable_to_non_nullable
 as String,command: null == command ? _self.command : command // ignore: cast_nullable_to_non_nullable
 as String,created: null == created ? _self.created : created // ignore: cast_nullable_to_non_nullable
 as int,ports: null == ports ? _self._ports : ports // ignore: cast_nullable_to_non_nullable
@@ -2129,8 +2139,8 @@ return $default(_that.ip,_that.privatePort,_that.publicPort,_that.type);case _:
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(fieldRename: FieldRename.pascal)
 class _PortInfo implements PortInfo {
   const _PortInfo({this.ip, required this.privatePort, this.publicPort, required this.type});
   factory _PortInfo.fromJson(Map<String, dynamic> json) => _$PortInfoFromJson(json);
@@ -2398,8 +2408,8 @@ return $default(_that.networkMode);case _:
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(fieldRename: FieldRename.pascal)
 class _HostConfigInfo implements HostConfigInfo {
   const _HostConfigInfo({required this.networkMode});
   factory _HostConfigInfo.fromJson(Map<String, dynamic> json) => _$HostConfigInfoFromJson(json);
@@ -2661,8 +2671,8 @@ return $default(_that.networks);case _:
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(fieldRename: FieldRename.pascal)
 class _NetworkSettingsInfo implements NetworkSettingsInfo {
   const _NetworkSettingsInfo({required final  Map<String, NetworkDetailInfo> networks}): _networks = networks;
   factory _NetworkSettingsInfo.fromJson(Map<String, dynamic> json) => _$NetworkSettingsInfoFromJson(json);
@@ -2739,7 +2749,7 @@ as Map<String, NetworkDetailInfo>,
 /// @nodoc
 mixin _$NetworkDetailInfo {
 
- dynamic get ipamConfig; dynamic get links; dynamic get aliases; String get macAddress; dynamic get driverOpts; String get networkId; String get endpointId; String get gateway; String get ipAddress; int get ipPrefixLen; String get ipv6Gateway; String get globalIpv6Address; int get globalIpv6PrefixLen; dynamic get dnsNames;
+ dynamic get ipamConfig; dynamic get links; dynamic get aliases; String get macAddress; dynamic get driverOpts; String get networkID; String get endpointID; String get gateway; String get iPAddress; int? get iPPrefixLen; String? get iPv6Gateway; String? get globalIPv6Address; int? get globalIPv6PrefixLen; dynamic get dnsNames;
 /// Create a copy of NetworkDetailInfo
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -2752,16 +2762,16 @@ $NetworkDetailInfoCopyWith<NetworkDetailInfo> get copyWith => _$NetworkDetailInf
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is NetworkDetailInfo&&const DeepCollectionEquality().equals(other.ipamConfig, ipamConfig)&&const DeepCollectionEquality().equals(other.links, links)&&const DeepCollectionEquality().equals(other.aliases, aliases)&&(identical(other.macAddress, macAddress) || other.macAddress == macAddress)&&const DeepCollectionEquality().equals(other.driverOpts, driverOpts)&&(identical(other.networkId, networkId) || other.networkId == networkId)&&(identical(other.endpointId, endpointId) || other.endpointId == endpointId)&&(identical(other.gateway, gateway) || other.gateway == gateway)&&(identical(other.ipAddress, ipAddress) || other.ipAddress == ipAddress)&&(identical(other.ipPrefixLen, ipPrefixLen) || other.ipPrefixLen == ipPrefixLen)&&(identical(other.ipv6Gateway, ipv6Gateway) || other.ipv6Gateway == ipv6Gateway)&&(identical(other.globalIpv6Address, globalIpv6Address) || other.globalIpv6Address == globalIpv6Address)&&(identical(other.globalIpv6PrefixLen, globalIpv6PrefixLen) || other.globalIpv6PrefixLen == globalIpv6PrefixLen)&&const DeepCollectionEquality().equals(other.dnsNames, dnsNames));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is NetworkDetailInfo&&const DeepCollectionEquality().equals(other.ipamConfig, ipamConfig)&&const DeepCollectionEquality().equals(other.links, links)&&const DeepCollectionEquality().equals(other.aliases, aliases)&&(identical(other.macAddress, macAddress) || other.macAddress == macAddress)&&const DeepCollectionEquality().equals(other.driverOpts, driverOpts)&&(identical(other.networkID, networkID) || other.networkID == networkID)&&(identical(other.endpointID, endpointID) || other.endpointID == endpointID)&&(identical(other.gateway, gateway) || other.gateway == gateway)&&(identical(other.iPAddress, iPAddress) || other.iPAddress == iPAddress)&&(identical(other.iPPrefixLen, iPPrefixLen) || other.iPPrefixLen == iPPrefixLen)&&(identical(other.iPv6Gateway, iPv6Gateway) || other.iPv6Gateway == iPv6Gateway)&&(identical(other.globalIPv6Address, globalIPv6Address) || other.globalIPv6Address == globalIPv6Address)&&(identical(other.globalIPv6PrefixLen, globalIPv6PrefixLen) || other.globalIPv6PrefixLen == globalIPv6PrefixLen)&&const DeepCollectionEquality().equals(other.dnsNames, dnsNames));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(ipamConfig),const DeepCollectionEquality().hash(links),const DeepCollectionEquality().hash(aliases),macAddress,const DeepCollectionEquality().hash(driverOpts),networkId,endpointId,gateway,ipAddress,ipPrefixLen,ipv6Gateway,globalIpv6Address,globalIpv6PrefixLen,const DeepCollectionEquality().hash(dnsNames));
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(ipamConfig),const DeepCollectionEquality().hash(links),const DeepCollectionEquality().hash(aliases),macAddress,const DeepCollectionEquality().hash(driverOpts),networkID,endpointID,gateway,iPAddress,iPPrefixLen,iPv6Gateway,globalIPv6Address,globalIPv6PrefixLen,const DeepCollectionEquality().hash(dnsNames));
 
 @override
 String toString() {
-  return 'NetworkDetailInfo(ipamConfig: $ipamConfig, links: $links, aliases: $aliases, macAddress: $macAddress, driverOpts: $driverOpts, networkId: $networkId, endpointId: $endpointId, gateway: $gateway, ipAddress: $ipAddress, ipPrefixLen: $ipPrefixLen, ipv6Gateway: $ipv6Gateway, globalIpv6Address: $globalIpv6Address, globalIpv6PrefixLen: $globalIpv6PrefixLen, dnsNames: $dnsNames)';
+  return 'NetworkDetailInfo(ipamConfig: $ipamConfig, links: $links, aliases: $aliases, macAddress: $macAddress, driverOpts: $driverOpts, networkID: $networkID, endpointID: $endpointID, gateway: $gateway, iPAddress: $iPAddress, iPPrefixLen: $iPPrefixLen, iPv6Gateway: $iPv6Gateway, globalIPv6Address: $globalIPv6Address, globalIPv6PrefixLen: $globalIPv6PrefixLen, dnsNames: $dnsNames)';
 }
 
 
@@ -2772,7 +2782,7 @@ abstract mixin class $NetworkDetailInfoCopyWith<$Res>  {
   factory $NetworkDetailInfoCopyWith(NetworkDetailInfo value, $Res Function(NetworkDetailInfo) _then) = _$NetworkDetailInfoCopyWithImpl;
 @useResult
 $Res call({
- dynamic ipamConfig, dynamic links, dynamic aliases, String macAddress, dynamic driverOpts, String networkId, String endpointId, String gateway, String ipAddress, int ipPrefixLen, String ipv6Gateway, String globalIpv6Address, int globalIpv6PrefixLen, dynamic dnsNames
+ dynamic ipamConfig, dynamic links, dynamic aliases, String macAddress, dynamic driverOpts, String networkID, String endpointID, String gateway, String iPAddress, int? iPPrefixLen, String? iPv6Gateway, String? globalIPv6Address, int? globalIPv6PrefixLen, dynamic dnsNames
 });
 
 
@@ -2789,22 +2799,22 @@ class _$NetworkDetailInfoCopyWithImpl<$Res>
 
 /// Create a copy of NetworkDetailInfo
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? ipamConfig = freezed,Object? links = freezed,Object? aliases = freezed,Object? macAddress = null,Object? driverOpts = freezed,Object? networkId = null,Object? endpointId = null,Object? gateway = null,Object? ipAddress = null,Object? ipPrefixLen = null,Object? ipv6Gateway = null,Object? globalIpv6Address = null,Object? globalIpv6PrefixLen = null,Object? dnsNames = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? ipamConfig = freezed,Object? links = freezed,Object? aliases = freezed,Object? macAddress = null,Object? driverOpts = freezed,Object? networkID = null,Object? endpointID = null,Object? gateway = null,Object? iPAddress = null,Object? iPPrefixLen = freezed,Object? iPv6Gateway = freezed,Object? globalIPv6Address = freezed,Object? globalIPv6PrefixLen = freezed,Object? dnsNames = freezed,}) {
   return _then(_self.copyWith(
 ipamConfig: freezed == ipamConfig ? _self.ipamConfig : ipamConfig // ignore: cast_nullable_to_non_nullable
 as dynamic,links: freezed == links ? _self.links : links // ignore: cast_nullable_to_non_nullable
 as dynamic,aliases: freezed == aliases ? _self.aliases : aliases // ignore: cast_nullable_to_non_nullable
 as dynamic,macAddress: null == macAddress ? _self.macAddress : macAddress // ignore: cast_nullable_to_non_nullable
 as String,driverOpts: freezed == driverOpts ? _self.driverOpts : driverOpts // ignore: cast_nullable_to_non_nullable
-as dynamic,networkId: null == networkId ? _self.networkId : networkId // ignore: cast_nullable_to_non_nullable
-as String,endpointId: null == endpointId ? _self.endpointId : endpointId // ignore: cast_nullable_to_non_nullable
+as dynamic,networkID: null == networkID ? _self.networkID : networkID // ignore: cast_nullable_to_non_nullable
+as String,endpointID: null == endpointID ? _self.endpointID : endpointID // ignore: cast_nullable_to_non_nullable
 as String,gateway: null == gateway ? _self.gateway : gateway // ignore: cast_nullable_to_non_nullable
-as String,ipAddress: null == ipAddress ? _self.ipAddress : ipAddress // ignore: cast_nullable_to_non_nullable
-as String,ipPrefixLen: null == ipPrefixLen ? _self.ipPrefixLen : ipPrefixLen // ignore: cast_nullable_to_non_nullable
-as int,ipv6Gateway: null == ipv6Gateway ? _self.ipv6Gateway : ipv6Gateway // ignore: cast_nullable_to_non_nullable
-as String,globalIpv6Address: null == globalIpv6Address ? _self.globalIpv6Address : globalIpv6Address // ignore: cast_nullable_to_non_nullable
-as String,globalIpv6PrefixLen: null == globalIpv6PrefixLen ? _self.globalIpv6PrefixLen : globalIpv6PrefixLen // ignore: cast_nullable_to_non_nullable
-as int,dnsNames: freezed == dnsNames ? _self.dnsNames : dnsNames // ignore: cast_nullable_to_non_nullable
+as String,iPAddress: null == iPAddress ? _self.iPAddress : iPAddress // ignore: cast_nullable_to_non_nullable
+as String,iPPrefixLen: freezed == iPPrefixLen ? _self.iPPrefixLen : iPPrefixLen // ignore: cast_nullable_to_non_nullable
+as int?,iPv6Gateway: freezed == iPv6Gateway ? _self.iPv6Gateway : iPv6Gateway // ignore: cast_nullable_to_non_nullable
+as String?,globalIPv6Address: freezed == globalIPv6Address ? _self.globalIPv6Address : globalIPv6Address // ignore: cast_nullable_to_non_nullable
+as String?,globalIPv6PrefixLen: freezed == globalIPv6PrefixLen ? _self.globalIPv6PrefixLen : globalIPv6PrefixLen // ignore: cast_nullable_to_non_nullable
+as int?,dnsNames: freezed == dnsNames ? _self.dnsNames : dnsNames // ignore: cast_nullable_to_non_nullable
 as dynamic,
   ));
 }
@@ -2890,10 +2900,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( dynamic ipamConfig,  dynamic links,  dynamic aliases,  String macAddress,  dynamic driverOpts,  String networkId,  String endpointId,  String gateway,  String ipAddress,  int ipPrefixLen,  String ipv6Gateway,  String globalIpv6Address,  int globalIpv6PrefixLen,  dynamic dnsNames)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( dynamic ipamConfig,  dynamic links,  dynamic aliases,  String macAddress,  dynamic driverOpts,  String networkID,  String endpointID,  String gateway,  String iPAddress,  int? iPPrefixLen,  String? iPv6Gateway,  String? globalIPv6Address,  int? globalIPv6PrefixLen,  dynamic dnsNames)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _NetworkDetailInfo() when $default != null:
-return $default(_that.ipamConfig,_that.links,_that.aliases,_that.macAddress,_that.driverOpts,_that.networkId,_that.endpointId,_that.gateway,_that.ipAddress,_that.ipPrefixLen,_that.ipv6Gateway,_that.globalIpv6Address,_that.globalIpv6PrefixLen,_that.dnsNames);case _:
+return $default(_that.ipamConfig,_that.links,_that.aliases,_that.macAddress,_that.driverOpts,_that.networkID,_that.endpointID,_that.gateway,_that.iPAddress,_that.iPPrefixLen,_that.iPv6Gateway,_that.globalIPv6Address,_that.globalIPv6PrefixLen,_that.dnsNames);case _:
   return orElse();
 
 }
@@ -2911,10 +2921,10 @@ return $default(_that.ipamConfig,_that.links,_that.aliases,_that.macAddress,_tha
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( dynamic ipamConfig,  dynamic links,  dynamic aliases,  String macAddress,  dynamic driverOpts,  String networkId,  String endpointId,  String gateway,  String ipAddress,  int ipPrefixLen,  String ipv6Gateway,  String globalIpv6Address,  int globalIpv6PrefixLen,  dynamic dnsNames)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( dynamic ipamConfig,  dynamic links,  dynamic aliases,  String macAddress,  dynamic driverOpts,  String networkID,  String endpointID,  String gateway,  String iPAddress,  int? iPPrefixLen,  String? iPv6Gateway,  String? globalIPv6Address,  int? globalIPv6PrefixLen,  dynamic dnsNames)  $default,) {final _that = this;
 switch (_that) {
 case _NetworkDetailInfo():
-return $default(_that.ipamConfig,_that.links,_that.aliases,_that.macAddress,_that.driverOpts,_that.networkId,_that.endpointId,_that.gateway,_that.ipAddress,_that.ipPrefixLen,_that.ipv6Gateway,_that.globalIpv6Address,_that.globalIpv6PrefixLen,_that.dnsNames);case _:
+return $default(_that.ipamConfig,_that.links,_that.aliases,_that.macAddress,_that.driverOpts,_that.networkID,_that.endpointID,_that.gateway,_that.iPAddress,_that.iPPrefixLen,_that.iPv6Gateway,_that.globalIPv6Address,_that.globalIPv6PrefixLen,_that.dnsNames);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -2931,10 +2941,10 @@ return $default(_that.ipamConfig,_that.links,_that.aliases,_that.macAddress,_tha
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( dynamic ipamConfig,  dynamic links,  dynamic aliases,  String macAddress,  dynamic driverOpts,  String networkId,  String endpointId,  String gateway,  String ipAddress,  int ipPrefixLen,  String ipv6Gateway,  String globalIpv6Address,  int globalIpv6PrefixLen,  dynamic dnsNames)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( dynamic ipamConfig,  dynamic links,  dynamic aliases,  String macAddress,  dynamic driverOpts,  String networkID,  String endpointID,  String gateway,  String iPAddress,  int? iPPrefixLen,  String? iPv6Gateway,  String? globalIPv6Address,  int? globalIPv6PrefixLen,  dynamic dnsNames)?  $default,) {final _that = this;
 switch (_that) {
 case _NetworkDetailInfo() when $default != null:
-return $default(_that.ipamConfig,_that.links,_that.aliases,_that.macAddress,_that.driverOpts,_that.networkId,_that.endpointId,_that.gateway,_that.ipAddress,_that.ipPrefixLen,_that.ipv6Gateway,_that.globalIpv6Address,_that.globalIpv6PrefixLen,_that.dnsNames);case _:
+return $default(_that.ipamConfig,_that.links,_that.aliases,_that.macAddress,_that.driverOpts,_that.networkID,_that.endpointID,_that.gateway,_that.iPAddress,_that.iPPrefixLen,_that.iPv6Gateway,_that.globalIPv6Address,_that.globalIPv6PrefixLen,_that.dnsNames);case _:
   return null;
 
 }
@@ -2943,10 +2953,10 @@ return $default(_that.ipamConfig,_that.links,_that.aliases,_that.macAddress,_tha
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(fieldRename: FieldRename.pascal)
 class _NetworkDetailInfo implements NetworkDetailInfo {
-  const _NetworkDetailInfo({this.ipamConfig, this.links, this.aliases, required this.macAddress, this.driverOpts, required this.networkId, required this.endpointId, required this.gateway, required this.ipAddress, required this.ipPrefixLen, required this.ipv6Gateway, required this.globalIpv6Address, required this.globalIpv6PrefixLen, this.dnsNames});
+  const _NetworkDetailInfo({this.ipamConfig, this.links, this.aliases, required this.macAddress, this.driverOpts, required this.networkID, required this.endpointID, required this.gateway, required this.iPAddress, this.iPPrefixLen, this.iPv6Gateway, this.globalIPv6Address, this.globalIPv6PrefixLen, this.dnsNames});
   factory _NetworkDetailInfo.fromJson(Map<String, dynamic> json) => _$NetworkDetailInfoFromJson(json);
 
 @override final  dynamic ipamConfig;
@@ -2954,14 +2964,14 @@ class _NetworkDetailInfo implements NetworkDetailInfo {
 @override final  dynamic aliases;
 @override final  String macAddress;
 @override final  dynamic driverOpts;
-@override final  String networkId;
-@override final  String endpointId;
+@override final  String networkID;
+@override final  String endpointID;
 @override final  String gateway;
-@override final  String ipAddress;
-@override final  int ipPrefixLen;
-@override final  String ipv6Gateway;
-@override final  String globalIpv6Address;
-@override final  int globalIpv6PrefixLen;
+@override final  String iPAddress;
+@override final  int? iPPrefixLen;
+@override final  String? iPv6Gateway;
+@override final  String? globalIPv6Address;
+@override final  int? globalIPv6PrefixLen;
 @override final  dynamic dnsNames;
 
 /// Create a copy of NetworkDetailInfo
@@ -2977,16 +2987,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _NetworkDetailInfo&&const DeepCollectionEquality().equals(other.ipamConfig, ipamConfig)&&const DeepCollectionEquality().equals(other.links, links)&&const DeepCollectionEquality().equals(other.aliases, aliases)&&(identical(other.macAddress, macAddress) || other.macAddress == macAddress)&&const DeepCollectionEquality().equals(other.driverOpts, driverOpts)&&(identical(other.networkId, networkId) || other.networkId == networkId)&&(identical(other.endpointId, endpointId) || other.endpointId == endpointId)&&(identical(other.gateway, gateway) || other.gateway == gateway)&&(identical(other.ipAddress, ipAddress) || other.ipAddress == ipAddress)&&(identical(other.ipPrefixLen, ipPrefixLen) || other.ipPrefixLen == ipPrefixLen)&&(identical(other.ipv6Gateway, ipv6Gateway) || other.ipv6Gateway == ipv6Gateway)&&(identical(other.globalIpv6Address, globalIpv6Address) || other.globalIpv6Address == globalIpv6Address)&&(identical(other.globalIpv6PrefixLen, globalIpv6PrefixLen) || other.globalIpv6PrefixLen == globalIpv6PrefixLen)&&const DeepCollectionEquality().equals(other.dnsNames, dnsNames));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _NetworkDetailInfo&&const DeepCollectionEquality().equals(other.ipamConfig, ipamConfig)&&const DeepCollectionEquality().equals(other.links, links)&&const DeepCollectionEquality().equals(other.aliases, aliases)&&(identical(other.macAddress, macAddress) || other.macAddress == macAddress)&&const DeepCollectionEquality().equals(other.driverOpts, driverOpts)&&(identical(other.networkID, networkID) || other.networkID == networkID)&&(identical(other.endpointID, endpointID) || other.endpointID == endpointID)&&(identical(other.gateway, gateway) || other.gateway == gateway)&&(identical(other.iPAddress, iPAddress) || other.iPAddress == iPAddress)&&(identical(other.iPPrefixLen, iPPrefixLen) || other.iPPrefixLen == iPPrefixLen)&&(identical(other.iPv6Gateway, iPv6Gateway) || other.iPv6Gateway == iPv6Gateway)&&(identical(other.globalIPv6Address, globalIPv6Address) || other.globalIPv6Address == globalIPv6Address)&&(identical(other.globalIPv6PrefixLen, globalIPv6PrefixLen) || other.globalIPv6PrefixLen == globalIPv6PrefixLen)&&const DeepCollectionEquality().equals(other.dnsNames, dnsNames));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(ipamConfig),const DeepCollectionEquality().hash(links),const DeepCollectionEquality().hash(aliases),macAddress,const DeepCollectionEquality().hash(driverOpts),networkId,endpointId,gateway,ipAddress,ipPrefixLen,ipv6Gateway,globalIpv6Address,globalIpv6PrefixLen,const DeepCollectionEquality().hash(dnsNames));
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(ipamConfig),const DeepCollectionEquality().hash(links),const DeepCollectionEquality().hash(aliases),macAddress,const DeepCollectionEquality().hash(driverOpts),networkID,endpointID,gateway,iPAddress,iPPrefixLen,iPv6Gateway,globalIPv6Address,globalIPv6PrefixLen,const DeepCollectionEquality().hash(dnsNames));
 
 @override
 String toString() {
-  return 'NetworkDetailInfo(ipamConfig: $ipamConfig, links: $links, aliases: $aliases, macAddress: $macAddress, driverOpts: $driverOpts, networkId: $networkId, endpointId: $endpointId, gateway: $gateway, ipAddress: $ipAddress, ipPrefixLen: $ipPrefixLen, ipv6Gateway: $ipv6Gateway, globalIpv6Address: $globalIpv6Address, globalIpv6PrefixLen: $globalIpv6PrefixLen, dnsNames: $dnsNames)';
+  return 'NetworkDetailInfo(ipamConfig: $ipamConfig, links: $links, aliases: $aliases, macAddress: $macAddress, driverOpts: $driverOpts, networkID: $networkID, endpointID: $endpointID, gateway: $gateway, iPAddress: $iPAddress, iPPrefixLen: $iPPrefixLen, iPv6Gateway: $iPv6Gateway, globalIPv6Address: $globalIPv6Address, globalIPv6PrefixLen: $globalIPv6PrefixLen, dnsNames: $dnsNames)';
 }
 
 
@@ -2997,7 +3007,7 @@ abstract mixin class _$NetworkDetailInfoCopyWith<$Res> implements $NetworkDetail
   factory _$NetworkDetailInfoCopyWith(_NetworkDetailInfo value, $Res Function(_NetworkDetailInfo) _then) = __$NetworkDetailInfoCopyWithImpl;
 @override @useResult
 $Res call({
- dynamic ipamConfig, dynamic links, dynamic aliases, String macAddress, dynamic driverOpts, String networkId, String endpointId, String gateway, String ipAddress, int ipPrefixLen, String ipv6Gateway, String globalIpv6Address, int globalIpv6PrefixLen, dynamic dnsNames
+ dynamic ipamConfig, dynamic links, dynamic aliases, String macAddress, dynamic driverOpts, String networkID, String endpointID, String gateway, String iPAddress, int? iPPrefixLen, String? iPv6Gateway, String? globalIPv6Address, int? globalIPv6PrefixLen, dynamic dnsNames
 });
 
 
@@ -3014,22 +3024,22 @@ class __$NetworkDetailInfoCopyWithImpl<$Res>
 
 /// Create a copy of NetworkDetailInfo
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? ipamConfig = freezed,Object? links = freezed,Object? aliases = freezed,Object? macAddress = null,Object? driverOpts = freezed,Object? networkId = null,Object? endpointId = null,Object? gateway = null,Object? ipAddress = null,Object? ipPrefixLen = null,Object? ipv6Gateway = null,Object? globalIpv6Address = null,Object? globalIpv6PrefixLen = null,Object? dnsNames = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? ipamConfig = freezed,Object? links = freezed,Object? aliases = freezed,Object? macAddress = null,Object? driverOpts = freezed,Object? networkID = null,Object? endpointID = null,Object? gateway = null,Object? iPAddress = null,Object? iPPrefixLen = freezed,Object? iPv6Gateway = freezed,Object? globalIPv6Address = freezed,Object? globalIPv6PrefixLen = freezed,Object? dnsNames = freezed,}) {
   return _then(_NetworkDetailInfo(
 ipamConfig: freezed == ipamConfig ? _self.ipamConfig : ipamConfig // ignore: cast_nullable_to_non_nullable
 as dynamic,links: freezed == links ? _self.links : links // ignore: cast_nullable_to_non_nullable
 as dynamic,aliases: freezed == aliases ? _self.aliases : aliases // ignore: cast_nullable_to_non_nullable
 as dynamic,macAddress: null == macAddress ? _self.macAddress : macAddress // ignore: cast_nullable_to_non_nullable
 as String,driverOpts: freezed == driverOpts ? _self.driverOpts : driverOpts // ignore: cast_nullable_to_non_nullable
-as dynamic,networkId: null == networkId ? _self.networkId : networkId // ignore: cast_nullable_to_non_nullable
-as String,endpointId: null == endpointId ? _self.endpointId : endpointId // ignore: cast_nullable_to_non_nullable
+as dynamic,networkID: null == networkID ? _self.networkID : networkID // ignore: cast_nullable_to_non_nullable
+as String,endpointID: null == endpointID ? _self.endpointID : endpointID // ignore: cast_nullable_to_non_nullable
 as String,gateway: null == gateway ? _self.gateway : gateway // ignore: cast_nullable_to_non_nullable
-as String,ipAddress: null == ipAddress ? _self.ipAddress : ipAddress // ignore: cast_nullable_to_non_nullable
-as String,ipPrefixLen: null == ipPrefixLen ? _self.ipPrefixLen : ipPrefixLen // ignore: cast_nullable_to_non_nullable
-as int,ipv6Gateway: null == ipv6Gateway ? _self.ipv6Gateway : ipv6Gateway // ignore: cast_nullable_to_non_nullable
-as String,globalIpv6Address: null == globalIpv6Address ? _self.globalIpv6Address : globalIpv6Address // ignore: cast_nullable_to_non_nullable
-as String,globalIpv6PrefixLen: null == globalIpv6PrefixLen ? _self.globalIpv6PrefixLen : globalIpv6PrefixLen // ignore: cast_nullable_to_non_nullable
-as int,dnsNames: freezed == dnsNames ? _self.dnsNames : dnsNames // ignore: cast_nullable_to_non_nullable
+as String,iPAddress: null == iPAddress ? _self.iPAddress : iPAddress // ignore: cast_nullable_to_non_nullable
+as String,iPPrefixLen: freezed == iPPrefixLen ? _self.iPPrefixLen : iPPrefixLen // ignore: cast_nullable_to_non_nullable
+as int?,iPv6Gateway: freezed == iPv6Gateway ? _self.iPv6Gateway : iPv6Gateway // ignore: cast_nullable_to_non_nullable
+as String?,globalIPv6Address: freezed == globalIPv6Address ? _self.globalIPv6Address : globalIPv6Address // ignore: cast_nullable_to_non_nullable
+as String?,globalIPv6PrefixLen: freezed == globalIPv6PrefixLen ? _self.globalIPv6PrefixLen : globalIPv6PrefixLen // ignore: cast_nullable_to_non_nullable
+as int?,dnsNames: freezed == dnsNames ? _self.dnsNames : dnsNames // ignore: cast_nullable_to_non_nullable
 as dynamic,
   ));
 }
@@ -3041,7 +3051,7 @@ as dynamic,
 /// @nodoc
 mixin _$MountInfo {
 
- String get type; String? get name; String get source; String get destination; String? get driver; String get mode; bool get rw; String get propagation;
+ String get type; String? get name; String get source; String get destination; String? get driver; String get mode; bool get rW; String? get propagation;
 /// Create a copy of MountInfo
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -3054,16 +3064,16 @@ $MountInfoCopyWith<MountInfo> get copyWith => _$MountInfoCopyWithImpl<MountInfo>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is MountInfo&&(identical(other.type, type) || other.type == type)&&(identical(other.name, name) || other.name == name)&&(identical(other.source, source) || other.source == source)&&(identical(other.destination, destination) || other.destination == destination)&&(identical(other.driver, driver) || other.driver == driver)&&(identical(other.mode, mode) || other.mode == mode)&&(identical(other.rw, rw) || other.rw == rw)&&(identical(other.propagation, propagation) || other.propagation == propagation));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is MountInfo&&(identical(other.type, type) || other.type == type)&&(identical(other.name, name) || other.name == name)&&(identical(other.source, source) || other.source == source)&&(identical(other.destination, destination) || other.destination == destination)&&(identical(other.driver, driver) || other.driver == driver)&&(identical(other.mode, mode) || other.mode == mode)&&(identical(other.rW, rW) || other.rW == rW)&&(identical(other.propagation, propagation) || other.propagation == propagation));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,type,name,source,destination,driver,mode,rw,propagation);
+int get hashCode => Object.hash(runtimeType,type,name,source,destination,driver,mode,rW,propagation);
 
 @override
 String toString() {
-  return 'MountInfo(type: $type, name: $name, source: $source, destination: $destination, driver: $driver, mode: $mode, rw: $rw, propagation: $propagation)';
+  return 'MountInfo(type: $type, name: $name, source: $source, destination: $destination, driver: $driver, mode: $mode, rW: $rW, propagation: $propagation)';
 }
 
 
@@ -3074,7 +3084,7 @@ abstract mixin class $MountInfoCopyWith<$Res>  {
   factory $MountInfoCopyWith(MountInfo value, $Res Function(MountInfo) _then) = _$MountInfoCopyWithImpl;
 @useResult
 $Res call({
- String type, String? name, String source, String destination, String? driver, String mode, bool rw, String propagation
+ String type, String? name, String source, String destination, String? driver, String mode, bool rW, String? propagation
 });
 
 
@@ -3091,7 +3101,7 @@ class _$MountInfoCopyWithImpl<$Res>
 
 /// Create a copy of MountInfo
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? type = null,Object? name = freezed,Object? source = null,Object? destination = null,Object? driver = freezed,Object? mode = null,Object? rw = null,Object? propagation = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? type = null,Object? name = freezed,Object? source = null,Object? destination = null,Object? driver = freezed,Object? mode = null,Object? rW = null,Object? propagation = freezed,}) {
   return _then(_self.copyWith(
 type: null == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
 as String,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
@@ -3099,9 +3109,9 @@ as String?,source: null == source ? _self.source : source // ignore: cast_nullab
 as String,destination: null == destination ? _self.destination : destination // ignore: cast_nullable_to_non_nullable
 as String,driver: freezed == driver ? _self.driver : driver // ignore: cast_nullable_to_non_nullable
 as String?,mode: null == mode ? _self.mode : mode // ignore: cast_nullable_to_non_nullable
-as String,rw: null == rw ? _self.rw : rw // ignore: cast_nullable_to_non_nullable
-as bool,propagation: null == propagation ? _self.propagation : propagation // ignore: cast_nullable_to_non_nullable
-as String,
+as String,rW: null == rW ? _self.rW : rW // ignore: cast_nullable_to_non_nullable
+as bool,propagation: freezed == propagation ? _self.propagation : propagation // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
@@ -3186,10 +3196,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String type,  String? name,  String source,  String destination,  String? driver,  String mode,  bool rw,  String propagation)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String type,  String? name,  String source,  String destination,  String? driver,  String mode,  bool rW,  String? propagation)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _MountInfo() when $default != null:
-return $default(_that.type,_that.name,_that.source,_that.destination,_that.driver,_that.mode,_that.rw,_that.propagation);case _:
+return $default(_that.type,_that.name,_that.source,_that.destination,_that.driver,_that.mode,_that.rW,_that.propagation);case _:
   return orElse();
 
 }
@@ -3207,10 +3217,10 @@ return $default(_that.type,_that.name,_that.source,_that.destination,_that.drive
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String type,  String? name,  String source,  String destination,  String? driver,  String mode,  bool rw,  String propagation)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String type,  String? name,  String source,  String destination,  String? driver,  String mode,  bool rW,  String? propagation)  $default,) {final _that = this;
 switch (_that) {
 case _MountInfo():
-return $default(_that.type,_that.name,_that.source,_that.destination,_that.driver,_that.mode,_that.rw,_that.propagation);case _:
+return $default(_that.type,_that.name,_that.source,_that.destination,_that.driver,_that.mode,_that.rW,_that.propagation);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -3227,10 +3237,10 @@ return $default(_that.type,_that.name,_that.source,_that.destination,_that.drive
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String type,  String? name,  String source,  String destination,  String? driver,  String mode,  bool rw,  String propagation)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String type,  String? name,  String source,  String destination,  String? driver,  String mode,  bool rW,  String? propagation)?  $default,) {final _that = this;
 switch (_that) {
 case _MountInfo() when $default != null:
-return $default(_that.type,_that.name,_that.source,_that.destination,_that.driver,_that.mode,_that.rw,_that.propagation);case _:
+return $default(_that.type,_that.name,_that.source,_that.destination,_that.driver,_that.mode,_that.rW,_that.propagation);case _:
   return null;
 
 }
@@ -3239,10 +3249,10 @@ return $default(_that.type,_that.name,_that.source,_that.destination,_that.drive
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(fieldRename: FieldRename.pascal)
 class _MountInfo implements MountInfo {
-  const _MountInfo({required this.type, this.name, required this.source, required this.destination, this.driver, required this.mode, required this.rw, required this.propagation});
+  const _MountInfo({required this.type, this.name, required this.source, required this.destination, this.driver, required this.mode, required this.rW, this.propagation});
   factory _MountInfo.fromJson(Map<String, dynamic> json) => _$MountInfoFromJson(json);
 
 @override final  String type;
@@ -3251,8 +3261,8 @@ class _MountInfo implements MountInfo {
 @override final  String destination;
 @override final  String? driver;
 @override final  String mode;
-@override final  bool rw;
-@override final  String propagation;
+@override final  bool rW;
+@override final  String? propagation;
 
 /// Create a copy of MountInfo
 /// with the given fields replaced by the non-null parameter values.
@@ -3267,16 +3277,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MountInfo&&(identical(other.type, type) || other.type == type)&&(identical(other.name, name) || other.name == name)&&(identical(other.source, source) || other.source == source)&&(identical(other.destination, destination) || other.destination == destination)&&(identical(other.driver, driver) || other.driver == driver)&&(identical(other.mode, mode) || other.mode == mode)&&(identical(other.rw, rw) || other.rw == rw)&&(identical(other.propagation, propagation) || other.propagation == propagation));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MountInfo&&(identical(other.type, type) || other.type == type)&&(identical(other.name, name) || other.name == name)&&(identical(other.source, source) || other.source == source)&&(identical(other.destination, destination) || other.destination == destination)&&(identical(other.driver, driver) || other.driver == driver)&&(identical(other.mode, mode) || other.mode == mode)&&(identical(other.rW, rW) || other.rW == rW)&&(identical(other.propagation, propagation) || other.propagation == propagation));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,type,name,source,destination,driver,mode,rw,propagation);
+int get hashCode => Object.hash(runtimeType,type,name,source,destination,driver,mode,rW,propagation);
 
 @override
 String toString() {
-  return 'MountInfo(type: $type, name: $name, source: $source, destination: $destination, driver: $driver, mode: $mode, rw: $rw, propagation: $propagation)';
+  return 'MountInfo(type: $type, name: $name, source: $source, destination: $destination, driver: $driver, mode: $mode, rW: $rW, propagation: $propagation)';
 }
 
 
@@ -3287,7 +3297,7 @@ abstract mixin class _$MountInfoCopyWith<$Res> implements $MountInfoCopyWith<$Re
   factory _$MountInfoCopyWith(_MountInfo value, $Res Function(_MountInfo) _then) = __$MountInfoCopyWithImpl;
 @override @useResult
 $Res call({
- String type, String? name, String source, String destination, String? driver, String mode, bool rw, String propagation
+ String type, String? name, String source, String destination, String? driver, String mode, bool rW, String? propagation
 });
 
 
@@ -3304,7 +3314,7 @@ class __$MountInfoCopyWithImpl<$Res>
 
 /// Create a copy of MountInfo
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? type = null,Object? name = freezed,Object? source = null,Object? destination = null,Object? driver = freezed,Object? mode = null,Object? rw = null,Object? propagation = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? type = null,Object? name = freezed,Object? source = null,Object? destination = null,Object? driver = freezed,Object? mode = null,Object? rW = null,Object? propagation = freezed,}) {
   return _then(_MountInfo(
 type: null == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
 as String,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
@@ -3312,9 +3322,9 @@ as String?,source: null == source ? _self.source : source // ignore: cast_nullab
 as String,destination: null == destination ? _self.destination : destination // ignore: cast_nullable_to_non_nullable
 as String,driver: freezed == driver ? _self.driver : driver // ignore: cast_nullable_to_non_nullable
 as String?,mode: null == mode ? _self.mode : mode // ignore: cast_nullable_to_non_nullable
-as String,rw: null == rw ? _self.rw : rw // ignore: cast_nullable_to_non_nullable
-as bool,propagation: null == propagation ? _self.propagation : propagation // ignore: cast_nullable_to_non_nullable
-as String,
+as String,rW: null == rW ? _self.rW : rW // ignore: cast_nullable_to_non_nullable
+as bool,propagation: freezed == propagation ? _self.propagation : propagation // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
@@ -3517,8 +3527,8 @@ return $default(_that.volumes,_that.warnings);case _:
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(fieldRename: FieldRename.pascal)
 class _VolumeData implements VolumeData {
   const _VolumeData({required final  List<VolumeInfo> volumes, this.warnings}): _volumes = volumes;
   factory _VolumeData.fromJson(Map<String, dynamic> json) => _$VolumeDataFromJson(json);
@@ -3597,7 +3607,7 @@ as dynamic,
 /// @nodoc
 mixin _$VolumeInfo {
 
- String get createdAt; String get driver; Map<String, String>? get labels; String get mountpoint; String get name; Map<String, String>? get options; String get scope;
+ String get createdAt; String get driver; Map<String, String>? get labels; String get mountpoint; String get name; String get scope;
 /// Create a copy of VolumeInfo
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -3610,16 +3620,16 @@ $VolumeInfoCopyWith<VolumeInfo> get copyWith => _$VolumeInfoCopyWithImpl<VolumeI
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is VolumeInfo&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.driver, driver) || other.driver == driver)&&const DeepCollectionEquality().equals(other.labels, labels)&&(identical(other.mountpoint, mountpoint) || other.mountpoint == mountpoint)&&(identical(other.name, name) || other.name == name)&&const DeepCollectionEquality().equals(other.options, options)&&(identical(other.scope, scope) || other.scope == scope));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is VolumeInfo&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.driver, driver) || other.driver == driver)&&const DeepCollectionEquality().equals(other.labels, labels)&&(identical(other.mountpoint, mountpoint) || other.mountpoint == mountpoint)&&(identical(other.name, name) || other.name == name)&&(identical(other.scope, scope) || other.scope == scope));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,createdAt,driver,const DeepCollectionEquality().hash(labels),mountpoint,name,const DeepCollectionEquality().hash(options),scope);
+int get hashCode => Object.hash(runtimeType,createdAt,driver,const DeepCollectionEquality().hash(labels),mountpoint,name,scope);
 
 @override
 String toString() {
-  return 'VolumeInfo(createdAt: $createdAt, driver: $driver, labels: $labels, mountpoint: $mountpoint, name: $name, options: $options, scope: $scope)';
+  return 'VolumeInfo(createdAt: $createdAt, driver: $driver, labels: $labels, mountpoint: $mountpoint, name: $name, scope: $scope)';
 }
 
 
@@ -3630,7 +3640,7 @@ abstract mixin class $VolumeInfoCopyWith<$Res>  {
   factory $VolumeInfoCopyWith(VolumeInfo value, $Res Function(VolumeInfo) _then) = _$VolumeInfoCopyWithImpl;
 @useResult
 $Res call({
- String createdAt, String driver, Map<String, String>? labels, String mountpoint, String name, Map<String, String>? options, String scope
+ String createdAt, String driver, Map<String, String>? labels, String mountpoint, String name, String scope
 });
 
 
@@ -3647,15 +3657,14 @@ class _$VolumeInfoCopyWithImpl<$Res>
 
 /// Create a copy of VolumeInfo
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? createdAt = null,Object? driver = null,Object? labels = freezed,Object? mountpoint = null,Object? name = null,Object? options = freezed,Object? scope = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? createdAt = null,Object? driver = null,Object? labels = freezed,Object? mountpoint = null,Object? name = null,Object? scope = null,}) {
   return _then(_self.copyWith(
 createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
 as String,driver: null == driver ? _self.driver : driver // ignore: cast_nullable_to_non_nullable
 as String,labels: freezed == labels ? _self.labels : labels // ignore: cast_nullable_to_non_nullable
 as Map<String, String>?,mountpoint: null == mountpoint ? _self.mountpoint : mountpoint // ignore: cast_nullable_to_non_nullable
 as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String,options: freezed == options ? _self.options : options // ignore: cast_nullable_to_non_nullable
-as Map<String, String>?,scope: null == scope ? _self.scope : scope // ignore: cast_nullable_to_non_nullable
+as String,scope: null == scope ? _self.scope : scope // ignore: cast_nullable_to_non_nullable
 as String,
   ));
 }
@@ -3741,10 +3750,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String createdAt,  String driver,  Map<String, String>? labels,  String mountpoint,  String name,  Map<String, String>? options,  String scope)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String createdAt,  String driver,  Map<String, String>? labels,  String mountpoint,  String name,  String scope)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _VolumeInfo() when $default != null:
-return $default(_that.createdAt,_that.driver,_that.labels,_that.mountpoint,_that.name,_that.options,_that.scope);case _:
+return $default(_that.createdAt,_that.driver,_that.labels,_that.mountpoint,_that.name,_that.scope);case _:
   return orElse();
 
 }
@@ -3762,10 +3771,10 @@ return $default(_that.createdAt,_that.driver,_that.labels,_that.mountpoint,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String createdAt,  String driver,  Map<String, String>? labels,  String mountpoint,  String name,  Map<String, String>? options,  String scope)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String createdAt,  String driver,  Map<String, String>? labels,  String mountpoint,  String name,  String scope)  $default,) {final _that = this;
 switch (_that) {
 case _VolumeInfo():
-return $default(_that.createdAt,_that.driver,_that.labels,_that.mountpoint,_that.name,_that.options,_that.scope);case _:
+return $default(_that.createdAt,_that.driver,_that.labels,_that.mountpoint,_that.name,_that.scope);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -3782,10 +3791,10 @@ return $default(_that.createdAt,_that.driver,_that.labels,_that.mountpoint,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String createdAt,  String driver,  Map<String, String>? labels,  String mountpoint,  String name,  Map<String, String>? options,  String scope)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String createdAt,  String driver,  Map<String, String>? labels,  String mountpoint,  String name,  String scope)?  $default,) {final _that = this;
 switch (_that) {
 case _VolumeInfo() when $default != null:
-return $default(_that.createdAt,_that.driver,_that.labels,_that.mountpoint,_that.name,_that.options,_that.scope);case _:
+return $default(_that.createdAt,_that.driver,_that.labels,_that.mountpoint,_that.name,_that.scope);case _:
   return null;
 
 }
@@ -3794,10 +3803,10 @@ return $default(_that.createdAt,_that.driver,_that.labels,_that.mountpoint,_that
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(fieldRename: FieldRename.pascal)
 class _VolumeInfo implements VolumeInfo {
-  const _VolumeInfo({required this.createdAt, required this.driver, final  Map<String, String>? labels, required this.mountpoint, required this.name, final  Map<String, String>? options, required this.scope}): _labels = labels,_options = options;
+  const _VolumeInfo({required this.createdAt, required this.driver, final  Map<String, String>? labels, required this.mountpoint, required this.name, required this.scope}): _labels = labels;
   factory _VolumeInfo.fromJson(Map<String, dynamic> json) => _$VolumeInfoFromJson(json);
 
 @override final  String createdAt;
@@ -3813,15 +3822,6 @@ class _VolumeInfo implements VolumeInfo {
 
 @override final  String mountpoint;
 @override final  String name;
- final  Map<String, String>? _options;
-@override Map<String, String>? get options {
-  final value = _options;
-  if (value == null) return null;
-  if (_options is EqualUnmodifiableMapView) return _options;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableMapView(value);
-}
-
 @override final  String scope;
 
 /// Create a copy of VolumeInfo
@@ -3837,16 +3837,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _VolumeInfo&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.driver, driver) || other.driver == driver)&&const DeepCollectionEquality().equals(other._labels, _labels)&&(identical(other.mountpoint, mountpoint) || other.mountpoint == mountpoint)&&(identical(other.name, name) || other.name == name)&&const DeepCollectionEquality().equals(other._options, _options)&&(identical(other.scope, scope) || other.scope == scope));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _VolumeInfo&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.driver, driver) || other.driver == driver)&&const DeepCollectionEquality().equals(other._labels, _labels)&&(identical(other.mountpoint, mountpoint) || other.mountpoint == mountpoint)&&(identical(other.name, name) || other.name == name)&&(identical(other.scope, scope) || other.scope == scope));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,createdAt,driver,const DeepCollectionEquality().hash(_labels),mountpoint,name,const DeepCollectionEquality().hash(_options),scope);
+int get hashCode => Object.hash(runtimeType,createdAt,driver,const DeepCollectionEquality().hash(_labels),mountpoint,name,scope);
 
 @override
 String toString() {
-  return 'VolumeInfo(createdAt: $createdAt, driver: $driver, labels: $labels, mountpoint: $mountpoint, name: $name, options: $options, scope: $scope)';
+  return 'VolumeInfo(createdAt: $createdAt, driver: $driver, labels: $labels, mountpoint: $mountpoint, name: $name, scope: $scope)';
 }
 
 
@@ -3857,7 +3857,7 @@ abstract mixin class _$VolumeInfoCopyWith<$Res> implements $VolumeInfoCopyWith<$
   factory _$VolumeInfoCopyWith(_VolumeInfo value, $Res Function(_VolumeInfo) _then) = __$VolumeInfoCopyWithImpl;
 @override @useResult
 $Res call({
- String createdAt, String driver, Map<String, String>? labels, String mountpoint, String name, Map<String, String>? options, String scope
+ String createdAt, String driver, Map<String, String>? labels, String mountpoint, String name, String scope
 });
 
 
@@ -3874,15 +3874,14 @@ class __$VolumeInfoCopyWithImpl<$Res>
 
 /// Create a copy of VolumeInfo
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? createdAt = null,Object? driver = null,Object? labels = freezed,Object? mountpoint = null,Object? name = null,Object? options = freezed,Object? scope = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? createdAt = null,Object? driver = null,Object? labels = freezed,Object? mountpoint = null,Object? name = null,Object? scope = null,}) {
   return _then(_VolumeInfo(
 createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
 as String,driver: null == driver ? _self.driver : driver // ignore: cast_nullable_to_non_nullable
 as String,labels: freezed == labels ? _self._labels : labels // ignore: cast_nullable_to_non_nullable
 as Map<String, String>?,mountpoint: null == mountpoint ? _self.mountpoint : mountpoint // ignore: cast_nullable_to_non_nullable
 as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String,options: freezed == options ? _self._options : options // ignore: cast_nullable_to_non_nullable
-as Map<String, String>?,scope: null == scope ? _self.scope : scope // ignore: cast_nullable_to_non_nullable
+as String,scope: null == scope ? _self.scope : scope // ignore: cast_nullable_to_non_nullable
 as String,
   ));
 }
@@ -3894,7 +3893,7 @@ as String,
 /// @nodoc
 mixin _$NetworkInfo {
 
- String get name; String get id; String get created; String get scope; String get driver; bool get enableIpv6; IPAMInfo get ipam; bool get internal; bool get attachable; bool get ingress; ConfigFromInfo get configFrom; bool get configOnly; Map<String, dynamic> get containers; Map<String, dynamic> get options; Map<String, dynamic> get labels;
+ String get name; String get id; String get created; String get scope; String get driver; bool get enableIPv6; bool get internal; bool get attachable; bool get ingress; ConfigFromInfo get configFrom; bool get configOnly; Map<String, dynamic> get containers; Map<String, dynamic>? get options; Map<String, dynamic> get labels;
 /// Create a copy of NetworkInfo
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -3907,16 +3906,16 @@ $NetworkInfoCopyWith<NetworkInfo> get copyWith => _$NetworkInfoCopyWithImpl<Netw
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is NetworkInfo&&(identical(other.name, name) || other.name == name)&&(identical(other.id, id) || other.id == id)&&(identical(other.created, created) || other.created == created)&&(identical(other.scope, scope) || other.scope == scope)&&(identical(other.driver, driver) || other.driver == driver)&&(identical(other.enableIpv6, enableIpv6) || other.enableIpv6 == enableIpv6)&&(identical(other.ipam, ipam) || other.ipam == ipam)&&(identical(other.internal, internal) || other.internal == internal)&&(identical(other.attachable, attachable) || other.attachable == attachable)&&(identical(other.ingress, ingress) || other.ingress == ingress)&&(identical(other.configFrom, configFrom) || other.configFrom == configFrom)&&(identical(other.configOnly, configOnly) || other.configOnly == configOnly)&&const DeepCollectionEquality().equals(other.containers, containers)&&const DeepCollectionEquality().equals(other.options, options)&&const DeepCollectionEquality().equals(other.labels, labels));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is NetworkInfo&&(identical(other.name, name) || other.name == name)&&(identical(other.id, id) || other.id == id)&&(identical(other.created, created) || other.created == created)&&(identical(other.scope, scope) || other.scope == scope)&&(identical(other.driver, driver) || other.driver == driver)&&(identical(other.enableIPv6, enableIPv6) || other.enableIPv6 == enableIPv6)&&(identical(other.internal, internal) || other.internal == internal)&&(identical(other.attachable, attachable) || other.attachable == attachable)&&(identical(other.ingress, ingress) || other.ingress == ingress)&&(identical(other.configFrom, configFrom) || other.configFrom == configFrom)&&(identical(other.configOnly, configOnly) || other.configOnly == configOnly)&&const DeepCollectionEquality().equals(other.containers, containers)&&const DeepCollectionEquality().equals(other.options, options)&&const DeepCollectionEquality().equals(other.labels, labels));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,name,id,created,scope,driver,enableIpv6,ipam,internal,attachable,ingress,configFrom,configOnly,const DeepCollectionEquality().hash(containers),const DeepCollectionEquality().hash(options),const DeepCollectionEquality().hash(labels));
+int get hashCode => Object.hash(runtimeType,name,id,created,scope,driver,enableIPv6,internal,attachable,ingress,configFrom,configOnly,const DeepCollectionEquality().hash(containers),const DeepCollectionEquality().hash(options),const DeepCollectionEquality().hash(labels));
 
 @override
 String toString() {
-  return 'NetworkInfo(name: $name, id: $id, created: $created, scope: $scope, driver: $driver, enableIpv6: $enableIpv6, ipam: $ipam, internal: $internal, attachable: $attachable, ingress: $ingress, configFrom: $configFrom, configOnly: $configOnly, containers: $containers, options: $options, labels: $labels)';
+  return 'NetworkInfo(name: $name, id: $id, created: $created, scope: $scope, driver: $driver, enableIPv6: $enableIPv6, internal: $internal, attachable: $attachable, ingress: $ingress, configFrom: $configFrom, configOnly: $configOnly, containers: $containers, options: $options, labels: $labels)';
 }
 
 
@@ -3927,11 +3926,11 @@ abstract mixin class $NetworkInfoCopyWith<$Res>  {
   factory $NetworkInfoCopyWith(NetworkInfo value, $Res Function(NetworkInfo) _then) = _$NetworkInfoCopyWithImpl;
 @useResult
 $Res call({
- String name, String id, String created, String scope, String driver, bool enableIpv6, IPAMInfo ipam, bool internal, bool attachable, bool ingress, ConfigFromInfo configFrom, bool configOnly, Map<String, dynamic> containers, Map<String, dynamic> options, Map<String, dynamic> labels
+ String name, String id, String created, String scope, String driver, bool enableIPv6, bool internal, bool attachable, bool ingress, ConfigFromInfo configFrom, bool configOnly, Map<String, dynamic> containers, Map<String, dynamic>? options, Map<String, dynamic> labels
 });
 
 
-$IPAMInfoCopyWith<$Res> get ipam;$ConfigFromInfoCopyWith<$Res> get configFrom;
+$ConfigFromInfoCopyWith<$Res> get configFrom;
 
 }
 /// @nodoc
@@ -3944,36 +3943,26 @@ class _$NetworkInfoCopyWithImpl<$Res>
 
 /// Create a copy of NetworkInfo
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? name = null,Object? id = null,Object? created = null,Object? scope = null,Object? driver = null,Object? enableIpv6 = null,Object? ipam = null,Object? internal = null,Object? attachable = null,Object? ingress = null,Object? configFrom = null,Object? configOnly = null,Object? containers = null,Object? options = null,Object? labels = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? name = null,Object? id = null,Object? created = null,Object? scope = null,Object? driver = null,Object? enableIPv6 = null,Object? internal = null,Object? attachable = null,Object? ingress = null,Object? configFrom = null,Object? configOnly = null,Object? containers = null,Object? options = freezed,Object? labels = null,}) {
   return _then(_self.copyWith(
 name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,created: null == created ? _self.created : created // ignore: cast_nullable_to_non_nullable
 as String,scope: null == scope ? _self.scope : scope // ignore: cast_nullable_to_non_nullable
 as String,driver: null == driver ? _self.driver : driver // ignore: cast_nullable_to_non_nullable
-as String,enableIpv6: null == enableIpv6 ? _self.enableIpv6 : enableIpv6 // ignore: cast_nullable_to_non_nullable
-as bool,ipam: null == ipam ? _self.ipam : ipam // ignore: cast_nullable_to_non_nullable
-as IPAMInfo,internal: null == internal ? _self.internal : internal // ignore: cast_nullable_to_non_nullable
+as String,enableIPv6: null == enableIPv6 ? _self.enableIPv6 : enableIPv6 // ignore: cast_nullable_to_non_nullable
+as bool,internal: null == internal ? _self.internal : internal // ignore: cast_nullable_to_non_nullable
 as bool,attachable: null == attachable ? _self.attachable : attachable // ignore: cast_nullable_to_non_nullable
 as bool,ingress: null == ingress ? _self.ingress : ingress // ignore: cast_nullable_to_non_nullable
 as bool,configFrom: null == configFrom ? _self.configFrom : configFrom // ignore: cast_nullable_to_non_nullable
 as ConfigFromInfo,configOnly: null == configOnly ? _self.configOnly : configOnly // ignore: cast_nullable_to_non_nullable
 as bool,containers: null == containers ? _self.containers : containers // ignore: cast_nullable_to_non_nullable
-as Map<String, dynamic>,options: null == options ? _self.options : options // ignore: cast_nullable_to_non_nullable
-as Map<String, dynamic>,labels: null == labels ? _self.labels : labels // ignore: cast_nullable_to_non_nullable
+as Map<String, dynamic>,options: freezed == options ? _self.options : options // ignore: cast_nullable_to_non_nullable
+as Map<String, dynamic>?,labels: null == labels ? _self.labels : labels // ignore: cast_nullable_to_non_nullable
 as Map<String, dynamic>,
   ));
 }
 /// Create a copy of NetworkInfo
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$IPAMInfoCopyWith<$Res> get ipam {
-  
-  return $IPAMInfoCopyWith<$Res>(_self.ipam, (value) {
-    return _then(_self.copyWith(ipam: value));
-  });
-}/// Create a copy of NetworkInfo
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -4064,10 +4053,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String name,  String id,  String created,  String scope,  String driver,  bool enableIpv6,  IPAMInfo ipam,  bool internal,  bool attachable,  bool ingress,  ConfigFromInfo configFrom,  bool configOnly,  Map<String, dynamic> containers,  Map<String, dynamic> options,  Map<String, dynamic> labels)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String name,  String id,  String created,  String scope,  String driver,  bool enableIPv6,  bool internal,  bool attachable,  bool ingress,  ConfigFromInfo configFrom,  bool configOnly,  Map<String, dynamic> containers,  Map<String, dynamic>? options,  Map<String, dynamic> labels)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _NetworkInfo() when $default != null:
-return $default(_that.name,_that.id,_that.created,_that.scope,_that.driver,_that.enableIpv6,_that.ipam,_that.internal,_that.attachable,_that.ingress,_that.configFrom,_that.configOnly,_that.containers,_that.options,_that.labels);case _:
+return $default(_that.name,_that.id,_that.created,_that.scope,_that.driver,_that.enableIPv6,_that.internal,_that.attachable,_that.ingress,_that.configFrom,_that.configOnly,_that.containers,_that.options,_that.labels);case _:
   return orElse();
 
 }
@@ -4085,10 +4074,10 @@ return $default(_that.name,_that.id,_that.created,_that.scope,_that.driver,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String name,  String id,  String created,  String scope,  String driver,  bool enableIpv6,  IPAMInfo ipam,  bool internal,  bool attachable,  bool ingress,  ConfigFromInfo configFrom,  bool configOnly,  Map<String, dynamic> containers,  Map<String, dynamic> options,  Map<String, dynamic> labels)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String name,  String id,  String created,  String scope,  String driver,  bool enableIPv6,  bool internal,  bool attachable,  bool ingress,  ConfigFromInfo configFrom,  bool configOnly,  Map<String, dynamic> containers,  Map<String, dynamic>? options,  Map<String, dynamic> labels)  $default,) {final _that = this;
 switch (_that) {
 case _NetworkInfo():
-return $default(_that.name,_that.id,_that.created,_that.scope,_that.driver,_that.enableIpv6,_that.ipam,_that.internal,_that.attachable,_that.ingress,_that.configFrom,_that.configOnly,_that.containers,_that.options,_that.labels);case _:
+return $default(_that.name,_that.id,_that.created,_that.scope,_that.driver,_that.enableIPv6,_that.internal,_that.attachable,_that.ingress,_that.configFrom,_that.configOnly,_that.containers,_that.options,_that.labels);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -4105,10 +4094,10 @@ return $default(_that.name,_that.id,_that.created,_that.scope,_that.driver,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String name,  String id,  String created,  String scope,  String driver,  bool enableIpv6,  IPAMInfo ipam,  bool internal,  bool attachable,  bool ingress,  ConfigFromInfo configFrom,  bool configOnly,  Map<String, dynamic> containers,  Map<String, dynamic> options,  Map<String, dynamic> labels)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String name,  String id,  String created,  String scope,  String driver,  bool enableIPv6,  bool internal,  bool attachable,  bool ingress,  ConfigFromInfo configFrom,  bool configOnly,  Map<String, dynamic> containers,  Map<String, dynamic>? options,  Map<String, dynamic> labels)?  $default,) {final _that = this;
 switch (_that) {
 case _NetworkInfo() when $default != null:
-return $default(_that.name,_that.id,_that.created,_that.scope,_that.driver,_that.enableIpv6,_that.ipam,_that.internal,_that.attachable,_that.ingress,_that.configFrom,_that.configOnly,_that.containers,_that.options,_that.labels);case _:
+return $default(_that.name,_that.id,_that.created,_that.scope,_that.driver,_that.enableIPv6,_that.internal,_that.attachable,_that.ingress,_that.configFrom,_that.configOnly,_that.containers,_that.options,_that.labels);case _:
   return null;
 
 }
@@ -4117,10 +4106,10 @@ return $default(_that.name,_that.id,_that.created,_that.scope,_that.driver,_that
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(fieldRename: FieldRename.pascal)
 class _NetworkInfo implements NetworkInfo {
-  const _NetworkInfo({required this.name, required this.id, required this.created, required this.scope, required this.driver, required this.enableIpv6, required this.ipam, required this.internal, required this.attachable, required this.ingress, required this.configFrom, required this.configOnly, required final  Map<String, dynamic> containers, required final  Map<String, dynamic> options, required final  Map<String, dynamic> labels}): _containers = containers,_options = options,_labels = labels;
+  const _NetworkInfo({required this.name, required this.id, required this.created, required this.scope, required this.driver, required this.enableIPv6, required this.internal, required this.attachable, required this.ingress, required this.configFrom, required this.configOnly, required final  Map<String, dynamic> containers, final  Map<String, dynamic>? options, required final  Map<String, dynamic> labels}): _containers = containers,_options = options,_labels = labels;
   factory _NetworkInfo.fromJson(Map<String, dynamic> json) => _$NetworkInfoFromJson(json);
 
 @override final  String name;
@@ -4128,8 +4117,7 @@ class _NetworkInfo implements NetworkInfo {
 @override final  String created;
 @override final  String scope;
 @override final  String driver;
-@override final  bool enableIpv6;
-@override final  IPAMInfo ipam;
+@override final  bool enableIPv6;
 @override final  bool internal;
 @override final  bool attachable;
 @override final  bool ingress;
@@ -4142,11 +4130,13 @@ class _NetworkInfo implements NetworkInfo {
   return EqualUnmodifiableMapView(_containers);
 }
 
- final  Map<String, dynamic> _options;
-@override Map<String, dynamic> get options {
+ final  Map<String, dynamic>? _options;
+@override Map<String, dynamic>? get options {
+  final value = _options;
+  if (value == null) return null;
   if (_options is EqualUnmodifiableMapView) return _options;
   // ignore: implicit_dynamic_type
-  return EqualUnmodifiableMapView(_options);
+  return EqualUnmodifiableMapView(value);
 }
 
  final  Map<String, dynamic> _labels;
@@ -4170,16 +4160,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _NetworkInfo&&(identical(other.name, name) || other.name == name)&&(identical(other.id, id) || other.id == id)&&(identical(other.created, created) || other.created == created)&&(identical(other.scope, scope) || other.scope == scope)&&(identical(other.driver, driver) || other.driver == driver)&&(identical(other.enableIpv6, enableIpv6) || other.enableIpv6 == enableIpv6)&&(identical(other.ipam, ipam) || other.ipam == ipam)&&(identical(other.internal, internal) || other.internal == internal)&&(identical(other.attachable, attachable) || other.attachable == attachable)&&(identical(other.ingress, ingress) || other.ingress == ingress)&&(identical(other.configFrom, configFrom) || other.configFrom == configFrom)&&(identical(other.configOnly, configOnly) || other.configOnly == configOnly)&&const DeepCollectionEquality().equals(other._containers, _containers)&&const DeepCollectionEquality().equals(other._options, _options)&&const DeepCollectionEquality().equals(other._labels, _labels));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _NetworkInfo&&(identical(other.name, name) || other.name == name)&&(identical(other.id, id) || other.id == id)&&(identical(other.created, created) || other.created == created)&&(identical(other.scope, scope) || other.scope == scope)&&(identical(other.driver, driver) || other.driver == driver)&&(identical(other.enableIPv6, enableIPv6) || other.enableIPv6 == enableIPv6)&&(identical(other.internal, internal) || other.internal == internal)&&(identical(other.attachable, attachable) || other.attachable == attachable)&&(identical(other.ingress, ingress) || other.ingress == ingress)&&(identical(other.configFrom, configFrom) || other.configFrom == configFrom)&&(identical(other.configOnly, configOnly) || other.configOnly == configOnly)&&const DeepCollectionEquality().equals(other._containers, _containers)&&const DeepCollectionEquality().equals(other._options, _options)&&const DeepCollectionEquality().equals(other._labels, _labels));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,name,id,created,scope,driver,enableIpv6,ipam,internal,attachable,ingress,configFrom,configOnly,const DeepCollectionEquality().hash(_containers),const DeepCollectionEquality().hash(_options),const DeepCollectionEquality().hash(_labels));
+int get hashCode => Object.hash(runtimeType,name,id,created,scope,driver,enableIPv6,internal,attachable,ingress,configFrom,configOnly,const DeepCollectionEquality().hash(_containers),const DeepCollectionEquality().hash(_options),const DeepCollectionEquality().hash(_labels));
 
 @override
 String toString() {
-  return 'NetworkInfo(name: $name, id: $id, created: $created, scope: $scope, driver: $driver, enableIpv6: $enableIpv6, ipam: $ipam, internal: $internal, attachable: $attachable, ingress: $ingress, configFrom: $configFrom, configOnly: $configOnly, containers: $containers, options: $options, labels: $labels)';
+  return 'NetworkInfo(name: $name, id: $id, created: $created, scope: $scope, driver: $driver, enableIPv6: $enableIPv6, internal: $internal, attachable: $attachable, ingress: $ingress, configFrom: $configFrom, configOnly: $configOnly, containers: $containers, options: $options, labels: $labels)';
 }
 
 
@@ -4190,11 +4180,11 @@ abstract mixin class _$NetworkInfoCopyWith<$Res> implements $NetworkInfoCopyWith
   factory _$NetworkInfoCopyWith(_NetworkInfo value, $Res Function(_NetworkInfo) _then) = __$NetworkInfoCopyWithImpl;
 @override @useResult
 $Res call({
- String name, String id, String created, String scope, String driver, bool enableIpv6, IPAMInfo ipam, bool internal, bool attachable, bool ingress, ConfigFromInfo configFrom, bool configOnly, Map<String, dynamic> containers, Map<String, dynamic> options, Map<String, dynamic> labels
+ String name, String id, String created, String scope, String driver, bool enableIPv6, bool internal, bool attachable, bool ingress, ConfigFromInfo configFrom, bool configOnly, Map<String, dynamic> containers, Map<String, dynamic>? options, Map<String, dynamic> labels
 });
 
 
-@override $IPAMInfoCopyWith<$Res> get ipam;@override $ConfigFromInfoCopyWith<$Res> get configFrom;
+@override $ConfigFromInfoCopyWith<$Res> get configFrom;
 
 }
 /// @nodoc
@@ -4207,37 +4197,27 @@ class __$NetworkInfoCopyWithImpl<$Res>
 
 /// Create a copy of NetworkInfo
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? name = null,Object? id = null,Object? created = null,Object? scope = null,Object? driver = null,Object? enableIpv6 = null,Object? ipam = null,Object? internal = null,Object? attachable = null,Object? ingress = null,Object? configFrom = null,Object? configOnly = null,Object? containers = null,Object? options = null,Object? labels = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? name = null,Object? id = null,Object? created = null,Object? scope = null,Object? driver = null,Object? enableIPv6 = null,Object? internal = null,Object? attachable = null,Object? ingress = null,Object? configFrom = null,Object? configOnly = null,Object? containers = null,Object? options = freezed,Object? labels = null,}) {
   return _then(_NetworkInfo(
 name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,created: null == created ? _self.created : created // ignore: cast_nullable_to_non_nullable
 as String,scope: null == scope ? _self.scope : scope // ignore: cast_nullable_to_non_nullable
 as String,driver: null == driver ? _self.driver : driver // ignore: cast_nullable_to_non_nullable
-as String,enableIpv6: null == enableIpv6 ? _self.enableIpv6 : enableIpv6 // ignore: cast_nullable_to_non_nullable
-as bool,ipam: null == ipam ? _self.ipam : ipam // ignore: cast_nullable_to_non_nullable
-as IPAMInfo,internal: null == internal ? _self.internal : internal // ignore: cast_nullable_to_non_nullable
+as String,enableIPv6: null == enableIPv6 ? _self.enableIPv6 : enableIPv6 // ignore: cast_nullable_to_non_nullable
+as bool,internal: null == internal ? _self.internal : internal // ignore: cast_nullable_to_non_nullable
 as bool,attachable: null == attachable ? _self.attachable : attachable // ignore: cast_nullable_to_non_nullable
 as bool,ingress: null == ingress ? _self.ingress : ingress // ignore: cast_nullable_to_non_nullable
 as bool,configFrom: null == configFrom ? _self.configFrom : configFrom // ignore: cast_nullable_to_non_nullable
 as ConfigFromInfo,configOnly: null == configOnly ? _self.configOnly : configOnly // ignore: cast_nullable_to_non_nullable
 as bool,containers: null == containers ? _self._containers : containers // ignore: cast_nullable_to_non_nullable
-as Map<String, dynamic>,options: null == options ? _self._options : options // ignore: cast_nullable_to_non_nullable
-as Map<String, dynamic>,labels: null == labels ? _self._labels : labels // ignore: cast_nullable_to_non_nullable
+as Map<String, dynamic>,options: freezed == options ? _self._options : options // ignore: cast_nullable_to_non_nullable
+as Map<String, dynamic>?,labels: null == labels ? _self._labels : labels // ignore: cast_nullable_to_non_nullable
 as Map<String, dynamic>,
   ));
 }
 
 /// Create a copy of NetworkInfo
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$IPAMInfoCopyWith<$Res> get ipam {
-  
-  return $IPAMInfoCopyWith<$Res>(_self.ipam, (value) {
-    return _then(_self.copyWith(ipam: value));
-  });
-}/// Create a copy of NetworkInfo
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -4247,287 +4227,6 @@ $ConfigFromInfoCopyWith<$Res> get configFrom {
     return _then(_self.copyWith(configFrom: value));
   });
 }
-}
-
-
-/// @nodoc
-mixin _$IPAMInfo {
-
- String get driver; Map<String, dynamic> get options; List<IPAMConfigInfo> get config;
-/// Create a copy of IPAMInfo
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$IPAMInfoCopyWith<IPAMInfo> get copyWith => _$IPAMInfoCopyWithImpl<IPAMInfo>(this as IPAMInfo, _$identity);
-
-  /// Serializes this IPAMInfo to a JSON map.
-  Map<String, dynamic> toJson();
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is IPAMInfo&&(identical(other.driver, driver) || other.driver == driver)&&const DeepCollectionEquality().equals(other.options, options)&&const DeepCollectionEquality().equals(other.config, config));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,driver,const DeepCollectionEquality().hash(options),const DeepCollectionEquality().hash(config));
-
-@override
-String toString() {
-  return 'IPAMInfo(driver: $driver, options: $options, config: $config)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class $IPAMInfoCopyWith<$Res>  {
-  factory $IPAMInfoCopyWith(IPAMInfo value, $Res Function(IPAMInfo) _then) = _$IPAMInfoCopyWithImpl;
-@useResult
-$Res call({
- String driver, Map<String, dynamic> options, List<IPAMConfigInfo> config
-});
-
-
-
-
-}
-/// @nodoc
-class _$IPAMInfoCopyWithImpl<$Res>
-    implements $IPAMInfoCopyWith<$Res> {
-  _$IPAMInfoCopyWithImpl(this._self, this._then);
-
-  final IPAMInfo _self;
-  final $Res Function(IPAMInfo) _then;
-
-/// Create a copy of IPAMInfo
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? driver = null,Object? options = null,Object? config = null,}) {
-  return _then(_self.copyWith(
-driver: null == driver ? _self.driver : driver // ignore: cast_nullable_to_non_nullable
-as String,options: null == options ? _self.options : options // ignore: cast_nullable_to_non_nullable
-as Map<String, dynamic>,config: null == config ? _self.config : config // ignore: cast_nullable_to_non_nullable
-as List<IPAMConfigInfo>,
-  ));
-}
-
-}
-
-
-/// Adds pattern-matching-related methods to [IPAMInfo].
-extension IPAMInfoPatterns on IPAMInfo {
-/// A variant of `map` that fallback to returning `orElse`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _IPAMInfo value)?  $default,{required TResult orElse(),}){
-final _that = this;
-switch (_that) {
-case _IPAMInfo() when $default != null:
-return $default(_that);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// Callbacks receives the raw object, upcasted.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case final Subclass2 value:
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _IPAMInfo value)  $default,){
-final _that = this;
-switch (_that) {
-case _IPAMInfo():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `map` that fallback to returning `null`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _IPAMInfo value)?  $default,){
-final _that = this;
-switch (_that) {
-case _IPAMInfo() when $default != null:
-return $default(_that);case _:
-  return null;
-
-}
-}
-/// A variant of `when` that fallback to an `orElse` callback.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String driver,  Map<String, dynamic> options,  List<IPAMConfigInfo> config)?  $default,{required TResult orElse(),}) {final _that = this;
-switch (_that) {
-case _IPAMInfo() when $default != null:
-return $default(_that.driver,_that.options,_that.config);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// As opposed to `map`, this offers destructuring.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case Subclass2(:final field2):
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String driver,  Map<String, dynamic> options,  List<IPAMConfigInfo> config)  $default,) {final _that = this;
-switch (_that) {
-case _IPAMInfo():
-return $default(_that.driver,_that.options,_that.config);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `when` that fallback to returning `null`
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String driver,  Map<String, dynamic> options,  List<IPAMConfigInfo> config)?  $default,) {final _that = this;
-switch (_that) {
-case _IPAMInfo() when $default != null:
-return $default(_that.driver,_that.options,_that.config);case _:
-  return null;
-
-}
-}
-
-}
-
-/// @nodoc
-@JsonSerializable()
-
-class _IPAMInfo implements IPAMInfo {
-  const _IPAMInfo({required this.driver, required final  Map<String, dynamic> options, required final  List<IPAMConfigInfo> config}): _options = options,_config = config;
-  factory _IPAMInfo.fromJson(Map<String, dynamic> json) => _$IPAMInfoFromJson(json);
-
-@override final  String driver;
- final  Map<String, dynamic> _options;
-@override Map<String, dynamic> get options {
-  if (_options is EqualUnmodifiableMapView) return _options;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableMapView(_options);
-}
-
- final  List<IPAMConfigInfo> _config;
-@override List<IPAMConfigInfo> get config {
-  if (_config is EqualUnmodifiableListView) return _config;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(_config);
-}
-
-
-/// Create a copy of IPAMInfo
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$IPAMInfoCopyWith<_IPAMInfo> get copyWith => __$IPAMInfoCopyWithImpl<_IPAMInfo>(this, _$identity);
-
-@override
-Map<String, dynamic> toJson() {
-  return _$IPAMInfoToJson(this, );
-}
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _IPAMInfo&&(identical(other.driver, driver) || other.driver == driver)&&const DeepCollectionEquality().equals(other._options, _options)&&const DeepCollectionEquality().equals(other._config, _config));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,driver,const DeepCollectionEquality().hash(_options),const DeepCollectionEquality().hash(_config));
-
-@override
-String toString() {
-  return 'IPAMInfo(driver: $driver, options: $options, config: $config)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$IPAMInfoCopyWith<$Res> implements $IPAMInfoCopyWith<$Res> {
-  factory _$IPAMInfoCopyWith(_IPAMInfo value, $Res Function(_IPAMInfo) _then) = __$IPAMInfoCopyWithImpl;
-@override @useResult
-$Res call({
- String driver, Map<String, dynamic> options, List<IPAMConfigInfo> config
-});
-
-
-
-
-}
-/// @nodoc
-class __$IPAMInfoCopyWithImpl<$Res>
-    implements _$IPAMInfoCopyWith<$Res> {
-  __$IPAMInfoCopyWithImpl(this._self, this._then);
-
-  final _IPAMInfo _self;
-  final $Res Function(_IPAMInfo) _then;
-
-/// Create a copy of IPAMInfo
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? driver = null,Object? options = null,Object? config = null,}) {
-  return _then(_IPAMInfo(
-driver: null == driver ? _self.driver : driver // ignore: cast_nullable_to_non_nullable
-as String,options: null == options ? _self._options : options // ignore: cast_nullable_to_non_nullable
-as Map<String, dynamic>,config: null == config ? _self._config : config // ignore: cast_nullable_to_non_nullable
-as List<IPAMConfigInfo>,
-  ));
-}
-
-
 }
 
 
@@ -4726,8 +4425,8 @@ return $default(_that.subnet,_that.gateway);case _:
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(fieldRename: FieldRename.pascal)
 class _IPAMConfigInfo implements IPAMConfigInfo {
   const _IPAMConfigInfo({required this.subnet, required this.gateway});
   factory _IPAMConfigInfo.fromJson(Map<String, dynamic> json) => _$IPAMConfigInfoFromJson(json);
@@ -4991,8 +4690,8 @@ return $default(_that.network);case _:
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(fieldRename: FieldRename.pascal)
 class _ConfigFromInfo implements ConfigFromInfo {
   const _ConfigFromInfo({required this.network});
   factory _ConfigFromInfo.fromJson(Map<String, dynamic> json) => _$ConfigFromInfoFromJson(json);
@@ -5262,8 +4961,8 @@ return $default(_that.containers,_that.created,_that.id,_that.labels,_that.paren
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(fieldRename: FieldRename.pascal)
 class _ImageInfo implements ImageInfo {
   const _ImageInfo({required this.containers, required this.created, required this.id, final  Map<String, dynamic>? labels, required this.parentId, required final  List<String> repoDigests, required final  List<String> repoTags, required this.sharedSize, required this.size}): _labels = labels,_repoDigests = repoDigests,_repoTags = repoTags;
   factory _ImageInfo.fromJson(Map<String, dynamic> json) => _$ImageInfoFromJson(json);
@@ -5370,7 +5069,7 @@ as int,
 /// @nodoc
 mixin _$DockerInfo {
 
- String get id; int get containers; int get containersRunning; int get containersPaused; int get containersStopped; int get images; String get driver; int get ncpu; int get memTotal; String get name; String get serverVersion;
+@JsonKey(name: "ID") String get id; int get containers; int get containersRunning; int get containersPaused; int get containersStopped; int get images; String get driver; int get nCPU; int get memTotal; String get name; String get serverVersion;
 /// Create a copy of DockerInfo
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -5383,16 +5082,16 @@ $DockerInfoCopyWith<DockerInfo> get copyWith => _$DockerInfoCopyWithImpl<DockerI
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DockerInfo&&(identical(other.id, id) || other.id == id)&&(identical(other.containers, containers) || other.containers == containers)&&(identical(other.containersRunning, containersRunning) || other.containersRunning == containersRunning)&&(identical(other.containersPaused, containersPaused) || other.containersPaused == containersPaused)&&(identical(other.containersStopped, containersStopped) || other.containersStopped == containersStopped)&&(identical(other.images, images) || other.images == images)&&(identical(other.driver, driver) || other.driver == driver)&&(identical(other.ncpu, ncpu) || other.ncpu == ncpu)&&(identical(other.memTotal, memTotal) || other.memTotal == memTotal)&&(identical(other.name, name) || other.name == name)&&(identical(other.serverVersion, serverVersion) || other.serverVersion == serverVersion));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DockerInfo&&(identical(other.id, id) || other.id == id)&&(identical(other.containers, containers) || other.containers == containers)&&(identical(other.containersRunning, containersRunning) || other.containersRunning == containersRunning)&&(identical(other.containersPaused, containersPaused) || other.containersPaused == containersPaused)&&(identical(other.containersStopped, containersStopped) || other.containersStopped == containersStopped)&&(identical(other.images, images) || other.images == images)&&(identical(other.driver, driver) || other.driver == driver)&&(identical(other.nCPU, nCPU) || other.nCPU == nCPU)&&(identical(other.memTotal, memTotal) || other.memTotal == memTotal)&&(identical(other.name, name) || other.name == name)&&(identical(other.serverVersion, serverVersion) || other.serverVersion == serverVersion));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,containers,containersRunning,containersPaused,containersStopped,images,driver,ncpu,memTotal,name,serverVersion);
+int get hashCode => Object.hash(runtimeType,id,containers,containersRunning,containersPaused,containersStopped,images,driver,nCPU,memTotal,name,serverVersion);
 
 @override
 String toString() {
-  return 'DockerInfo(id: $id, containers: $containers, containersRunning: $containersRunning, containersPaused: $containersPaused, containersStopped: $containersStopped, images: $images, driver: $driver, ncpu: $ncpu, memTotal: $memTotal, name: $name, serverVersion: $serverVersion)';
+  return 'DockerInfo(id: $id, containers: $containers, containersRunning: $containersRunning, containersPaused: $containersPaused, containersStopped: $containersStopped, images: $images, driver: $driver, nCPU: $nCPU, memTotal: $memTotal, name: $name, serverVersion: $serverVersion)';
 }
 
 
@@ -5403,7 +5102,7 @@ abstract mixin class $DockerInfoCopyWith<$Res>  {
   factory $DockerInfoCopyWith(DockerInfo value, $Res Function(DockerInfo) _then) = _$DockerInfoCopyWithImpl;
 @useResult
 $Res call({
- String id, int containers, int containersRunning, int containersPaused, int containersStopped, int images, String driver, int ncpu, int memTotal, String name, String serverVersion
+@JsonKey(name: "ID") String id, int containers, int containersRunning, int containersPaused, int containersStopped, int images, String driver, int nCPU, int memTotal, String name, String serverVersion
 });
 
 
@@ -5420,7 +5119,7 @@ class _$DockerInfoCopyWithImpl<$Res>
 
 /// Create a copy of DockerInfo
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? containers = null,Object? containersRunning = null,Object? containersPaused = null,Object? containersStopped = null,Object? images = null,Object? driver = null,Object? ncpu = null,Object? memTotal = null,Object? name = null,Object? serverVersion = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? containers = null,Object? containersRunning = null,Object? containersPaused = null,Object? containersStopped = null,Object? images = null,Object? driver = null,Object? nCPU = null,Object? memTotal = null,Object? name = null,Object? serverVersion = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,containers: null == containers ? _self.containers : containers // ignore: cast_nullable_to_non_nullable
@@ -5429,7 +5128,7 @@ as int,containersPaused: null == containersPaused ? _self.containersPaused : con
 as int,containersStopped: null == containersStopped ? _self.containersStopped : containersStopped // ignore: cast_nullable_to_non_nullable
 as int,images: null == images ? _self.images : images // ignore: cast_nullable_to_non_nullable
 as int,driver: null == driver ? _self.driver : driver // ignore: cast_nullable_to_non_nullable
-as String,ncpu: null == ncpu ? _self.ncpu : ncpu // ignore: cast_nullable_to_non_nullable
+as String,nCPU: null == nCPU ? _self.nCPU : nCPU // ignore: cast_nullable_to_non_nullable
 as int,memTotal: null == memTotal ? _self.memTotal : memTotal // ignore: cast_nullable_to_non_nullable
 as int,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,serverVersion: null == serverVersion ? _self.serverVersion : serverVersion // ignore: cast_nullable_to_non_nullable
@@ -5518,10 +5217,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  int containers,  int containersRunning,  int containersPaused,  int containersStopped,  int images,  String driver,  int ncpu,  int memTotal,  String name,  String serverVersion)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: "ID")  String id,  int containers,  int containersRunning,  int containersPaused,  int containersStopped,  int images,  String driver,  int nCPU,  int memTotal,  String name,  String serverVersion)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _DockerInfo() when $default != null:
-return $default(_that.id,_that.containers,_that.containersRunning,_that.containersPaused,_that.containersStopped,_that.images,_that.driver,_that.ncpu,_that.memTotal,_that.name,_that.serverVersion);case _:
+return $default(_that.id,_that.containers,_that.containersRunning,_that.containersPaused,_that.containersStopped,_that.images,_that.driver,_that.nCPU,_that.memTotal,_that.name,_that.serverVersion);case _:
   return orElse();
 
 }
@@ -5539,10 +5238,10 @@ return $default(_that.id,_that.containers,_that.containersRunning,_that.containe
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  int containers,  int containersRunning,  int containersPaused,  int containersStopped,  int images,  String driver,  int ncpu,  int memTotal,  String name,  String serverVersion)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: "ID")  String id,  int containers,  int containersRunning,  int containersPaused,  int containersStopped,  int images,  String driver,  int nCPU,  int memTotal,  String name,  String serverVersion)  $default,) {final _that = this;
 switch (_that) {
 case _DockerInfo():
-return $default(_that.id,_that.containers,_that.containersRunning,_that.containersPaused,_that.containersStopped,_that.images,_that.driver,_that.ncpu,_that.memTotal,_that.name,_that.serverVersion);case _:
+return $default(_that.id,_that.containers,_that.containersRunning,_that.containersPaused,_that.containersStopped,_that.images,_that.driver,_that.nCPU,_that.memTotal,_that.name,_that.serverVersion);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -5559,10 +5258,10 @@ return $default(_that.id,_that.containers,_that.containersRunning,_that.containe
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  int containers,  int containersRunning,  int containersPaused,  int containersStopped,  int images,  String driver,  int ncpu,  int memTotal,  String name,  String serverVersion)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: "ID")  String id,  int containers,  int containersRunning,  int containersPaused,  int containersStopped,  int images,  String driver,  int nCPU,  int memTotal,  String name,  String serverVersion)?  $default,) {final _that = this;
 switch (_that) {
 case _DockerInfo() when $default != null:
-return $default(_that.id,_that.containers,_that.containersRunning,_that.containersPaused,_that.containersStopped,_that.images,_that.driver,_that.ncpu,_that.memTotal,_that.name,_that.serverVersion);case _:
+return $default(_that.id,_that.containers,_that.containersRunning,_that.containersPaused,_that.containersStopped,_that.images,_that.driver,_that.nCPU,_that.memTotal,_that.name,_that.serverVersion);case _:
   return null;
 
 }
@@ -5571,20 +5270,20 @@ return $default(_that.id,_that.containers,_that.containersRunning,_that.containe
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(fieldRename: FieldRename.pascal)
 class _DockerInfo implements DockerInfo {
-  const _DockerInfo({required this.id, required this.containers, required this.containersRunning, required this.containersPaused, required this.containersStopped, required this.images, required this.driver, required this.ncpu, required this.memTotal, required this.name, required this.serverVersion});
+  const _DockerInfo({@JsonKey(name: "ID") required this.id, required this.containers, required this.containersRunning, required this.containersPaused, required this.containersStopped, required this.images, required this.driver, required this.nCPU, required this.memTotal, required this.name, required this.serverVersion});
   factory _DockerInfo.fromJson(Map<String, dynamic> json) => _$DockerInfoFromJson(json);
 
-@override final  String id;
+@override@JsonKey(name: "ID") final  String id;
 @override final  int containers;
 @override final  int containersRunning;
 @override final  int containersPaused;
 @override final  int containersStopped;
 @override final  int images;
 @override final  String driver;
-@override final  int ncpu;
+@override final  int nCPU;
 @override final  int memTotal;
 @override final  String name;
 @override final  String serverVersion;
@@ -5602,16 +5301,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DockerInfo&&(identical(other.id, id) || other.id == id)&&(identical(other.containers, containers) || other.containers == containers)&&(identical(other.containersRunning, containersRunning) || other.containersRunning == containersRunning)&&(identical(other.containersPaused, containersPaused) || other.containersPaused == containersPaused)&&(identical(other.containersStopped, containersStopped) || other.containersStopped == containersStopped)&&(identical(other.images, images) || other.images == images)&&(identical(other.driver, driver) || other.driver == driver)&&(identical(other.ncpu, ncpu) || other.ncpu == ncpu)&&(identical(other.memTotal, memTotal) || other.memTotal == memTotal)&&(identical(other.name, name) || other.name == name)&&(identical(other.serverVersion, serverVersion) || other.serverVersion == serverVersion));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DockerInfo&&(identical(other.id, id) || other.id == id)&&(identical(other.containers, containers) || other.containers == containers)&&(identical(other.containersRunning, containersRunning) || other.containersRunning == containersRunning)&&(identical(other.containersPaused, containersPaused) || other.containersPaused == containersPaused)&&(identical(other.containersStopped, containersStopped) || other.containersStopped == containersStopped)&&(identical(other.images, images) || other.images == images)&&(identical(other.driver, driver) || other.driver == driver)&&(identical(other.nCPU, nCPU) || other.nCPU == nCPU)&&(identical(other.memTotal, memTotal) || other.memTotal == memTotal)&&(identical(other.name, name) || other.name == name)&&(identical(other.serverVersion, serverVersion) || other.serverVersion == serverVersion));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,containers,containersRunning,containersPaused,containersStopped,images,driver,ncpu,memTotal,name,serverVersion);
+int get hashCode => Object.hash(runtimeType,id,containers,containersRunning,containersPaused,containersStopped,images,driver,nCPU,memTotal,name,serverVersion);
 
 @override
 String toString() {
-  return 'DockerInfo(id: $id, containers: $containers, containersRunning: $containersRunning, containersPaused: $containersPaused, containersStopped: $containersStopped, images: $images, driver: $driver, ncpu: $ncpu, memTotal: $memTotal, name: $name, serverVersion: $serverVersion)';
+  return 'DockerInfo(id: $id, containers: $containers, containersRunning: $containersRunning, containersPaused: $containersPaused, containersStopped: $containersStopped, images: $images, driver: $driver, nCPU: $nCPU, memTotal: $memTotal, name: $name, serverVersion: $serverVersion)';
 }
 
 
@@ -5622,7 +5321,7 @@ abstract mixin class _$DockerInfoCopyWith<$Res> implements $DockerInfoCopyWith<$
   factory _$DockerInfoCopyWith(_DockerInfo value, $Res Function(_DockerInfo) _then) = __$DockerInfoCopyWithImpl;
 @override @useResult
 $Res call({
- String id, int containers, int containersRunning, int containersPaused, int containersStopped, int images, String driver, int ncpu, int memTotal, String name, String serverVersion
+@JsonKey(name: "ID") String id, int containers, int containersRunning, int containersPaused, int containersStopped, int images, String driver, int nCPU, int memTotal, String name, String serverVersion
 });
 
 
@@ -5639,7 +5338,7 @@ class __$DockerInfoCopyWithImpl<$Res>
 
 /// Create a copy of DockerInfo
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? containers = null,Object? containersRunning = null,Object? containersPaused = null,Object? containersStopped = null,Object? images = null,Object? driver = null,Object? ncpu = null,Object? memTotal = null,Object? name = null,Object? serverVersion = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? containers = null,Object? containersRunning = null,Object? containersPaused = null,Object? containersStopped = null,Object? images = null,Object? driver = null,Object? nCPU = null,Object? memTotal = null,Object? name = null,Object? serverVersion = null,}) {
   return _then(_DockerInfo(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,containers: null == containers ? _self.containers : containers // ignore: cast_nullable_to_non_nullable
@@ -5648,7 +5347,7 @@ as int,containersPaused: null == containersPaused ? _self.containersPaused : con
 as int,containersStopped: null == containersStopped ? _self.containersStopped : containersStopped // ignore: cast_nullable_to_non_nullable
 as int,images: null == images ? _self.images : images // ignore: cast_nullable_to_non_nullable
 as int,driver: null == driver ? _self.driver : driver // ignore: cast_nullable_to_non_nullable
-as String,ncpu: null == ncpu ? _self.ncpu : ncpu // ignore: cast_nullable_to_non_nullable
+as String,nCPU: null == nCPU ? _self.nCPU : nCPU // ignore: cast_nullable_to_non_nullable
 as int,memTotal: null == memTotal ? _self.memTotal : memTotal // ignore: cast_nullable_to_non_nullable
 as int,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,serverVersion: null == serverVersion ? _self.serverVersion : serverVersion // ignore: cast_nullable_to_non_nullable
@@ -5663,7 +5362,7 @@ as String,
 /// @nodoc
 mixin _$DockerVersionInfo {
 
- String get version; String get apiVersion; String get minApiVersion; String get gitCommit; String get goVersion; String get os; String get arch; String get kernelVersion; String get buildTime;
+ String get version; String get apiVersion; String get minAPIVersion; String get gitCommit; String get goVersion; String get os; String get arch; String get kernelVersion; String get buildTime;
 /// Create a copy of DockerVersionInfo
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -5676,16 +5375,16 @@ $DockerVersionInfoCopyWith<DockerVersionInfo> get copyWith => _$DockerVersionInf
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DockerVersionInfo&&(identical(other.version, version) || other.version == version)&&(identical(other.apiVersion, apiVersion) || other.apiVersion == apiVersion)&&(identical(other.minApiVersion, minApiVersion) || other.minApiVersion == minApiVersion)&&(identical(other.gitCommit, gitCommit) || other.gitCommit == gitCommit)&&(identical(other.goVersion, goVersion) || other.goVersion == goVersion)&&(identical(other.os, os) || other.os == os)&&(identical(other.arch, arch) || other.arch == arch)&&(identical(other.kernelVersion, kernelVersion) || other.kernelVersion == kernelVersion)&&(identical(other.buildTime, buildTime) || other.buildTime == buildTime));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DockerVersionInfo&&(identical(other.version, version) || other.version == version)&&(identical(other.apiVersion, apiVersion) || other.apiVersion == apiVersion)&&(identical(other.minAPIVersion, minAPIVersion) || other.minAPIVersion == minAPIVersion)&&(identical(other.gitCommit, gitCommit) || other.gitCommit == gitCommit)&&(identical(other.goVersion, goVersion) || other.goVersion == goVersion)&&(identical(other.os, os) || other.os == os)&&(identical(other.arch, arch) || other.arch == arch)&&(identical(other.kernelVersion, kernelVersion) || other.kernelVersion == kernelVersion)&&(identical(other.buildTime, buildTime) || other.buildTime == buildTime));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,version,apiVersion,minApiVersion,gitCommit,goVersion,os,arch,kernelVersion,buildTime);
+int get hashCode => Object.hash(runtimeType,version,apiVersion,minAPIVersion,gitCommit,goVersion,os,arch,kernelVersion,buildTime);
 
 @override
 String toString() {
-  return 'DockerVersionInfo(version: $version, apiVersion: $apiVersion, minApiVersion: $minApiVersion, gitCommit: $gitCommit, goVersion: $goVersion, os: $os, arch: $arch, kernelVersion: $kernelVersion, buildTime: $buildTime)';
+  return 'DockerVersionInfo(version: $version, apiVersion: $apiVersion, minAPIVersion: $minAPIVersion, gitCommit: $gitCommit, goVersion: $goVersion, os: $os, arch: $arch, kernelVersion: $kernelVersion, buildTime: $buildTime)';
 }
 
 
@@ -5696,7 +5395,7 @@ abstract mixin class $DockerVersionInfoCopyWith<$Res>  {
   factory $DockerVersionInfoCopyWith(DockerVersionInfo value, $Res Function(DockerVersionInfo) _then) = _$DockerVersionInfoCopyWithImpl;
 @useResult
 $Res call({
- String version, String apiVersion, String minApiVersion, String gitCommit, String goVersion, String os, String arch, String kernelVersion, String buildTime
+ String version, String apiVersion, String minAPIVersion, String gitCommit, String goVersion, String os, String arch, String kernelVersion, String buildTime
 });
 
 
@@ -5713,11 +5412,11 @@ class _$DockerVersionInfoCopyWithImpl<$Res>
 
 /// Create a copy of DockerVersionInfo
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? version = null,Object? apiVersion = null,Object? minApiVersion = null,Object? gitCommit = null,Object? goVersion = null,Object? os = null,Object? arch = null,Object? kernelVersion = null,Object? buildTime = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? version = null,Object? apiVersion = null,Object? minAPIVersion = null,Object? gitCommit = null,Object? goVersion = null,Object? os = null,Object? arch = null,Object? kernelVersion = null,Object? buildTime = null,}) {
   return _then(_self.copyWith(
 version: null == version ? _self.version : version // ignore: cast_nullable_to_non_nullable
 as String,apiVersion: null == apiVersion ? _self.apiVersion : apiVersion // ignore: cast_nullable_to_non_nullable
-as String,minApiVersion: null == minApiVersion ? _self.minApiVersion : minApiVersion // ignore: cast_nullable_to_non_nullable
+as String,minAPIVersion: null == minAPIVersion ? _self.minAPIVersion : minAPIVersion // ignore: cast_nullable_to_non_nullable
 as String,gitCommit: null == gitCommit ? _self.gitCommit : gitCommit // ignore: cast_nullable_to_non_nullable
 as String,goVersion: null == goVersion ? _self.goVersion : goVersion // ignore: cast_nullable_to_non_nullable
 as String,os: null == os ? _self.os : os // ignore: cast_nullable_to_non_nullable
@@ -5809,10 +5508,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String version,  String apiVersion,  String minApiVersion,  String gitCommit,  String goVersion,  String os,  String arch,  String kernelVersion,  String buildTime)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String version,  String apiVersion,  String minAPIVersion,  String gitCommit,  String goVersion,  String os,  String arch,  String kernelVersion,  String buildTime)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _DockerVersionInfo() when $default != null:
-return $default(_that.version,_that.apiVersion,_that.minApiVersion,_that.gitCommit,_that.goVersion,_that.os,_that.arch,_that.kernelVersion,_that.buildTime);case _:
+return $default(_that.version,_that.apiVersion,_that.minAPIVersion,_that.gitCommit,_that.goVersion,_that.os,_that.arch,_that.kernelVersion,_that.buildTime);case _:
   return orElse();
 
 }
@@ -5830,10 +5529,10 @@ return $default(_that.version,_that.apiVersion,_that.minApiVersion,_that.gitComm
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String version,  String apiVersion,  String minApiVersion,  String gitCommit,  String goVersion,  String os,  String arch,  String kernelVersion,  String buildTime)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String version,  String apiVersion,  String minAPIVersion,  String gitCommit,  String goVersion,  String os,  String arch,  String kernelVersion,  String buildTime)  $default,) {final _that = this;
 switch (_that) {
 case _DockerVersionInfo():
-return $default(_that.version,_that.apiVersion,_that.minApiVersion,_that.gitCommit,_that.goVersion,_that.os,_that.arch,_that.kernelVersion,_that.buildTime);case _:
+return $default(_that.version,_that.apiVersion,_that.minAPIVersion,_that.gitCommit,_that.goVersion,_that.os,_that.arch,_that.kernelVersion,_that.buildTime);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -5850,10 +5549,10 @@ return $default(_that.version,_that.apiVersion,_that.minApiVersion,_that.gitComm
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String version,  String apiVersion,  String minApiVersion,  String gitCommit,  String goVersion,  String os,  String arch,  String kernelVersion,  String buildTime)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String version,  String apiVersion,  String minAPIVersion,  String gitCommit,  String goVersion,  String os,  String arch,  String kernelVersion,  String buildTime)?  $default,) {final _that = this;
 switch (_that) {
 case _DockerVersionInfo() when $default != null:
-return $default(_that.version,_that.apiVersion,_that.minApiVersion,_that.gitCommit,_that.goVersion,_that.os,_that.arch,_that.kernelVersion,_that.buildTime);case _:
+return $default(_that.version,_that.apiVersion,_that.minAPIVersion,_that.gitCommit,_that.goVersion,_that.os,_that.arch,_that.kernelVersion,_that.buildTime);case _:
   return null;
 
 }
@@ -5862,15 +5561,15 @@ return $default(_that.version,_that.apiVersion,_that.minApiVersion,_that.gitComm
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(fieldRename: FieldRename.pascal)
 class _DockerVersionInfo implements DockerVersionInfo {
-  const _DockerVersionInfo({required this.version, required this.apiVersion, required this.minApiVersion, required this.gitCommit, required this.goVersion, required this.os, required this.arch, required this.kernelVersion, required this.buildTime});
+  const _DockerVersionInfo({required this.version, required this.apiVersion, required this.minAPIVersion, required this.gitCommit, required this.goVersion, required this.os, required this.arch, required this.kernelVersion, required this.buildTime});
   factory _DockerVersionInfo.fromJson(Map<String, dynamic> json) => _$DockerVersionInfoFromJson(json);
 
 @override final  String version;
 @override final  String apiVersion;
-@override final  String minApiVersion;
+@override final  String minAPIVersion;
 @override final  String gitCommit;
 @override final  String goVersion;
 @override final  String os;
@@ -5891,16 +5590,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DockerVersionInfo&&(identical(other.version, version) || other.version == version)&&(identical(other.apiVersion, apiVersion) || other.apiVersion == apiVersion)&&(identical(other.minApiVersion, minApiVersion) || other.minApiVersion == minApiVersion)&&(identical(other.gitCommit, gitCommit) || other.gitCommit == gitCommit)&&(identical(other.goVersion, goVersion) || other.goVersion == goVersion)&&(identical(other.os, os) || other.os == os)&&(identical(other.arch, arch) || other.arch == arch)&&(identical(other.kernelVersion, kernelVersion) || other.kernelVersion == kernelVersion)&&(identical(other.buildTime, buildTime) || other.buildTime == buildTime));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DockerVersionInfo&&(identical(other.version, version) || other.version == version)&&(identical(other.apiVersion, apiVersion) || other.apiVersion == apiVersion)&&(identical(other.minAPIVersion, minAPIVersion) || other.minAPIVersion == minAPIVersion)&&(identical(other.gitCommit, gitCommit) || other.gitCommit == gitCommit)&&(identical(other.goVersion, goVersion) || other.goVersion == goVersion)&&(identical(other.os, os) || other.os == os)&&(identical(other.arch, arch) || other.arch == arch)&&(identical(other.kernelVersion, kernelVersion) || other.kernelVersion == kernelVersion)&&(identical(other.buildTime, buildTime) || other.buildTime == buildTime));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,version,apiVersion,minApiVersion,gitCommit,goVersion,os,arch,kernelVersion,buildTime);
+int get hashCode => Object.hash(runtimeType,version,apiVersion,minAPIVersion,gitCommit,goVersion,os,arch,kernelVersion,buildTime);
 
 @override
 String toString() {
-  return 'DockerVersionInfo(version: $version, apiVersion: $apiVersion, minApiVersion: $minApiVersion, gitCommit: $gitCommit, goVersion: $goVersion, os: $os, arch: $arch, kernelVersion: $kernelVersion, buildTime: $buildTime)';
+  return 'DockerVersionInfo(version: $version, apiVersion: $apiVersion, minAPIVersion: $minAPIVersion, gitCommit: $gitCommit, goVersion: $goVersion, os: $os, arch: $arch, kernelVersion: $kernelVersion, buildTime: $buildTime)';
 }
 
 
@@ -5911,7 +5610,7 @@ abstract mixin class _$DockerVersionInfoCopyWith<$Res> implements $DockerVersion
   factory _$DockerVersionInfoCopyWith(_DockerVersionInfo value, $Res Function(_DockerVersionInfo) _then) = __$DockerVersionInfoCopyWithImpl;
 @override @useResult
 $Res call({
- String version, String apiVersion, String minApiVersion, String gitCommit, String goVersion, String os, String arch, String kernelVersion, String buildTime
+ String version, String apiVersion, String minAPIVersion, String gitCommit, String goVersion, String os, String arch, String kernelVersion, String buildTime
 });
 
 
@@ -5928,11 +5627,11 @@ class __$DockerVersionInfoCopyWithImpl<$Res>
 
 /// Create a copy of DockerVersionInfo
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? version = null,Object? apiVersion = null,Object? minApiVersion = null,Object? gitCommit = null,Object? goVersion = null,Object? os = null,Object? arch = null,Object? kernelVersion = null,Object? buildTime = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? version = null,Object? apiVersion = null,Object? minAPIVersion = null,Object? gitCommit = null,Object? goVersion = null,Object? os = null,Object? arch = null,Object? kernelVersion = null,Object? buildTime = null,}) {
   return _then(_DockerVersionInfo(
 version: null == version ? _self.version : version // ignore: cast_nullable_to_non_nullable
 as String,apiVersion: null == apiVersion ? _self.apiVersion : apiVersion // ignore: cast_nullable_to_non_nullable
-as String,minApiVersion: null == minApiVersion ? _self.minApiVersion : minApiVersion // ignore: cast_nullable_to_non_nullable
+as String,minAPIVersion: null == minAPIVersion ? _self.minAPIVersion : minAPIVersion // ignore: cast_nullable_to_non_nullable
 as String,gitCommit: null == gitCommit ? _self.gitCommit : gitCommit // ignore: cast_nullable_to_non_nullable
 as String,goVersion: null == goVersion ? _self.goVersion : goVersion // ignore: cast_nullable_to_non_nullable
 as String,os: null == os ? _self.os : os // ignore: cast_nullable_to_non_nullable

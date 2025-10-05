@@ -7,6 +7,10 @@ abstract class AuthRepository extends ChangeNotifier {
   /// Returns [Future] because it will load a stored auth state the first time.
   Future<bool> get isAuthenticated;
 
+  /// Try to refresh the authentication token. Returns true when refresh
+  /// succeeded and a new token is available.
+  Future<bool> refreshToken();
+
   /// Perform login
   Future<Result<void>> login({required String username, required String password});
 

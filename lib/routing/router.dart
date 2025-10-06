@@ -1,6 +1,8 @@
 import 'package:container_monitoring/ui/auth/login/view_models/login_viewmodel.dart';
 import 'package:container_monitoring/ui/home/view_models/home_viewmodel.dart';
 import 'package:container_monitoring/ui/main_home/widgets/main_home_screen.dart';
+import 'package:container_monitoring/ui/dashboard/widgets/dashboard_screen.dart';
+import 'package:container_monitoring/ui/dashboard/view_models/dashboard_viewmodel.dart';
 import 'package:container_monitoring/ui/user/view_models/user_viewmodel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
@@ -37,6 +39,23 @@ GoRouter router(AuthRepository authRepository) => GoRouter(
           homeViewModel: homeViewModel,
           userViewModel: userViewModel,
         );
+      },
+    ),
+    GoRoute(
+      name: 'dashboard',
+      path: Routes.dashboard,
+      builder: (context, state) {
+        final idParam = state.pathParameters['id'];
+        final id = int.tryParse(idParam ?? '');
+        if (id == null) {
+          // If id is invalid, go back to home
+          return const SizedBox.shrink();
+        }
+
+        final viewModel = DashboardViewmodel(environmentRepository: context.read());
+        viewModel.loadEnvironments.execute(id);
+        
+        return DashboardScreen(viewModel: viewModel);
       },
     ),
   ],

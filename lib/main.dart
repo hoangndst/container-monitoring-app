@@ -26,6 +26,13 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   late final ValueNotifier<ThemeSettings> settings;
+  late final GoRouter _router;
+
+  static final List<LocalizationsDelegate<dynamic>> _localizationsDelegates = [
+    GlobalWidgetsLocalizations.delegate,
+    GlobalMaterialLocalizations.delegate,
+    AppLocalizationDelegate(),
+  ];
 
   @override
   void initState() {
@@ -35,9 +42,10 @@ class _MyAppState extends State<MyApp> {
         widget.initialSettings ??
         ThemeSettings(sourceColor: Colors.blue, themeMode: ThemeMode.system);
     settings = ValueNotifier(init);
+    // Initialize router once; providers are available since MyApp is wrapped by MultiProvider
+    _router = router(context.read());
   }
 
-  GoRouter? _router;
   @override
   Widget build(BuildContext context) {
     return DynamicColorBuilder(
@@ -55,28 +63,17 @@ class _MyAppState extends State<MyApp> {
             builder: (context, value, _) {
               final theme = ThemeProvider.of(context);
               return MaterialApp.router(
-                localizationsDelegates: [
-                  GlobalWidgetsLocalizations.delegate,
-                  GlobalMaterialLocalizations.delegate,
-                  AppLocalizationDelegate(),
-                ],
+                localizationsDelegates: _localizationsDelegates,
                 title: 'Container Monitoring',
                 theme: theme.light(settings.value.sourceColor),
                 darkTheme: theme.dark(settings.value.sourceColor),
                 themeMode: settings.value.themeMode,
-                routerConfig: _router ??= router(context.read()),
+                routerConfig: _router,
               );
             },
           ),
         ),
       ),
     );
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    // Ensure the router is created once with the available AuthRepository in context
-    _router ??= router(context.read());
   }
 }

@@ -27,6 +27,7 @@ _EnvironmentSummary _$EnvironmentSummaryFromJson(Map<String, dynamic> json) =>
       imageCount: (json['imageCount'] as num).toInt(),
       serviceCount: (json['serviceCount'] as num).toInt(),
       stackCount: (json['stackCount'] as num).toInt(),
+      networkCount: (json['networkCount'] as num).toInt(),
     );
 
 Map<String, dynamic> _$EnvironmentSummaryToJson(_EnvironmentSummary instance) =>
@@ -50,4 +51,5 @@ Map<String, dynamic> _$EnvironmentSummaryToJson(_EnvironmentSummary instance) =>
       'imageCount': instance.imageCount,
       'serviceCount': instance.serviceCount,
       'stackCount': instance.stackCount,
+      'networkCount': instance.networkCount,
     };

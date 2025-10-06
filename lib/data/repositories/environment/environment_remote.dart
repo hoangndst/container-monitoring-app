@@ -50,6 +50,7 @@ class EnvironmentRepositoryRemote extends EnvironmentRepository {
                 imageCount: environmentApi.snapshots[0].imageCount,
                 serviceCount: environmentApi.snapshots[0].serviceCount,
                 stackCount: environmentApi.snapshots[0].stackCount,
+                networkCount: environmentApi.snapshots[0].dockerSnapshotRaw.networks.length,
               ),
             )
             .toList(),
@@ -58,4 +59,49 @@ class EnvironmentRepositoryRemote extends EnvironmentRepository {
       return Result.error(error);
     }
   }
+
+  @override
+  Future<Result<EnvironmentSummary>> getEnvironment(int id) async {
+    // You can implement caching logic here if needed
+    try {
+      final result = await _apiClient.getEnvironment(id);
+      switch (result) {
+        case Error<Environment>():
+          return Result.error(result.error);
+        case Ok<Environment>():
+      }
+      final environmentApi = result.value;
+      return Result.ok(
+        EnvironmentSummary(
+          id: environmentApi.id,
+          name: environmentApi.name,
+          type: environmentApi.type,
+          url: environmentApi.uRL,
+          status: environmentApi.status,
+          time: environmentApi.snapshots[0].time,
+          dockerVersion: environmentApi.snapshots[0].dockerVersion,
+          swarm: environmentApi.snapshots[0].swarm,
+          totalCpu: environmentApi.snapshots[0].totalCPU,
+          totalMemory: environmentApi.snapshots[0].totalMemory,
+          containerCount: environmentApi.snapshots[0].containerCount,
+          runningContainerCount:
+              environmentApi.snapshots[0].runningContainerCount,
+          stoppedContainerCount:
+              environmentApi.snapshots[0].stoppedContainerCount,
+          healthyContainerCount:
+              environmentApi.snapshots[0].healthyContainerCount,
+          unhealthyContainerCount:
+              environmentApi.snapshots[0].unhealthyContainerCount,
+          volumeCount: environmentApi.snapshots[0].volumeCount,
+          imageCount: environmentApi.snapshots[0].imageCount,
+          serviceCount: environmentApi.snapshots[0].serviceCount,
+          stackCount: environmentApi.snapshots[0].stackCount,
+          networkCount: environmentApi.snapshots[0].dockerSnapshotRaw.networks.length,
+        ),
+      );
+    } on Exception catch (error) {
+      return Result.error(error);
+    }
+  }
+    // Implementation for fetching a single environment by ID
 }

@@ -11,7 +11,7 @@ _UserApiModel _$UserApiModelFromJson(Map<String, dynamic> json) =>
       id: (json['Id'] as num).toInt(),
       username: json['Username'] as String,
       role: (json['Role'] as num).toInt(),
-      tokenIssuedAt: json['TokenIssuedAt'],
+      tokenIssuedAt: (json['TokenIssuedAt'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$UserApiModelToJson(_UserApiModel instance) =>

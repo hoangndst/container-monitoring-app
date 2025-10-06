@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$UserApiModel {
 
- int get id; String get username; int get role; dynamic get tokenIssuedAt;
+ int get id; String get username; int get role; int? get tokenIssuedAt;
 /// Create a copy of UserApiModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,12 +28,12 @@ $UserApiModelCopyWith<UserApiModel> get copyWith => _$UserApiModelCopyWithImpl<U
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserApiModel&&(identical(other.id, id) || other.id == id)&&(identical(other.username, username) || other.username == username)&&(identical(other.role, role) || other.role == role)&&const DeepCollectionEquality().equals(other.tokenIssuedAt, tokenIssuedAt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserApiModel&&(identical(other.id, id) || other.id == id)&&(identical(other.username, username) || other.username == username)&&(identical(other.role, role) || other.role == role)&&(identical(other.tokenIssuedAt, tokenIssuedAt) || other.tokenIssuedAt == tokenIssuedAt));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,username,role,const DeepCollectionEquality().hash(tokenIssuedAt));
+int get hashCode => Object.hash(runtimeType,id,username,role,tokenIssuedAt);
 
 @override
 String toString() {
@@ -48,7 +48,7 @@ abstract mixin class $UserApiModelCopyWith<$Res>  {
   factory $UserApiModelCopyWith(UserApiModel value, $Res Function(UserApiModel) _then) = _$UserApiModelCopyWithImpl;
 @useResult
 $Res call({
- int id, String username, int role, dynamic tokenIssuedAt
+ int id, String username, int role, int? tokenIssuedAt
 });
 
 
@@ -71,7 +71,7 @@ id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,username: null == username ? _self.username : username // ignore: cast_nullable_to_non_nullable
 as String,role: null == role ? _self.role : role // ignore: cast_nullable_to_non_nullable
 as int,tokenIssuedAt: freezed == tokenIssuedAt ? _self.tokenIssuedAt : tokenIssuedAt // ignore: cast_nullable_to_non_nullable
-as dynamic,
+as int?,
   ));
 }
 
@@ -156,7 +156,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String username,  int role,  dynamic tokenIssuedAt)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String username,  int role,  int? tokenIssuedAt)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _UserApiModel() when $default != null:
 return $default(_that.id,_that.username,_that.role,_that.tokenIssuedAt);case _:
@@ -177,7 +177,7 @@ return $default(_that.id,_that.username,_that.role,_that.tokenIssuedAt);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String username,  int role,  dynamic tokenIssuedAt)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String username,  int role,  int? tokenIssuedAt)  $default,) {final _that = this;
 switch (_that) {
 case _UserApiModel():
 return $default(_that.id,_that.username,_that.role,_that.tokenIssuedAt);case _:
@@ -197,7 +197,7 @@ return $default(_that.id,_that.username,_that.role,_that.tokenIssuedAt);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String username,  int role,  dynamic tokenIssuedAt)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String username,  int role,  int? tokenIssuedAt)?  $default,) {final _that = this;
 switch (_that) {
 case _UserApiModel() when $default != null:
 return $default(_that.id,_that.username,_that.role,_that.tokenIssuedAt);case _:
@@ -212,13 +212,13 @@ return $default(_that.id,_that.username,_that.role,_that.tokenIssuedAt);case _:
 
 @JsonSerializable(fieldRename: FieldRename.pascal)
 class _UserApiModel implements UserApiModel {
-  const _UserApiModel({required this.id, required this.username, required this.role, required this.tokenIssuedAt});
+  const _UserApiModel({required this.id, required this.username, required this.role, this.tokenIssuedAt});
   factory _UserApiModel.fromJson(Map<String, dynamic> json) => _$UserApiModelFromJson(json);
 
 @override final  int id;
 @override final  String username;
 @override final  int role;
-@override final  dynamic tokenIssuedAt;
+@override final  int? tokenIssuedAt;
 
 /// Create a copy of UserApiModel
 /// with the given fields replaced by the non-null parameter values.
@@ -233,12 +233,12 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserApiModel&&(identical(other.id, id) || other.id == id)&&(identical(other.username, username) || other.username == username)&&(identical(other.role, role) || other.role == role)&&const DeepCollectionEquality().equals(other.tokenIssuedAt, tokenIssuedAt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserApiModel&&(identical(other.id, id) || other.id == id)&&(identical(other.username, username) || other.username == username)&&(identical(other.role, role) || other.role == role)&&(identical(other.tokenIssuedAt, tokenIssuedAt) || other.tokenIssuedAt == tokenIssuedAt));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,username,role,const DeepCollectionEquality().hash(tokenIssuedAt));
+int get hashCode => Object.hash(runtimeType,id,username,role,tokenIssuedAt);
 
 @override
 String toString() {
@@ -253,7 +253,7 @@ abstract mixin class _$UserApiModelCopyWith<$Res> implements $UserApiModelCopyWi
   factory _$UserApiModelCopyWith(_UserApiModel value, $Res Function(_UserApiModel) _then) = __$UserApiModelCopyWithImpl;
 @override @useResult
 $Res call({
- int id, String username, int role, dynamic tokenIssuedAt
+ int id, String username, int role, int? tokenIssuedAt
 });
 
 
@@ -276,7 +276,7 @@ id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,username: null == username ? _self.username : username // ignore: cast_nullable_to_non_nullable
 as String,role: null == role ? _self.role : role // ignore: cast_nullable_to_non_nullable
 as int,tokenIssuedAt: freezed == tokenIssuedAt ? _self.tokenIssuedAt : tokenIssuedAt // ignore: cast_nullable_to_non_nullable
-as dynamic,
+as int?,
   ));
 }
 

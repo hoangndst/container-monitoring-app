@@ -1,6 +1,7 @@
 import 'package:container_monitoring/ui/auth/login/view_models/login_viewmodel.dart';
 import 'package:container_monitoring/ui/home/view_models/home_viewmodel.dart';
 import 'package:container_monitoring/ui/main_home/widgets/main_home_screen.dart';
+import 'package:container_monitoring/ui/user/view_models/user_viewmodel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -31,7 +32,11 @@ GoRouter router(AuthRepository authRepository) => GoRouter(
         final homeViewModel = HomeViewModel(
           environmentRepository: context.read(),
         );
-        return MainHomeScreen(homeViewModel: homeViewModel);
+        final userViewModel = UserViewModel(userRepository: context.read());
+        return MainHomeScreen(
+          homeViewModel: homeViewModel,
+          userViewModel: userViewModel,
+        );
       },
     ),
   ],

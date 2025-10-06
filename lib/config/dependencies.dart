@@ -18,8 +18,8 @@ List<SingleChildWidget> _sharedProviders = [
 
 List<SingleChildWidget> get providersRemote {
   return [
-    Provider(create: (context) => AuthApiClient(baseUrl: 'portainer.mr4x2.com')),
-    Provider(create: (context) => ApiClient(baseUrl: 'portainer.mr4x2.com')),
+    Provider(create: (context) => AuthApiClient()),
+    Provider(create: (context) => ApiClient()),
     Provider(create: (context) => SharedPreferencesService()),
     ChangeNotifierProvider(
       create: (context) {

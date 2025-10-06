@@ -10,7 +10,7 @@ abstract class UserApiModel with _$UserApiModel {
     required int id,
     required String username,
     required int role,
-    required tokenIssuedAt,
+    int? tokenIssuedAt,
   }) = _UserApiModel;
   factory UserApiModel.fromJson(Map<String, dynamic> json) =>
       _$UserApiModelFromJson(json);

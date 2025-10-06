@@ -8,6 +8,8 @@ import '../data/repositories/auth/auth_repository.dart';
 import '../data/repositories/auth/auth_repository_remote.dart';
 import '../data/repositories/environment/environment.dart';
 import '../data/repositories/environment/environment_remote.dart';
+import '../data/repositories/user/user_repository.dart';
+import '../data/repositories/user/user_repository_remote.dart';
 
 /// Shared providers for all configurations.
 List<SingleChildWidget> _sharedProviders = [
@@ -16,8 +18,8 @@ List<SingleChildWidget> _sharedProviders = [
 
 List<SingleChildWidget> get providersRemote {
   return [
-    Provider(create: (context) => AuthApiClient()),
-    Provider(create: (context) => ApiClient()),
+    Provider(create: (context) => AuthApiClient(baseUrl: 'portainer.mr4x2.com')),
+    Provider(create: (context) => ApiClient(baseUrl: 'portainer.mr4x2.com')),
     Provider(create: (context) => SharedPreferencesService()),
     ChangeNotifierProvider(
       create: (context) {
@@ -38,8 +40,12 @@ List<SingleChildWidget> get providersRemote {
     ),
     Provider(
       create: (context) => 
-        EnvironmentRemoteRepository(apiClient: context.read())
+        EnvironmentRepositoryRemote(apiClient: context.read())
           as EnvironmentRepository,
+    ),
+    Provider(create: (context) => 
+        UserRepositoryRemote(apiClient: context.read())
+          as UserRepository,
     ),
     ..._sharedProviders,
   ];

@@ -4,8 +4,8 @@ import 'package:container_monitoring/data/services/api/models/environment/enviro
 import 'package:container_monitoring/domain/models/environment/environment_summary.dart';
 import '../../../utils/result.dart';
 
-class EnvironmentRemoteRepository extends EnvironmentRepository {
-  EnvironmentRemoteRepository({required ApiClient apiClient})
+class EnvironmentRepositoryRemote extends EnvironmentRepository {
+  EnvironmentRepositoryRemote({required ApiClient apiClient})
     : _apiClient = apiClient;
 
   final ApiClient _apiClient;

@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$EnvironmentSummary {
 
- int get id; String get name; int get type; String get url; int get status; int get time; String get dockerVersion; bool get swarm; int get totalCpu; int get totalMemory; int get containerCount; int get runningContainerCount; int get stoppedContainerCount; int get healthyContainerCount; int get unhealthyContainerCount; int get volumeCount; int get imageCount; int get serviceCount; int get stackCount;
+ int get id; String get name; int get type; String get url; int get status; int get time; String get dockerVersion; bool get swarm; int get totalCpu; int get totalMemory; int get containerCount; int get runningContainerCount; int get stoppedContainerCount; int get healthyContainerCount; int get unhealthyContainerCount; int get volumeCount; int get imageCount; int get serviceCount; int get stackCount; int get networkCount;
 /// Create a copy of EnvironmentSummary
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $EnvironmentSummaryCopyWith<EnvironmentSummary> get copyWith => _$EnvironmentSum
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is EnvironmentSummary&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.type, type) || other.type == type)&&(identical(other.url, url) || other.url == url)&&(identical(other.status, status) || other.status == status)&&(identical(other.time, time) || other.time == time)&&(identical(other.dockerVersion, dockerVersion) || other.dockerVersion == dockerVersion)&&(identical(other.swarm, swarm) || other.swarm == swarm)&&(identical(other.totalCpu, totalCpu) || other.totalCpu == totalCpu)&&(identical(other.totalMemory, totalMemory) || other.totalMemory == totalMemory)&&(identical(other.containerCount, containerCount) || other.containerCount == containerCount)&&(identical(other.runningContainerCount, runningContainerCount) || other.runningContainerCount == runningContainerCount)&&(identical(other.stoppedContainerCount, stoppedContainerCount) || other.stoppedContainerCount == stoppedContainerCount)&&(identical(other.healthyContainerCount, healthyContainerCount) || other.healthyContainerCount == healthyContainerCount)&&(identical(other.unhealthyContainerCount, unhealthyContainerCount) || other.unhealthyContainerCount == unhealthyContainerCount)&&(identical(other.volumeCount, volumeCount) || other.volumeCount == volumeCount)&&(identical(other.imageCount, imageCount) || other.imageCount == imageCount)&&(identical(other.serviceCount, serviceCount) || other.serviceCount == serviceCount)&&(identical(other.stackCount, stackCount) || other.stackCount == stackCount));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is EnvironmentSummary&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.type, type) || other.type == type)&&(identical(other.url, url) || other.url == url)&&(identical(other.status, status) || other.status == status)&&(identical(other.time, time) || other.time == time)&&(identical(other.dockerVersion, dockerVersion) || other.dockerVersion == dockerVersion)&&(identical(other.swarm, swarm) || other.swarm == swarm)&&(identical(other.totalCpu, totalCpu) || other.totalCpu == totalCpu)&&(identical(other.totalMemory, totalMemory) || other.totalMemory == totalMemory)&&(identical(other.containerCount, containerCount) || other.containerCount == containerCount)&&(identical(other.runningContainerCount, runningContainerCount) || other.runningContainerCount == runningContainerCount)&&(identical(other.stoppedContainerCount, stoppedContainerCount) || other.stoppedContainerCount == stoppedContainerCount)&&(identical(other.healthyContainerCount, healthyContainerCount) || other.healthyContainerCount == healthyContainerCount)&&(identical(other.unhealthyContainerCount, unhealthyContainerCount) || other.unhealthyContainerCount == unhealthyContainerCount)&&(identical(other.volumeCount, volumeCount) || other.volumeCount == volumeCount)&&(identical(other.imageCount, imageCount) || other.imageCount == imageCount)&&(identical(other.serviceCount, serviceCount) || other.serviceCount == serviceCount)&&(identical(other.stackCount, stackCount) || other.stackCount == stackCount)&&(identical(other.networkCount, networkCount) || other.networkCount == networkCount));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hashAll([runtimeType,id,name,type,url,status,time,dockerVersion,swarm,totalCpu,totalMemory,containerCount,runningContainerCount,stoppedContainerCount,healthyContainerCount,unhealthyContainerCount,volumeCount,imageCount,serviceCount,stackCount]);
+int get hashCode => Object.hashAll([runtimeType,id,name,type,url,status,time,dockerVersion,swarm,totalCpu,totalMemory,containerCount,runningContainerCount,stoppedContainerCount,healthyContainerCount,unhealthyContainerCount,volumeCount,imageCount,serviceCount,stackCount,networkCount]);
 
 @override
 String toString() {
-  return 'EnvironmentSummary(id: $id, name: $name, type: $type, url: $url, status: $status, time: $time, dockerVersion: $dockerVersion, swarm: $swarm, totalCpu: $totalCpu, totalMemory: $totalMemory, containerCount: $containerCount, runningContainerCount: $runningContainerCount, stoppedContainerCount: $stoppedContainerCount, healthyContainerCount: $healthyContainerCount, unhealthyContainerCount: $unhealthyContainerCount, volumeCount: $volumeCount, imageCount: $imageCount, serviceCount: $serviceCount, stackCount: $stackCount)';
+  return 'EnvironmentSummary(id: $id, name: $name, type: $type, url: $url, status: $status, time: $time, dockerVersion: $dockerVersion, swarm: $swarm, totalCpu: $totalCpu, totalMemory: $totalMemory, containerCount: $containerCount, runningContainerCount: $runningContainerCount, stoppedContainerCount: $stoppedContainerCount, healthyContainerCount: $healthyContainerCount, unhealthyContainerCount: $unhealthyContainerCount, volumeCount: $volumeCount, imageCount: $imageCount, serviceCount: $serviceCount, stackCount: $stackCount, networkCount: $networkCount)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $EnvironmentSummaryCopyWith<$Res>  {
   factory $EnvironmentSummaryCopyWith(EnvironmentSummary value, $Res Function(EnvironmentSummary) _then) = _$EnvironmentSummaryCopyWithImpl;
 @useResult
 $Res call({
- int id, String name, int type, String url, int status, int time, String dockerVersion, bool swarm, int totalCpu, int totalMemory, int containerCount, int runningContainerCount, int stoppedContainerCount, int healthyContainerCount, int unhealthyContainerCount, int volumeCount, int imageCount, int serviceCount, int stackCount
+ int id, String name, int type, String url, int status, int time, String dockerVersion, bool swarm, int totalCpu, int totalMemory, int containerCount, int runningContainerCount, int stoppedContainerCount, int healthyContainerCount, int unhealthyContainerCount, int volumeCount, int imageCount, int serviceCount, int stackCount, int networkCount
 });
 
 
@@ -65,7 +65,7 @@ class _$EnvironmentSummaryCopyWithImpl<$Res>
 
 /// Create a copy of EnvironmentSummary
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? type = null,Object? url = null,Object? status = null,Object? time = null,Object? dockerVersion = null,Object? swarm = null,Object? totalCpu = null,Object? totalMemory = null,Object? containerCount = null,Object? runningContainerCount = null,Object? stoppedContainerCount = null,Object? healthyContainerCount = null,Object? unhealthyContainerCount = null,Object? volumeCount = null,Object? imageCount = null,Object? serviceCount = null,Object? stackCount = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? type = null,Object? url = null,Object? status = null,Object? time = null,Object? dockerVersion = null,Object? swarm = null,Object? totalCpu = null,Object? totalMemory = null,Object? containerCount = null,Object? runningContainerCount = null,Object? stoppedContainerCount = null,Object? healthyContainerCount = null,Object? unhealthyContainerCount = null,Object? volumeCount = null,Object? imageCount = null,Object? serviceCount = null,Object? stackCount = null,Object? networkCount = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
@@ -86,6 +86,7 @@ as int,volumeCount: null == volumeCount ? _self.volumeCount : volumeCount // ign
 as int,imageCount: null == imageCount ? _self.imageCount : imageCount // ignore: cast_nullable_to_non_nullable
 as int,serviceCount: null == serviceCount ? _self.serviceCount : serviceCount // ignore: cast_nullable_to_non_nullable
 as int,stackCount: null == stackCount ? _self.stackCount : stackCount // ignore: cast_nullable_to_non_nullable
+as int,networkCount: null == networkCount ? _self.networkCount : networkCount // ignore: cast_nullable_to_non_nullable
 as int,
   ));
 }
@@ -171,10 +172,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String name,  int type,  String url,  int status,  int time,  String dockerVersion,  bool swarm,  int totalCpu,  int totalMemory,  int containerCount,  int runningContainerCount,  int stoppedContainerCount,  int healthyContainerCount,  int unhealthyContainerCount,  int volumeCount,  int imageCount,  int serviceCount,  int stackCount)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String name,  int type,  String url,  int status,  int time,  String dockerVersion,  bool swarm,  int totalCpu,  int totalMemory,  int containerCount,  int runningContainerCount,  int stoppedContainerCount,  int healthyContainerCount,  int unhealthyContainerCount,  int volumeCount,  int imageCount,  int serviceCount,  int stackCount,  int networkCount)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _EnvironmentSummary() when $default != null:
-return $default(_that.id,_that.name,_that.type,_that.url,_that.status,_that.time,_that.dockerVersion,_that.swarm,_that.totalCpu,_that.totalMemory,_that.containerCount,_that.runningContainerCount,_that.stoppedContainerCount,_that.healthyContainerCount,_that.unhealthyContainerCount,_that.volumeCount,_that.imageCount,_that.serviceCount,_that.stackCount);case _:
+return $default(_that.id,_that.name,_that.type,_that.url,_that.status,_that.time,_that.dockerVersion,_that.swarm,_that.totalCpu,_that.totalMemory,_that.containerCount,_that.runningContainerCount,_that.stoppedContainerCount,_that.healthyContainerCount,_that.unhealthyContainerCount,_that.volumeCount,_that.imageCount,_that.serviceCount,_that.stackCount,_that.networkCount);case _:
   return orElse();
 
 }
@@ -192,10 +193,10 @@ return $default(_that.id,_that.name,_that.type,_that.url,_that.status,_that.time
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String name,  int type,  String url,  int status,  int time,  String dockerVersion,  bool swarm,  int totalCpu,  int totalMemory,  int containerCount,  int runningContainerCount,  int stoppedContainerCount,  int healthyContainerCount,  int unhealthyContainerCount,  int volumeCount,  int imageCount,  int serviceCount,  int stackCount)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String name,  int type,  String url,  int status,  int time,  String dockerVersion,  bool swarm,  int totalCpu,  int totalMemory,  int containerCount,  int runningContainerCount,  int stoppedContainerCount,  int healthyContainerCount,  int unhealthyContainerCount,  int volumeCount,  int imageCount,  int serviceCount,  int stackCount,  int networkCount)  $default,) {final _that = this;
 switch (_that) {
 case _EnvironmentSummary():
-return $default(_that.id,_that.name,_that.type,_that.url,_that.status,_that.time,_that.dockerVersion,_that.swarm,_that.totalCpu,_that.totalMemory,_that.containerCount,_that.runningContainerCount,_that.stoppedContainerCount,_that.healthyContainerCount,_that.unhealthyContainerCount,_that.volumeCount,_that.imageCount,_that.serviceCount,_that.stackCount);case _:
+return $default(_that.id,_that.name,_that.type,_that.url,_that.status,_that.time,_that.dockerVersion,_that.swarm,_that.totalCpu,_that.totalMemory,_that.containerCount,_that.runningContainerCount,_that.stoppedContainerCount,_that.healthyContainerCount,_that.unhealthyContainerCount,_that.volumeCount,_that.imageCount,_that.serviceCount,_that.stackCount,_that.networkCount);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -212,10 +213,10 @@ return $default(_that.id,_that.name,_that.type,_that.url,_that.status,_that.time
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String name,  int type,  String url,  int status,  int time,  String dockerVersion,  bool swarm,  int totalCpu,  int totalMemory,  int containerCount,  int runningContainerCount,  int stoppedContainerCount,  int healthyContainerCount,  int unhealthyContainerCount,  int volumeCount,  int imageCount,  int serviceCount,  int stackCount)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String name,  int type,  String url,  int status,  int time,  String dockerVersion,  bool swarm,  int totalCpu,  int totalMemory,  int containerCount,  int runningContainerCount,  int stoppedContainerCount,  int healthyContainerCount,  int unhealthyContainerCount,  int volumeCount,  int imageCount,  int serviceCount,  int stackCount,  int networkCount)?  $default,) {final _that = this;
 switch (_that) {
 case _EnvironmentSummary() when $default != null:
-return $default(_that.id,_that.name,_that.type,_that.url,_that.status,_that.time,_that.dockerVersion,_that.swarm,_that.totalCpu,_that.totalMemory,_that.containerCount,_that.runningContainerCount,_that.stoppedContainerCount,_that.healthyContainerCount,_that.unhealthyContainerCount,_that.volumeCount,_that.imageCount,_that.serviceCount,_that.stackCount);case _:
+return $default(_that.id,_that.name,_that.type,_that.url,_that.status,_that.time,_that.dockerVersion,_that.swarm,_that.totalCpu,_that.totalMemory,_that.containerCount,_that.runningContainerCount,_that.stoppedContainerCount,_that.healthyContainerCount,_that.unhealthyContainerCount,_that.volumeCount,_that.imageCount,_that.serviceCount,_that.stackCount,_that.networkCount);case _:
   return null;
 
 }
@@ -227,7 +228,7 @@ return $default(_that.id,_that.name,_that.type,_that.url,_that.status,_that.time
 @JsonSerializable()
 
 class _EnvironmentSummary implements EnvironmentSummary {
-  const _EnvironmentSummary({required this.id, required this.name, required this.type, required this.url, required this.status, required this.time, required this.dockerVersion, required this.swarm, required this.totalCpu, required this.totalMemory, required this.containerCount, required this.runningContainerCount, required this.stoppedContainerCount, required this.healthyContainerCount, required this.unhealthyContainerCount, required this.volumeCount, required this.imageCount, required this.serviceCount, required this.stackCount});
+  const _EnvironmentSummary({required this.id, required this.name, required this.type, required this.url, required this.status, required this.time, required this.dockerVersion, required this.swarm, required this.totalCpu, required this.totalMemory, required this.containerCount, required this.runningContainerCount, required this.stoppedContainerCount, required this.healthyContainerCount, required this.unhealthyContainerCount, required this.volumeCount, required this.imageCount, required this.serviceCount, required this.stackCount, required this.networkCount});
   factory _EnvironmentSummary.fromJson(Map<String, dynamic> json) => _$EnvironmentSummaryFromJson(json);
 
 @override final  int id;
@@ -249,6 +250,7 @@ class _EnvironmentSummary implements EnvironmentSummary {
 @override final  int imageCount;
 @override final  int serviceCount;
 @override final  int stackCount;
+@override final  int networkCount;
 
 /// Create a copy of EnvironmentSummary
 /// with the given fields replaced by the non-null parameter values.
@@ -263,16 +265,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _EnvironmentSummary&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.type, type) || other.type == type)&&(identical(other.url, url) || other.url == url)&&(identical(other.status, status) || other.status == status)&&(identical(other.time, time) || other.time == time)&&(identical(other.dockerVersion, dockerVersion) || other.dockerVersion == dockerVersion)&&(identical(other.swarm, swarm) || other.swarm == swarm)&&(identical(other.totalCpu, totalCpu) || other.totalCpu == totalCpu)&&(identical(other.totalMemory, totalMemory) || other.totalMemory == totalMemory)&&(identical(other.containerCount, containerCount) || other.containerCount == containerCount)&&(identical(other.runningContainerCount, runningContainerCount) || other.runningContainerCount == runningContainerCount)&&(identical(other.stoppedContainerCount, stoppedContainerCount) || other.stoppedContainerCount == stoppedContainerCount)&&(identical(other.healthyContainerCount, healthyContainerCount) || other.healthyContainerCount == healthyContainerCount)&&(identical(other.unhealthyContainerCount, unhealthyContainerCount) || other.unhealthyContainerCount == unhealthyContainerCount)&&(identical(other.volumeCount, volumeCount) || other.volumeCount == volumeCount)&&(identical(other.imageCount, imageCount) || other.imageCount == imageCount)&&(identical(other.serviceCount, serviceCount) || other.serviceCount == serviceCount)&&(identical(other.stackCount, stackCount) || other.stackCount == stackCount));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _EnvironmentSummary&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.type, type) || other.type == type)&&(identical(other.url, url) || other.url == url)&&(identical(other.status, status) || other.status == status)&&(identical(other.time, time) || other.time == time)&&(identical(other.dockerVersion, dockerVersion) || other.dockerVersion == dockerVersion)&&(identical(other.swarm, swarm) || other.swarm == swarm)&&(identical(other.totalCpu, totalCpu) || other.totalCpu == totalCpu)&&(identical(other.totalMemory, totalMemory) || other.totalMemory == totalMemory)&&(identical(other.containerCount, containerCount) || other.containerCount == containerCount)&&(identical(other.runningContainerCount, runningContainerCount) || other.runningContainerCount == runningContainerCount)&&(identical(other.stoppedContainerCount, stoppedContainerCount) || other.stoppedContainerCount == stoppedContainerCount)&&(identical(other.healthyContainerCount, healthyContainerCount) || other.healthyContainerCount == healthyContainerCount)&&(identical(other.unhealthyContainerCount, unhealthyContainerCount) || other.unhealthyContainerCount == unhealthyContainerCount)&&(identical(other.volumeCount, volumeCount) || other.volumeCount == volumeCount)&&(identical(other.imageCount, imageCount) || other.imageCount == imageCount)&&(identical(other.serviceCount, serviceCount) || other.serviceCount == serviceCount)&&(identical(other.stackCount, stackCount) || other.stackCount == stackCount)&&(identical(other.networkCount, networkCount) || other.networkCount == networkCount));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hashAll([runtimeType,id,name,type,url,status,time,dockerVersion,swarm,totalCpu,totalMemory,containerCount,runningContainerCount,stoppedContainerCount,healthyContainerCount,unhealthyContainerCount,volumeCount,imageCount,serviceCount,stackCount]);
+int get hashCode => Object.hashAll([runtimeType,id,name,type,url,status,time,dockerVersion,swarm,totalCpu,totalMemory,containerCount,runningContainerCount,stoppedContainerCount,healthyContainerCount,unhealthyContainerCount,volumeCount,imageCount,serviceCount,stackCount,networkCount]);
 
 @override
 String toString() {
-  return 'EnvironmentSummary(id: $id, name: $name, type: $type, url: $url, status: $status, time: $time, dockerVersion: $dockerVersion, swarm: $swarm, totalCpu: $totalCpu, totalMemory: $totalMemory, containerCount: $containerCount, runningContainerCount: $runningContainerCount, stoppedContainerCount: $stoppedContainerCount, healthyContainerCount: $healthyContainerCount, unhealthyContainerCount: $unhealthyContainerCount, volumeCount: $volumeCount, imageCount: $imageCount, serviceCount: $serviceCount, stackCount: $stackCount)';
+  return 'EnvironmentSummary(id: $id, name: $name, type: $type, url: $url, status: $status, time: $time, dockerVersion: $dockerVersion, swarm: $swarm, totalCpu: $totalCpu, totalMemory: $totalMemory, containerCount: $containerCount, runningContainerCount: $runningContainerCount, stoppedContainerCount: $stoppedContainerCount, healthyContainerCount: $healthyContainerCount, unhealthyContainerCount: $unhealthyContainerCount, volumeCount: $volumeCount, imageCount: $imageCount, serviceCount: $serviceCount, stackCount: $stackCount, networkCount: $networkCount)';
 }
 
 
@@ -283,7 +285,7 @@ abstract mixin class _$EnvironmentSummaryCopyWith<$Res> implements $EnvironmentS
   factory _$EnvironmentSummaryCopyWith(_EnvironmentSummary value, $Res Function(_EnvironmentSummary) _then) = __$EnvironmentSummaryCopyWithImpl;
 @override @useResult
 $Res call({
- int id, String name, int type, String url, int status, int time, String dockerVersion, bool swarm, int totalCpu, int totalMemory, int containerCount, int runningContainerCount, int stoppedContainerCount, int healthyContainerCount, int unhealthyContainerCount, int volumeCount, int imageCount, int serviceCount, int stackCount
+ int id, String name, int type, String url, int status, int time, String dockerVersion, bool swarm, int totalCpu, int totalMemory, int containerCount, int runningContainerCount, int stoppedContainerCount, int healthyContainerCount, int unhealthyContainerCount, int volumeCount, int imageCount, int serviceCount, int stackCount, int networkCount
 });
 
 
@@ -300,7 +302,7 @@ class __$EnvironmentSummaryCopyWithImpl<$Res>
 
 /// Create a copy of EnvironmentSummary
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? type = null,Object? url = null,Object? status = null,Object? time = null,Object? dockerVersion = null,Object? swarm = null,Object? totalCpu = null,Object? totalMemory = null,Object? containerCount = null,Object? runningContainerCount = null,Object? stoppedContainerCount = null,Object? healthyContainerCount = null,Object? unhealthyContainerCount = null,Object? volumeCount = null,Object? imageCount = null,Object? serviceCount = null,Object? stackCount = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? type = null,Object? url = null,Object? status = null,Object? time = null,Object? dockerVersion = null,Object? swarm = null,Object? totalCpu = null,Object? totalMemory = null,Object? containerCount = null,Object? runningContainerCount = null,Object? stoppedContainerCount = null,Object? healthyContainerCount = null,Object? unhealthyContainerCount = null,Object? volumeCount = null,Object? imageCount = null,Object? serviceCount = null,Object? stackCount = null,Object? networkCount = null,}) {
   return _then(_EnvironmentSummary(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
@@ -321,6 +323,7 @@ as int,volumeCount: null == volumeCount ? _self.volumeCount : volumeCount // ign
 as int,imageCount: null == imageCount ? _self.imageCount : imageCount // ignore: cast_nullable_to_non_nullable
 as int,serviceCount: null == serviceCount ? _self.serviceCount : serviceCount // ignore: cast_nullable_to_non_nullable
 as int,stackCount: null == stackCount ? _self.stackCount : stackCount // ignore: cast_nullable_to_non_nullable
+as int,networkCount: null == networkCount ? _self.networkCount : networkCount // ignore: cast_nullable_to_non_nullable
 as int,
   ));
 }

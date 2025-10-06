@@ -27,6 +27,7 @@ abstract class EnvironmentSummary with _$EnvironmentSummary {
     required int imageCount,
     required int serviceCount,
     required int stackCount,
+    required int networkCount,
   }) = _EnvironmentSummary;
 
   factory EnvironmentSummary.fromJson(Map<String, dynamic> json) =>

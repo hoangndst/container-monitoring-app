@@ -1,6 +1,7 @@
 import 'package:container_monitoring/ui/core/ui/fancy_card.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:go_router/go_router.dart';
 
 import 'package:container_monitoring/domain/models/environment/environment_summary.dart';
 import 'package:container_monitoring/ui/home/view_models/home_viewmodel.dart';
@@ -136,27 +137,27 @@ class EnvironmentCard extends StatelessWidget {
             runSpacing: 8,
             children: [
               _StatItem(
-                icon: Icons.layers,
+                icon: Icons.layers_outlined,
                 label: '${environment.stackCount} stacks',
               ),
               _StatItem(
-                icon: Icons.storage,
+                icon: Icons.apps_outlined,
                 label: '${environment.containerCount} containers',
               ),
               _StatItem(
-                icon: Icons.folder,
+                icon: Icons.folder_outlined,
                 label: '${environment.volumeCount} volumes',
               ),
               _StatItem(
-                icon: Icons.list,
+                icon: Icons.sd_storage_outlined,
                 label: '${environment.imageCount} images',
               ),
               _StatItem(
-                icon: Icons.memory,
+                icon: Icons.memory_outlined,
                 label: '${environment.totalCpu} CPU',
               ),
               _StatItem(
-                icon: Icons.sd_storage,
+                icon: Icons.storage_outlined,
                 label:
                     '${(environment.totalMemory / 1000 / 1000 / 1000).toStringAsFixed(1)} GB RAM',
               ),
@@ -167,8 +168,9 @@ class EnvironmentCard extends StatelessWidget {
 
           // Bottom status
           Row(
-            mainAxisAlignment: MainAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              // Left: connection status
               Container(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 10,
@@ -183,9 +185,20 @@ class EnvironmentCard extends StatelessWidget {
                         ? const _PulsingDot()
                         : const Icon(Icons.circle, color: Colors.red, size: 10),
                     const SizedBox(width: 6),
-                    const Text('Connected', style: TextStyle(fontSize: 13)),
+                    Text(
+                      isRunning ? 'Connected' : 'Disconnected',
+                      style: const TextStyle(fontSize: 13),
+                    ),
                   ],
                 ),
+              ),
+
+              // Right: dashboard button
+              OutlinedButton.icon(
+                onPressed: () {
+                  context.push('/dashboard/${environment.id}');
+                },
+                label: const Text('Dashboard'),
               ),
             ],
           ),

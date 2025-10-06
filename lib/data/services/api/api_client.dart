@@ -92,10 +92,14 @@ class ApiClient {
           if (response2.statusCode == 200) {
             final respBody = await response2.transform(utf8.decoder).join();
             final List<dynamic> data = jsonDecode(respBody);
-            final environments = data.map((e) => Environment.fromJson(e)).toList();
+            final environments = data
+                .map((e) => Environment.fromJson(e))
+                .toList();
             return Result.ok(environments);
           } else {
-            return const Result.error(HttpException('Failed to list environments'));
+            return const Result.error(
+              HttpException('Failed to list environments'),
+            );
           }
         }
       }
@@ -105,9 +109,52 @@ class ApiClient {
         final environments = data.map((e) => Environment.fromJson(e)).toList();
         return Result.ok(environments);
       } else {
-        return const Result.error(
-          HttpException('Failed to list environments'),
-        );
+        return const Result.error(HttpException('Failed to list environments'));
+      }
+    } on Exception catch (error) {
+      return Result.error(error);
+    } finally {
+      client.close(force: true);
+    }
+  }
+
+  Future<Result<Environment>> getEnvironment(int id) async {
+    final client = _clientFactory();
+    try {
+      final uri = Uri(
+        scheme: 'https',
+        host: _baseUrl,
+        path: '/api/endpoints/$id',
+      );
+      final request = await client.getUrl(uri);
+      await _authHeader(request.headers);
+      final response = await request.close();
+      // If unauthorized, try refresh once and retry
+      if (response.statusCode == 401 && _authRefreshProvider != null) {
+        client.close(force: true);
+        final refreshed = await _authRefreshProvider!.call();
+        if (refreshed) {
+          final client2 = _clientFactory();
+          final request2 = await client2.getUrl(uri);
+          await _authHeader(request2.headers);
+          final response2 = await request2.close();
+          if (response2.statusCode == 200) {
+            final respBody = await response2.transform(utf8.decoder).join();
+            final Map<String, dynamic> data = jsonDecode(respBody);
+            return Result.ok(Environment.fromJson(data));
+          } else {
+            return const Result.error(
+              HttpException('Failed to get environment'),
+            );
+          }
+        }
+      }
+      if (response.statusCode == 200) {
+        final respBody = await response.transform(utf8.decoder).join();
+        final Map<String, dynamic> data = jsonDecode(respBody);
+        return Result.ok(Environment.fromJson(data));
+      } else {
+        return const Result.error(HttpException('Failed to get environment'));
       }
     } on Exception catch (error) {
       return Result.error(error);

@@ -6,4 +6,7 @@ abstract class EnvironmentRepository {
   /// List all environments  
   Future<Result<List<EnvironmentSummary>>> listEnvironments();
 
+  /// Get environment details by ID
+  Future<Result<EnvironmentSummary>> getEnvironment(int id);
+
 }

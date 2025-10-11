@@ -1,8 +1,10 @@
 import 'package:container_monitoring/ui/core/ui/fancy_card.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import 'package:container_monitoring/ui/user/view_models/user_viewmodel.dart';
 import 'package:container_monitoring/ui/core/themes/theme_provider.dart';
+import 'package:container_monitoring/routing/routes.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 enum AppTheme { light, dark }
@@ -57,7 +59,16 @@ class _UserScreenState extends State<UserScreen> {
   }
 
   @override
+  void dispose() {
+    widget.viewModel.logout.removeListener(_onLogoutResult);
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    // Listen for logout command results
+    widget.viewModel.logout.addListener(_onLogoutResult);
+    
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(12.0),
@@ -219,11 +230,53 @@ class _UserScreenState extends State<UserScreen> {
   }
 
   void _logout() {
-    // Placeholder: wire this to your auth/logout logic.
-    // For now we'll just show a confirmation snackbar and pop the route.
-    ScaffoldMessenger.of(
-      context,
-    ).showSnackBar(const SnackBar(content: Text('Logged out (placeholder)')));
-    // Optionally navigate to login or root.
+    showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Logout'),
+          content: const Text('Are you sure you want to logout?'),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Cancel'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: const Text('Logout'),
+              onPressed: () {
+                Navigator.of(context).pop();
+                widget.viewModel.logout.execute();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _onLogoutResult() {
+    if (widget.viewModel.logout.completed) {
+      widget.viewModel.logout.clearResult();
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Logged out successfully'),
+          backgroundColor: Colors.green,
+        ),
+      );
+      // Navigation will be handled automatically by the router's redirect logic
+      context.go(Routes.login);
+    }
+
+    if (widget.viewModel.logout.error) {
+      widget.viewModel.logout.clearResult();
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Failed to logout. Please try again.'),
+          backgroundColor: Colors.red,
+        ),
+      );
+    }
   }
 }

@@ -28,7 +28,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               icon: const Icon(Icons.arrow_back),
               onPressed: () => context.go(Routes.home),
             ),
-            title: Text(env?.name ?? 'Dashboard'),
+            title: Text('Dashboard'),
           ),
           body: env == null
               ? const Center(child: CircularProgressIndicator())
@@ -60,20 +60,20 @@ class _DashboardScreenState extends State<DashboardScreen> {
                               SizedBox(
                                 width: itemWidth,
                                 child: ActionInfoCard(
-                                  icon: Icons.layers_outlined,
-                                  value: env.stackCount.toString(),
-                                  title: 'Stacks',
+                                  icon: Icons.apps_outlined,
+                                  value: env.containerCount.toString(),
+                                  title: 'Containers',
+                                  subtitle:
+                                      '${env.runningContainerCount} running   ${env.stoppedContainerCount} stopped\n${env.healthyContainerCount} healthy   ${env.unhealthyContainerCount} unhealthy',
                                   onTap: () {},
                                 ),
                               ),
                               SizedBox(
                                 width: itemWidth,
                                 child: ActionInfoCard(
-                                  icon: Icons.apps_outlined,
-                                  value: env.containerCount.toString(),
-                                  title: 'Containers',
-                                  subtitle:
-                                      '${env.runningContainerCount} running   ${env.stoppedContainerCount} stopped\n${env.healthyContainerCount} healthy   ${env.unhealthyContainerCount} unhealthy',
+                                  icon: Icons.layers_outlined,
+                                  value: env.stackCount.toString(),
+                                  title: 'Stacks',
                                   onTap: () {},
                                 ),
                               ),
@@ -89,10 +89,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
                               SizedBox(
                                 width: itemWidth,
                                 child: ActionInfoCard(
-                                  icon: Icons.folder_outlined,
+                                  icon: Icons.storage_outlined,
                                   value: env.volumeCount.toString(),
                                   title: 'Volumes',
-                                  onTap: () {},
+                                  onTap: () => context.go(
+                                    '/dashboard/${env.id}/volumes',
+                                  ),
                                 ),
                               ),
                               SizedBox(
@@ -115,13 +117,4 @@ class _DashboardScreenState extends State<DashboardScreen> {
       },
     );
   }
-}
-
-String _formatMemoryShort(int bytes) {
-  final gb = bytes / 1000 / 1000 / 1000;
-  if (gb >= 1) return '${gb.toStringAsFixed(1)} GB';
-  final mb = bytes / 1000 / 1000;
-  if (mb >= 1) return '${mb.toStringAsFixed(1)} MB';
-  final kb = bytes / 1000;
-  return '${kb.toStringAsFixed(1)} KB';
 }

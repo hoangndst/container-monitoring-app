@@ -261,8 +261,8 @@ class _PulsingDotState extends State<_PulsingDot>
       builder: (context, child) {
         final lerp = _anim.value;
         final color = Color.lerp(
-          baseColor.withOpacity(0.5),
-          baseColor.withOpacity(1.0),
+          baseColor.withValues(alpha: 0.5),
+          baseColor.withValues(alpha: 1.0),
           lerp,
         )!;
         return Container(

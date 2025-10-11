@@ -4,6 +4,9 @@ import 'package:container_monitoring/ui/main_home/widgets/main_home_screen.dart'
 import 'package:container_monitoring/ui/dashboard/widgets/dashboard_screen.dart';
 import 'package:container_monitoring/ui/dashboard/view_models/dashboard_viewmodel.dart';
 import 'package:container_monitoring/ui/user/view_models/user_viewmodel.dart';
+import 'package:container_monitoring/ui/volume/widgets/volumes_screen.dart';
+import 'package:container_monitoring/ui/volume/widgets/volume_screen.dart';
+import 'package:container_monitoring/ui/volume/view_models/volume_viewmodel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -34,7 +37,10 @@ GoRouter router(AuthRepository authRepository) => GoRouter(
         final homeViewModel = HomeViewModel(
           environmentRepository: context.read(),
         );
-        final userViewModel = UserViewModel(userRepository: context.read());
+        final userViewModel = UserViewModel(
+          userRepository: context.read(),
+          authRepository: context.read(),
+        );
         return MainHomeScreen(
           homeViewModel: homeViewModel,
           userViewModel: userViewModel,
@@ -57,6 +63,47 @@ GoRouter router(AuthRepository authRepository) => GoRouter(
         
         return DashboardScreen(viewModel: viewModel);
       },
+      routes: [
+        GoRoute(
+          name: 'volumes',
+          path: 'volumes',
+          builder: (context, state) {
+            final idParam = state.pathParameters['id'];
+            final id = int.tryParse(idParam ?? '');
+            if (id == null) {
+              return const SizedBox.shrink();
+            }
+
+            final viewModel = VolumeViewmodel(volumeRepository: context.read());
+            viewModel.loadVolumes.execute(id);
+            
+            return VolumesScreen(viewModel: viewModel, environmentId: id);
+          },
+          routes: [
+            GoRoute(
+              name: 'volume',
+              path: ':volumeName',
+              builder: (context, state) {
+                final idParam = state.pathParameters['id'];
+                final volumeName = state.pathParameters['volumeName'];
+                final id = int.tryParse(idParam ?? '');
+                
+                if (id == null || volumeName == null) {
+                  return const SizedBox.shrink();
+                }
+
+                final viewModel = VolumeViewmodel(volumeRepository: context.read());
+                
+                return VolumeScreen(
+                  viewModel: viewModel,
+                  environmentId: id,
+                  volumeName: volumeName,
+                );
+              },
+            ),
+          ],
+        ),
+      ],
     ),
   ],
 );

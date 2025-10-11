@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:container_monitoring/data/services/api/models/environment/environment.dart';
 import 'package:container_monitoring/data/services/api/models/user/user_api_model.dart';
+import 'package:container_monitoring/data/services/api/models/volume/volume_api_model.dart';
 import 'package:container_monitoring/utils/result.dart';
 
 typedef AuthHeaderProvider = String? Function();
@@ -155,6 +156,64 @@ class ApiClient {
         return Result.ok(Environment.fromJson(data));
       } else {
         return const Result.error(HttpException('Failed to get environment'));
+      }
+    } on Exception catch (error) {
+      return Result.error(error);
+    } finally {
+      client.close(force: true);
+    }
+  }
+
+  Future<Result<List<VolumeApiModel>>> listVolumesByEnvironment(
+    int environmentId,
+  ) async {
+    final client = _clientFactory();
+    try {
+      final uri = Uri(
+        scheme: 'https',
+        host: _baseUrl,
+        path: '/api/endpoints/$environmentId/docker/volumes',
+      );
+      final request = await client.getUrl(uri);
+      await _authHeader(request.headers);
+      final response = await request.close();
+      if (response.statusCode == 200) {
+        final respBody = await response.transform(utf8.decoder).join();
+        List<dynamic> data = jsonDecode(respBody)['Volumes'];
+        List<VolumeApiModel> volumes = data
+            .map((e) => VolumeApiModel.fromJson(e))
+            .toList();
+        return Result.ok(volumes);
+      } else {
+        return const Result.error(HttpException('Failed to list volumes'));
+      }
+    } on Exception catch (error) {
+      return Result.error(error);
+    } finally {
+      client.close(force: true);
+    }
+  }
+
+  Future<Result<VolumeApiModel>> getVolumeByName(
+    int environmentId,
+    String volumeName,
+  ) async {
+    final client = _clientFactory();
+    try {
+      final uri = Uri(
+        scheme: 'https',
+        host: _baseUrl,
+        path: '/api/endpoints/$environmentId/docker/volumes/$volumeName',
+      );
+      final request = await client.getUrl(uri);
+      await _authHeader(request.headers);
+      final response = await request.close();
+      if (response.statusCode == 200) {
+        final respBody = await response.transform(utf8.decoder).join();
+        final Map<String, dynamic> data = jsonDecode(respBody);
+        return Result.ok(VolumeApiModel.fromJson(data));
+      } else {
+        return const Result.error(HttpException('Failed to get volume'));
       }
     } on Exception catch (error) {
       return Result.error(error);

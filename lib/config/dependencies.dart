@@ -10,11 +10,11 @@ import '../data/repositories/environment/environment.dart';
 import '../data/repositories/environment/environment_remote.dart';
 import '../data/repositories/user/user_repository.dart';
 import '../data/repositories/user/user_repository_remote.dart';
+import '../data/repositories/volume/volume.dart';
+import '../data/repositories/volume/volume_remote.dart';
 
 /// Shared providers for all configurations.
-List<SingleChildWidget> _sharedProviders = [
-];
-
+List<SingleChildWidget> _sharedProviders = [];
 
 List<SingleChildWidget> get providersRemote {
   return [
@@ -25,7 +25,8 @@ List<SingleChildWidget> get providersRemote {
       create: (context) {
         final authApiClient = context.read<AuthApiClient>();
         final apiClient = context.read<ApiClient>();
-        final sharedPreferencesService = context.read<SharedPreferencesService>();
+        final sharedPreferencesService = context
+            .read<SharedPreferencesService>();
         final repo = AuthRepositoryRemote(
           authApiClient: authApiClient,
           apiClient: apiClient,
@@ -39,13 +40,17 @@ List<SingleChildWidget> get providersRemote {
       },
     ),
     Provider(
-      create: (context) => 
-        EnvironmentRepositoryRemote(apiClient: context.read())
-          as EnvironmentRepository,
+      create: (context) =>
+          EnvironmentRepositoryRemote(apiClient: context.read())
+              as EnvironmentRepository,
     ),
-    Provider(create: (context) => 
-        UserRepositoryRemote(apiClient: context.read())
-          as UserRepository,
+    Provider(
+      create: (context) =>
+          UserRepositoryRemote(apiClient: context.read()) as UserRepository,
+    ),
+    Provider(
+      create: (context) =>
+          VolumeRepositoryRemote(apiClient: context.read()) as VolumeRepository,
     ),
     ..._sharedProviders,
   ];

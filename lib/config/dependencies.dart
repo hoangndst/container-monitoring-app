@@ -6,12 +6,18 @@ import '../data/services/api/auth_api_client.dart';
 import '../data/services/shared_preferences_service.dart';
 import '../data/repositories/auth/auth_repository.dart';
 import '../data/repositories/auth/auth_repository_remote.dart';
+import '../data/repositories/container/container.dart';
+import '../data/repositories/container/container_remote.dart';
 import '../data/repositories/environment/environment.dart';
 import '../data/repositories/environment/environment_remote.dart';
 import '../data/repositories/user/user_repository.dart';
 import '../data/repositories/user/user_repository_remote.dart';
 import '../data/repositories/volume/volume.dart';
 import '../data/repositories/volume/volume_remote.dart';
+import '../ui/container/view_models/container_viewmodel.dart';
+import '../ui/container/view_models/container_detail_viewmodel.dart';
+import '../ui/container/view_models/container_logs_viewmodel.dart';
+import '../ui/volume/view_models/volume_viewmodel.dart';
 
 /// Shared providers for all configurations.
 List<SingleChildWidget> _sharedProviders = [];
@@ -51,6 +57,26 @@ List<SingleChildWidget> get providersRemote {
     Provider(
       create: (context) =>
           VolumeRepositoryRemote(apiClient: context.read()) as VolumeRepository,
+    ),
+    Provider(
+      create: (context) =>
+          ContainerRepositoryRemote(apiClient: context.read())
+              as ContainerRepository,
+    ),
+    ChangeNotifierProvider(
+      create: (context) => VolumeViewmodel(volumeRepository: context.read()),
+    ),
+    ChangeNotifierProvider(
+      create: (context) =>
+          ContainerViewmodel(containerRepository: context.read()),
+    ),
+    ChangeNotifierProvider(
+      create: (context) =>
+          ContainerDetailViewmodel(containerRepository: context.read()),
+    ),
+    ChangeNotifierProvider(
+      create: (context) =>
+          ContainerLogsViewmodel(containerRepository: context.read()),
     ),
     ..._sharedProviders,
   ];

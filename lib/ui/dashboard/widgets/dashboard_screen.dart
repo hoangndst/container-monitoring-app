@@ -65,7 +65,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                   title: 'Containers',
                                   subtitle:
                                       '${env.runningContainerCount} running   ${env.stoppedContainerCount} stopped\n${env.healthyContainerCount} healthy   ${env.unhealthyContainerCount} unhealthy',
-                                  onTap: () {},
+                                  onTap: () => context.go(
+                                    '/dashboard/${env.id}/containers',
+                                  ),
                                 ),
                               ),
                               SizedBox(

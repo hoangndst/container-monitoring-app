@@ -5,6 +5,7 @@ part 'user_api_model.g.dart';
 
 @freezed
 abstract class UserApiModel with _$UserApiModel {
+  // ignore: invalid_annotation_target
   @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory UserApiModel({
     required int id,

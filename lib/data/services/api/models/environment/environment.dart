@@ -5,6 +5,7 @@ part 'environment.g.dart';
 
 @freezed
 abstract class Environment with _$Environment {
+  // ignore: invalid_annotation_target
   @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory Environment({
     required int id,
@@ -28,6 +29,7 @@ abstract class Environment with _$Environment {
 
 @freezed
 abstract class TLSConfig with _$TLSConfig {
+  // ignore: invalid_annotation_target
   @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory TLSConfig({required bool tls, required bool tlsSkipVerify}) =
       _TLSConfig;
@@ -38,6 +40,7 @@ abstract class TLSConfig with _$TLSConfig {
 
 @freezed
 abstract class AzureCredentials with _$AzureCredentials {
+  // ignore: invalid_annotation_target
   @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory AzureCredentials({
     String? applicationID,
@@ -51,6 +54,7 @@ abstract class AzureCredentials with _$AzureCredentials {
 
 @freezed
 abstract class Snapshot with _$Snapshot {
+  // ignore: invalid_annotation_target
   @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory Snapshot({
     required int time,
@@ -76,6 +80,7 @@ abstract class Snapshot with _$Snapshot {
 
 @freezed
 abstract class DockerSnapshotRaw with _$DockerSnapshotRaw {
+  // ignore: invalid_annotation_target
   @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory DockerSnapshotRaw({
     required List<ContainerInfo> containers,
@@ -92,6 +97,7 @@ abstract class DockerSnapshotRaw with _$DockerSnapshotRaw {
 
 @freezed
 abstract class ContainerInfo with _$ContainerInfo {
+  // ignore: invalid_annotation_target
   @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory ContainerInfo({
     required String id,
@@ -115,6 +121,7 @@ abstract class ContainerInfo with _$ContainerInfo {
 
 @freezed
 abstract class PortInfo with _$PortInfo {
+  // ignore: invalid_annotation_target
   @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory PortInfo({
     String? ip,
@@ -129,6 +136,7 @@ abstract class PortInfo with _$PortInfo {
 
 @freezed
 abstract class HostConfigInfo with _$HostConfigInfo {
+  // ignore: invalid_annotation_target
   @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory HostConfigInfo({required String networkMode}) = _HostConfigInfo;
 
@@ -138,6 +146,7 @@ abstract class HostConfigInfo with _$HostConfigInfo {
 
 @freezed
 abstract class NetworkSettingsInfo with _$NetworkSettingsInfo {
+  // ignore: invalid_annotation_target
   @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory NetworkSettingsInfo({
     required Map<String, NetworkDetailInfo> networks,
@@ -149,6 +158,7 @@ abstract class NetworkSettingsInfo with _$NetworkSettingsInfo {
 
 @freezed
 abstract class NetworkDetailInfo with _$NetworkDetailInfo {
+  // ignore: invalid_annotation_target
   @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory NetworkDetailInfo({
     dynamic ipamConfig,
@@ -173,6 +183,7 @@ abstract class NetworkDetailInfo with _$NetworkDetailInfo {
 
 @freezed
 abstract class MountInfo with _$MountInfo {
+  // ignore: invalid_annotation_target
   @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory MountInfo({
     required String type,
@@ -191,7 +202,8 @@ abstract class MountInfo with _$MountInfo {
 
 @freezed
 abstract class VolumeData with _$VolumeData {
-  @JsonSerializable(fieldRename: FieldRename.pascal)
+  // ignore: invalid_annotation_target
+    @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory VolumeData({
     required List<VolumeInfo> volumes,
     dynamic warnings,
@@ -203,6 +215,7 @@ abstract class VolumeData with _$VolumeData {
 
 @freezed
 abstract class VolumeInfo with _$VolumeInfo {
+  // ignore: invalid_annotation_target
   @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory VolumeInfo({
     required String createdAt,
@@ -219,6 +232,7 @@ abstract class VolumeInfo with _$VolumeInfo {
 
 @freezed
 abstract class NetworkInfo with _$NetworkInfo {
+  // ignore: invalid_annotation_target
   @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory NetworkInfo({
     required String name,
@@ -243,6 +257,7 @@ abstract class NetworkInfo with _$NetworkInfo {
 
 @freezed
 abstract class IPAMConfigInfo with _$IPAMConfigInfo {
+  // ignore: invalid_annotation_target
   @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory IPAMConfigInfo({
     required String subnet,
@@ -255,6 +270,7 @@ abstract class IPAMConfigInfo with _$IPAMConfigInfo {
 
 @freezed
 abstract class ConfigFromInfo with _$ConfigFromInfo {
+  // ignore: invalid_annotation_target
   @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory ConfigFromInfo({required String network}) = _ConfigFromInfo;
 
@@ -264,6 +280,7 @@ abstract class ConfigFromInfo with _$ConfigFromInfo {
 
 @freezed
 abstract class ImageInfo with _$ImageInfo {
+  // ignore: invalid_annotation_target
   @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory ImageInfo({
     required int containers,
@@ -283,8 +300,10 @@ abstract class ImageInfo with _$ImageInfo {
 
 @freezed
 abstract class DockerInfo with _$DockerInfo {
+  // ignore: invalid_annotation_target
   @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory DockerInfo({
+    // ignore: invalid_annotation_target
     @JsonKey(name: "ID") required String id,
     required int containers,
     required int containersRunning,
@@ -304,6 +323,7 @@ abstract class DockerInfo with _$DockerInfo {
 
 @freezed
 abstract class DockerVersionInfo with _$DockerVersionInfo {
+  // ignore: invalid_annotation_target
   @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory DockerVersionInfo({
     required String version,

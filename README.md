@@ -1,16 +1,17 @@
-# container_monitoring
+# Container Monitoring
 
-A new Flutter project.
+Container Monitoring is a tool for monitoring containers.
+
+<div align="center">
+  <img src="assets/images/demo_1.png" alt="Demo 1" width="200" />
+  <img src="assets/images/demo_2.png" alt="Demo 2" width="200" />
+  <img src="assets/images/demo_3.png" alt="Demo 3" width="200" />
+  <img src="assets/images/demo_4.png" alt="Demo 4" width="200" />
+</div>
+
+
+
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+to be updated.

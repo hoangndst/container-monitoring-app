@@ -7,6 +7,12 @@ import 'package:container_monitoring/ui/user/view_models/user_viewmodel.dart';
 import 'package:container_monitoring/ui/volume/widgets/volumes_screen.dart';
 import 'package:container_monitoring/ui/volume/widgets/volume_screen.dart';
 import 'package:container_monitoring/ui/volume/view_models/volume_viewmodel.dart';
+import 'package:container_monitoring/ui/container/widgets/containers_screen.dart';
+import 'package:container_monitoring/ui/container/widgets/container_detail_screen.dart';
+import 'package:container_monitoring/ui/container/widgets/container_logs_screen.dart';
+import 'package:container_monitoring/ui/container/view_models/container_viewmodel.dart';
+import 'package:container_monitoring/ui/container/view_models/container_detail_viewmodel.dart';
+import 'package:container_monitoring/ui/container/view_models/container_logs_viewmodel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -100,6 +106,69 @@ GoRouter router(AuthRepository authRepository) => GoRouter(
                   volumeName: volumeName,
                 );
               },
+            ),
+          ],
+        ),
+        GoRoute(
+          name: 'containers',
+          path: 'containers',
+          builder: (context, state) {
+            final idParam = state.pathParameters['id'];
+            final id = int.tryParse(idParam ?? '');
+            if (id == null) {
+              return const SizedBox.shrink();
+            }
+
+            final viewModel = ContainerViewmodel(containerRepository: context.read());
+            viewModel.loadContainers.execute(id);
+            
+            return ContainersScreen(viewModel: viewModel, environmentId: id);
+          },
+          routes: [
+            GoRoute(
+              name: 'containerDetail',
+              path: ':containerId',
+              builder: (context, state) {
+                final idParam = state.pathParameters['id'];
+                final containerId = state.pathParameters['containerId'];
+                final id = int.tryParse(idParam ?? '');
+                
+                if (id == null || containerId == null) {
+                  return const SizedBox.shrink();
+                }
+
+                final viewModel = ContainerDetailViewmodel(containerRepository: context.read());
+                viewModel.loadContainerDetail.execute(id, containerId);
+                
+                return ContainerDetailScreen(
+                  viewModel: viewModel,
+                  environmentId: id,
+                  containerId: containerId,
+                );
+              },
+              routes: [
+                GoRoute(
+                  name: 'containerLogs',
+                  path: 'logs',
+                  builder: (context, state) {
+                    final idParam = state.pathParameters['id'];
+                    final containerId = state.pathParameters['containerId'];
+                    final id = int.tryParse(idParam ?? '');
+                    
+                    if (id == null || containerId == null) {
+                      return const SizedBox.shrink();
+                    }
+
+                    final viewModel = ContainerLogsViewmodel(containerRepository: context.read());
+                    
+                    return ContainerLogsScreen(
+                      viewModel: viewModel,
+                      environmentId: id,
+                      containerId: containerId,
+                    );
+                  },
+                ),
+              ],
             ),
           ],
         ),

@@ -5,6 +5,7 @@ part 'user.g.dart';
 
 @freezed
 abstract class User with _$User {
+  // ignore: invalid_annotation_target
   @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory User({
     required String username,

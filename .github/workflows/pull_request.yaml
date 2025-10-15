@@ -1,4 +1,4 @@
-name: Continuous Delivery
+name: Pull Request Build
 
 on:
   push:
@@ -37,7 +37,8 @@ jobs:
         run: |
           flutter config --enable-ios
           flutter config --enable-swift-package-manager
-          flutter build ipa --no-codesign
+          flutter build ipa --no-codesign \
+            --dart-define=BASE_URL=${{ secrets.BASE_URL }}
 
   android:
     name: Android
@@ -70,4 +71,5 @@ jobs:
       - name: Build
         run: |
           flutter config --enable-android
-          flutter build appbundle
+          flutter build appbundle \
+            --dart-define=BASE_URL=${{ secrets.BASE_URL }}

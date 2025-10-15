@@ -1,0 +1,43 @@
+name: Release Build
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  ios:
+    name: iOS Release
+    runs-on: macos-14
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.35.5"
+          channel: "stable"
+          cache: true
+          cache-key: "flutter-:os:-:channel:-:version:-:arch:-:hash:"
+          cache-path:
+            "${{ runner.tool_cache }}/flutter/:channel:-:version:-:arch:"
+
+      - name: Install Dependencies
+        run: |
+          flutter pub get
+
+      - name: Build iOS
+        run: |
+          flutter config --enable-ios
+          flutter config --enable-swift-package-manager
+          flutter build ipa --no-codesign \
+            --dart-define=BASE_URL=${{ secrets.BASE_URL }}
+
+      - name: Upload iOS to Firebase App Distribution
+        uses: wzieba/Firebase-Distribution-Github-Action@v1
+        with:
+          appId: ${{ secrets.FIREBASE_IOS_APP_ID }}
+          serviceCredentialsFileContent: ${{ secrets.FIREBASE_CREDENTIAL_FILE_CONTENT }}
+          groups: testers
+          file: build/ios/ipa/*.ipa
+          releaseNotes: "${{ github.event.release.tag_name }}"

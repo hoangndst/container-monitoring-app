@@ -5,6 +5,7 @@ part 'container_logs_api_model.g.dart';
 
 @freezed
 abstract class ContainerLogsApiModel with _$ContainerLogsApiModel {
+  // ignore: invalid_annotation_target
   @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory ContainerLogsApiModel({
     required String logs,

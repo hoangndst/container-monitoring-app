@@ -5,6 +5,7 @@ part 'container_detail.g.dart';
 
 @freezed
 abstract class ContainerDetail with _$ContainerDetail {
+  // ignore: invalid_annotation_target
   @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory ContainerDetail({
     required String id,
@@ -46,6 +47,7 @@ abstract class ContainerDetail with _$ContainerDetail {
 
 @freezed
 abstract class ContainerDetailMount with _$ContainerDetailMount {
+  // ignore: invalid_annotation_target
   @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory ContainerDetailMount({
     required String destination,
@@ -64,6 +66,7 @@ abstract class ContainerDetailMount with _$ContainerDetailMount {
 
 @freezed
 abstract class ContainerDetailNetwork with _$ContainerDetailNetwork {
+  // ignore: invalid_annotation_target
   @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory ContainerDetailNetwork({
     required String bridge,
@@ -92,6 +95,7 @@ abstract class ContainerDetailNetwork with _$ContainerDetailNetwork {
 
 @freezed
 abstract class NetworkDetail with _$NetworkDetail {
+  // ignore: invalid_annotation_target
   @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory NetworkDetail({
     required List<String> aliases,
@@ -116,6 +120,7 @@ abstract class NetworkDetail with _$NetworkDetail {
 
 @freezed
 abstract class ContainerDetailConfig with _$ContainerDetailConfig {
+  // ignore: invalid_annotation_target
   @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory ContainerDetailConfig({
     required bool attachStderr,
@@ -144,6 +149,7 @@ abstract class ContainerDetailConfig with _$ContainerDetailConfig {
 
 @freezed
 abstract class ContainerDetailHostConfig with _$ContainerDetailHostConfig {
+  // ignore: invalid_annotation_target
   @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory ContainerDetailHostConfig({
     required bool autoRemove,
@@ -209,6 +215,7 @@ abstract class ContainerDetailHostConfig with _$ContainerDetailHostConfig {
 
 @freezed
 abstract class LogConfig with _$LogConfig {
+  // ignore: invalid_annotation_target
   @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory LogConfig({
     required Map<String, dynamic> config,
@@ -221,6 +228,7 @@ abstract class LogConfig with _$LogConfig {
 
 @freezed
 abstract class RestartPolicy with _$RestartPolicy {
+  // ignore: invalid_annotation_target
   @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory RestartPolicy({
     required int maximumRetryCount,

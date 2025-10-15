@@ -1,6 +1,5 @@
 import 'package:container_monitoring/data/repositories/container/container.dart';
 import 'package:container_monitoring/domain/models/container/container.dart' as container_model;
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:logging/logging.dart';
 import 'package:container_monitoring/utils/command.dart';

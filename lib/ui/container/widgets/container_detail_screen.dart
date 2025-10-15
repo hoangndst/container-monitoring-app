@@ -35,15 +35,6 @@ class _ContainerDetailScreenState extends State<ContainerDetailScreen> {
     );
   }
 
-  void _onLinkTap(String link) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text('$link not implemented yet'),
-        duration: const Duration(seconds: 2),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -528,7 +519,7 @@ class _ContainerDetailScreenState extends State<ContainerDetailScreen> {
                 ],
               ),
             );
-          }).toList(),
+          }),
       ],
     );
   }
@@ -585,7 +576,7 @@ class _ContainerDetailScreenState extends State<ContainerDetailScreen> {
                 ],
               ),
             );
-          }).toList(),
+          }),
       ],
     );
   }
@@ -674,7 +665,7 @@ class _ContainerDetailScreenState extends State<ContainerDetailScreen> {
           Container(
             decoration: BoxDecoration(
               border: Border.all(
-                color: Theme.of(context).colorScheme.outline.withOpacity(0.2),
+                color: Theme.of(context).colorScheme.outline.withValues(alpha: 0.2),
               ),
               borderRadius: BorderRadius.circular(8),
             ),
@@ -720,7 +711,7 @@ class _ContainerDetailScreenState extends State<ContainerDetailScreen> {
                     decoration: BoxDecoration(
                       border: Border(
                         top: BorderSide(
-                          color: Theme.of(context).colorScheme.outline.withOpacity(0.1),
+                          color: Theme.of(context).colorScheme.outline.withValues(alpha: 0.1),
                         ),
                       ),
                     ),
@@ -750,7 +741,7 @@ class _ContainerDetailScreenState extends State<ContainerDetailScreen> {
                       ],
                     ),
                   );
-                }).toList(),
+                }),
               ],
             ),
           ),
@@ -795,7 +786,7 @@ class _ContainerDetailScreenState extends State<ContainerDetailScreen> {
         Container(
           decoration: BoxDecoration(
             border: Border.all(
-              color: Theme.of(context).colorScheme.outline.withOpacity(0.2),
+              color: Theme.of(context).colorScheme.outline.withValues(alpha: 0.2),
             ),
             borderRadius: BorderRadius.circular(8),
           ),
@@ -852,7 +843,7 @@ class _ContainerDetailScreenState extends State<ContainerDetailScreen> {
                   decoration: BoxDecoration(
                     border: Border(
                       top: BorderSide(
-                        color: Theme.of(context).colorScheme.outline.withOpacity(0.1),
+                        color: Theme.of(context).colorScheme.outline.withValues(alpha: 0.1),
                       ),
                     ),
                   ),
@@ -896,7 +887,7 @@ class _ContainerDetailScreenState extends State<ContainerDetailScreen> {
                     ],
                   ),
                 );
-              }).toList(),
+              }),
             ],
           ),
         ),

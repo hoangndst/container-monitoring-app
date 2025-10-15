@@ -5,6 +5,7 @@ part 'container_detail_api_model.g.dart';
 
 @freezed
 abstract class ContainerDetailApiModel with _$ContainerDetailApiModel {
+  // ignore: invalid_annotation_target
   @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory ContainerDetailApiModel({
     required String appArmorProfile,
@@ -38,6 +39,7 @@ abstract class ContainerDetailApiModel with _$ContainerDetailApiModel {
 
 @freezed
 abstract class ContainerConfig with _$ContainerConfig {
+  // ignore: invalid_annotation_target
   @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory ContainerConfig({
     required bool attachStderr,
@@ -66,6 +68,7 @@ abstract class ContainerConfig with _$ContainerConfig {
 
 @freezed
 abstract class GraphDriver with _$GraphDriver {
+  // ignore: invalid_annotation_target
   @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory GraphDriver({
     required GraphDriverData data,
@@ -78,6 +81,7 @@ abstract class GraphDriver with _$GraphDriver {
 
 @freezed
 abstract class GraphDriverData with _$GraphDriverData {
+  // ignore: invalid_annotation_target
   @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory GraphDriverData({
     required String lowerDir,
@@ -92,6 +96,7 @@ abstract class GraphDriverData with _$GraphDriverData {
 
 @freezed
 abstract class HostConfig with _$HostConfig {
+  // ignore: invalid_annotation_target
   @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory HostConfig({
     required bool autoRemove,
@@ -165,6 +170,7 @@ abstract class HostConfig with _$HostConfig {
 
 @freezed
 abstract class LogConfig with _$LogConfig {
+  // ignore: invalid_annotation_target
   @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory LogConfig({
     required Map<String, dynamic> config,
@@ -177,6 +183,7 @@ abstract class LogConfig with _$LogConfig {
 
 @freezed
 abstract class RestartPolicy with _$RestartPolicy {
+  // ignore: invalid_annotation_target
   @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory RestartPolicy({
     required int maximumRetryCount,
@@ -189,6 +196,7 @@ abstract class RestartPolicy with _$RestartPolicy {
 
 @freezed
 abstract class NetworkSettings with _$NetworkSettings {
+  // ignore: invalid_annotation_target
   @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory NetworkSettings({
     required String bridge,
@@ -217,6 +225,7 @@ abstract class NetworkSettings with _$NetworkSettings {
 
 @freezed
 abstract class NetworkDetail with _$NetworkDetail {
+  // ignore: invalid_annotation_target
   @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory NetworkDetail({
     List<String>? aliases,
@@ -241,6 +250,7 @@ abstract class NetworkDetail with _$NetworkDetail {
 
 @freezed
 abstract class ContainerState with _$ContainerState {
+  // ignore: invalid_annotation_target
   @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory ContainerState({
     required bool dead,
@@ -262,6 +272,7 @@ abstract class ContainerState with _$ContainerState {
 
 @freezed
 abstract class ContainerMount with _$ContainerMount {
+  // ignore: invalid_annotation_target
   @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory ContainerMount({
     required String destination,

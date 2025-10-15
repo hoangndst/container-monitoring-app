@@ -5,6 +5,7 @@ part 'container_api_model.g.dart';
 
 @freezed
 abstract class ContainerApiModel with _$ContainerApiModel {
+  // ignore: invalid_annotation_target
   @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory ContainerApiModel({
     required String command,
@@ -21,6 +22,7 @@ abstract class ContainerApiModel with _$ContainerApiModel {
     required List<Port> ports,
     required String state,
     required String status,
+    // ignore: invalid_annotation_target
     @JsonKey(name: 'IsPortainer') bool? isPortainer,
   }) = _ContainerApiModel;
 
@@ -30,6 +32,7 @@ abstract class ContainerApiModel with _$ContainerApiModel {
 
 @freezed
 abstract class HostConfig with _$HostConfig {
+  // ignore: invalid_annotation_target
   @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory HostConfig({
     required String networkMode,
@@ -41,6 +44,7 @@ abstract class HostConfig with _$HostConfig {
 
 @freezed
 abstract class Mount with _$Mount {
+  // ignore: invalid_annotation_target
   @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory Mount({
     required String destination,
@@ -59,6 +63,7 @@ abstract class Mount with _$Mount {
 
 @freezed
 abstract class NetworkSettings with _$NetworkSettings {
+  // ignore: invalid_annotation_target
   @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory NetworkSettings({
     required Map<String, Network> networks,
@@ -70,6 +75,7 @@ abstract class NetworkSettings with _$NetworkSettings {
 
 @freezed
 abstract class Network with _$Network {
+  // ignore: invalid_annotation_target
   @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory Network({
     List<String>? aliases,
@@ -94,6 +100,7 @@ abstract class Network with _$Network {
 
 @freezed
 abstract class Port with _$Port {
+  // ignore: invalid_annotation_target
   @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory Port({
     String? iP,
@@ -108,6 +115,7 @@ abstract class Port with _$Port {
 
 @freezed
 abstract class PortainerInfo with _$PortainerInfo {
+  // ignore: invalid_annotation_target
   @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory PortainerInfo({
     required ResourceControlInfo resourceControl,
@@ -119,6 +127,7 @@ abstract class PortainerInfo with _$PortainerInfo {
 
 @freezed
 abstract class ResourceControlInfo with _$ResourceControlInfo {
+  // ignore: invalid_annotation_target
   @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory ResourceControlInfo({
     required int id,

@@ -5,6 +5,7 @@ part 'container.g.dart';
 
 @freezed
 abstract class Container with _$Container {
+  // ignore: invalid_annotation_target
   @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory Container({
     required String id,
@@ -28,6 +29,7 @@ abstract class Container with _$Container {
 
 @freezed
 abstract class ContainerPort with _$ContainerPort {
+  // ignore: invalid_annotation_target
   @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory ContainerPort({
     String? ip,
@@ -42,6 +44,7 @@ abstract class ContainerPort with _$ContainerPort {
 
 @freezed
 abstract class ContainerMount with _$ContainerMount {
+  // ignore: invalid_annotation_target
   @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory ContainerMount({
     required String destination,
@@ -60,6 +63,7 @@ abstract class ContainerMount with _$ContainerMount {
 
 @freezed
 abstract class ContainerNetwork with _$ContainerNetwork {
+  // ignore: invalid_annotation_target
   @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory ContainerNetwork({
     required String networkMode,

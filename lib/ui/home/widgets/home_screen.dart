@@ -228,7 +228,7 @@ class _StatItem extends StatelessWidget {
 }
 
 class _PulsingDot extends StatefulWidget {
-  const _PulsingDot({Key? key}) : super(key: key);
+  const _PulsingDot();
 
   @override
   State<_PulsingDot> createState() => _PulsingDotState();

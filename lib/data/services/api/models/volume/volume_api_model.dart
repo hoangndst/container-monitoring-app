@@ -5,6 +5,7 @@ part 'volume_api_model.g.dart';
 
 @freezed
 abstract class VolumeApiModel with _$VolumeApiModel {
+  // ignore: invalid_annotation_target
   @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory VolumeApiModel({
     required String createdAt,
@@ -24,6 +25,7 @@ abstract class VolumeApiModel with _$VolumeApiModel {
 
 @freezed
 abstract class PortainerInfo with _$PortainerInfo {
+  // ignore: invalid_annotation_target
   @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory PortainerInfo({
     required ResourceControlInfo resourceControl,
@@ -35,6 +37,7 @@ abstract class PortainerInfo with _$PortainerInfo {
 
 @freezed
 abstract class ResourceControlInfo with _$ResourceControlInfo {
+  // ignore: invalid_annotation_target
   @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory ResourceControlInfo({
     required int id,

@@ -117,7 +117,7 @@ class _ContainerLogsScreenState extends State<ContainerLogsScreen> {
         color: Theme.of(context).colorScheme.surfaceContainerHighest,
         border: Border(
           bottom: BorderSide(
-            color: Theme.of(context).colorScheme.outline.withOpacity(0.2),
+            color: Theme.of(context).colorScheme.outline.withValues(alpha: 0.2),
           ),
         ),
       ),
@@ -229,7 +229,7 @@ class _ContainerLogsScreenState extends State<ContainerLogsScreen> {
       decoration: BoxDecoration(
         border: Border(
           bottom: BorderSide(
-            color: Theme.of(context).colorScheme.outline.withOpacity(0.1),
+            color: Theme.of(context).colorScheme.outline.withValues(alpha: 0.1),
           ),
         ),
       ),
@@ -309,15 +309,6 @@ class _ContainerLogsScreenState extends State<ContainerLogsScreen> {
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
         content: Text('Download functionality not implemented yet'),
-      ),
-    );
-  }
-
-  void _toggleFullscreen() {
-    // TODO: Implement fullscreen toggle
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('Fullscreen functionality not implemented yet'),
       ),
     );
   }

@@ -1,8 +1,4 @@
 # Container Monitoring
-
-[![Continuous Delivery](https://github.com/hoangndst/container-monitoring-app/actions/workflows/continuous-delivery.yaml/badge.svg)](https://github.com/hoangndst/container-monitoring-app/actions/workflows/continuous-delivery.yaml)
-[![Pull Request Build](https://github.com/hoangndst/container-monitoring-app/actions/workflows/pull_request.yaml/badge.svg)](https://github.com/hoangndst/container-monitoring-app/actions/workflows/pull_request.yaml)
-
 Container Monitoring is a tool for monitoring containers. With AI assistant, help you to monitor and manage your containers.
 
 <div align="center">

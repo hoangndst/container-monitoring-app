@@ -8,6 +8,7 @@ abstract class User with _$User {
   // ignore: invalid_annotation_target
   @JsonSerializable(fieldRename: FieldRename.pascal)
   const factory User({
+    required String userId,
     required String username,
     required int role,
     int? tokenIssuedAt,

@@ -7,12 +7,14 @@ part of 'user.dart';
 // **************************************************************************
 
 _User _$UserFromJson(Map<String, dynamic> json) => _User(
+  userId: json['UserId'] as String,
   username: json['Username'] as String,
   role: (json['Role'] as num).toInt(),
   tokenIssuedAt: (json['TokenIssuedAt'] as num?)?.toInt(),
 );
 
 Map<String, dynamic> _$UserToJson(_User instance) => <String, dynamic>{
+  'UserId': instance.userId,
   'Username': instance.username,
   'Role': instance.role,
   'TokenIssuedAt': instance.tokenIssuedAt,

@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 
 import 'package:container_monitoring/domain/models/environment/environment_summary.dart';
 import 'package:container_monitoring/ui/home/view_models/home_viewmodel.dart';
+import 'package:container_monitoring/routing/routes.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key, required this.viewModel});
@@ -25,7 +26,10 @@ class _HomeScreenState extends State<HomeScreen> {
           listenable: widget.viewModel,
           builder: (context, child) {
             final envs = widget.viewModel.environments;
-            if (widget.viewModel.load.running && envs.isEmpty) {
+            final errorMessage = widget.viewModel.errorMessage;
+            final isConfigError = widget.viewModel.isConfigError;
+            
+            if (widget.viewModel.isLoading) {
               return Center(
                 child: SizedBox(
                   width: 64,
@@ -38,20 +42,70 @@ class _HomeScreenState extends State<HomeScreen> {
               );
             }
 
+            if (errorMessage != null) {
+              return Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(24.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        isConfigError ? Icons.settings_outlined : Icons.error_outline,
+                        size: 64,
+                        color: Theme.of(context).colorScheme.error,
+                      ),
+                      const SizedBox(height: 16),
+                      Text(
+                        'Error',
+                        style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                          color: Theme.of(context).colorScheme.error,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        errorMessage,
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.bodyLarge,
+                      ),
+                      if (isConfigError) ...[
+                        const SizedBox(height: 24),
+                        FilledButton.icon(
+                          onPressed: () {
+                            context.go(Routes.portainerConfig);
+                          },
+                          icon: const Icon(Icons.settings),
+                          label: const Text('Configure Portainer'),
+                        ),
+                      ],
+                    ],
+                  ),
+                ),
+              );
+            }
+
             // Wrap the list with RefreshIndicator to enable pull-to-refresh
             return RefreshIndicator(
               onRefresh: () async {
                 await widget.viewModel.load.execute();
               },
-              child: ListView.separated(
-                physics: const AlwaysScrollableScrollPhysics(),
-                itemCount: envs.length,
-                separatorBuilder: (_, __) => const SizedBox(height: 6),
-                itemBuilder: (context, index) {
-                  final e = envs[index];
-                  return EnvironmentCard(environment: e);
-                },
-              ),
+              child: envs.isEmpty
+                  ? Center(
+                      child: Text(
+                        'No environments found',
+                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                          color: Theme.of(context).colorScheme.onSurfaceVariant,
+                        ),
+                      ),
+                    )
+                  : ListView.separated(
+                      physics: const AlwaysScrollableScrollPhysics(),
+                      itemCount: envs.length,
+                      separatorBuilder: (_, __) => const SizedBox(height: 6),
+                      itemBuilder: (context, index) {
+                        final e = envs[index];
+                        return EnvironmentCard(environment: e);
+                      },
+                    ),
             );
           },
         ),

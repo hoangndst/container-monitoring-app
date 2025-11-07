@@ -5,108 +5,63 @@ import 'package:container_monitoring/data/services/api/models/container/containe
 import 'package:container_monitoring/data/services/api/models/container/container_detail_api_model.dart';
 import 'package:container_monitoring/data/services/api/models/container/container_logs_api_model.dart';
 import 'package:container_monitoring/data/services/api/models/environment/environment.dart';
-import 'package:container_monitoring/data/services/api/models/user/user_api_model.dart';
 import 'package:container_monitoring/data/services/api/models/volume/volume_api_model.dart';
 import 'package:container_monitoring/utils/result.dart';
 
 typedef AuthHeaderProvider = String? Function();
-typedef AuthRefreshProvider = Future<bool> Function();
+typedef BaseUrlProvider = String? Function();
 
 class ApiClient {
-  ApiClient({String? baseUrl, HttpClient Function()? clientFactory})
-    : _baseUrl = baseUrl ?? 'localhost',
-      _clientFactory = clientFactory ?? (() => HttpClient());
+  ApiClient({
+    String? baseUrl,
+    HttpClient Function()? clientFactory,
+    BaseUrlProvider? baseUrlProvider,
+  }) : _baseUrl = baseUrl,
+       _baseUrlProvider = baseUrlProvider,
+       _clientFactory = clientFactory ?? (() => HttpClient());
 
-  final String _baseUrl;
+  final String? _baseUrl;
+  BaseUrlProvider? _baseUrlProvider;
   final HttpClient Function() _clientFactory;
 
   AuthHeaderProvider? _authHeaderProvider;
-  AuthRefreshProvider? _authRefreshProvider;
 
   set authHeaderProvider(AuthHeaderProvider? provider) {
     _authHeaderProvider = provider;
   }
 
-  set authRefreshProvider(AuthRefreshProvider? provider) {
-    _authRefreshProvider = provider;
+  set baseUrlProvider(BaseUrlProvider? provider) {
+    _baseUrlProvider = provider;
+  }
+
+  String get _effectiveBaseUrl {
+    final url = _baseUrlProvider?.call() ?? _baseUrl;
+    if (url == null || url.isEmpty) {
+      throw StateError(
+        'Portainer configuration is required. Please configure Portainer domain and token in settings.',
+      );
+    }
+    return url;
   }
 
   Future<void> _authHeader(HttpHeaders headers) async {
     final header = _authHeaderProvider?.call();
     if (header != null) {
-      headers.set(HttpHeaders.authorizationHeader, header);
-    }
-  }
-
-  Future<Result<UserApiModel>> getUser() async {
-    final client = _clientFactory();
-    try {
-      final uri = Uri(scheme: 'https', host: _baseUrl, path: '/api/users/me');
-      final request = await client.getUrl(uri);
-      await _authHeader(request.headers);
-      final response = await request.close();
-      // If unauthorized, try refresh once and retry
-      if (response.statusCode == 401 && _authRefreshProvider != null) {
-        client.close(force: true);
-        final refreshed = await _authRefreshProvider!.call();
-        if (refreshed) {
-          final client2 = _clientFactory();
-          final request2 = await client2.getUrl(uri);
-          await _authHeader(request2.headers);
-          final response2 = await request2.close();
-          if (response2.statusCode == 200) {
-            final respBody = await response2.transform(utf8.decoder).join();
-            final Map<String, dynamic> data = jsonDecode(respBody);
-            return Result.ok(UserApiModel.fromJson(data));
-          } else {
-            return const Result.error(HttpException('Failed to get user'));
-          }
-        }
-      }
-      if (response.statusCode == 200) {
-        final respBody = await response.transform(utf8.decoder).join();
-        final Map<String, dynamic> data = jsonDecode(respBody);
-        return Result.ok(UserApiModel.fromJson(data));
-      } else {
-        return const Result.error(HttpException('Failed to get user'));
-      }
-    } on Exception catch (error) {
-      return Result.error(error);
-    } finally {
-      client.close(force: true);
+      headers.set('X-API-Key', header);
     }
   }
 
   Future<Result<List<Environment>>> listEnvironments() async {
     final client = _clientFactory();
     try {
-      final uri = Uri(scheme: 'https', host: _baseUrl, path: '/api/endpoints');
+      final uri = Uri(
+        scheme: 'https',
+        host: _effectiveBaseUrl,
+        path: '/api/endpoints',
+      );
       final request = await client.getUrl(uri);
       await _authHeader(request.headers);
       final response = await request.close();
-      // If unauthorized, try refresh once and retry
-      if (response.statusCode == 401 && _authRefreshProvider != null) {
-        client.close(force: true);
-        final refreshed = await _authRefreshProvider!.call();
-        if (refreshed) {
-          final client2 = _clientFactory();
-          final request2 = await client2.getUrl(uri);
-          await _authHeader(request2.headers);
-          final response2 = await request2.close();
-          if (response2.statusCode == 200) {
-            final respBody = await response2.transform(utf8.decoder).join();
-            final List<dynamic> data = jsonDecode(respBody);
-            final environments = data
-                .map((e) => Environment.fromJson(e))
-                .toList();
-            return Result.ok(environments);
-          } else {
-            return const Result.error(
-              HttpException('Failed to list environments'),
-            );
-          }
-        }
-      }
       if (response.statusCode == 200) {
         final respBody = await response.transform(utf8.decoder).join();
         final List<dynamic> data = jsonDecode(respBody);
@@ -127,32 +82,12 @@ class ApiClient {
     try {
       final uri = Uri(
         scheme: 'https',
-        host: _baseUrl,
+        host: _effectiveBaseUrl,
         path: '/api/endpoints/$id',
       );
       final request = await client.getUrl(uri);
       await _authHeader(request.headers);
       final response = await request.close();
-      // If unauthorized, try refresh once and retry
-      if (response.statusCode == 401 && _authRefreshProvider != null) {
-        client.close(force: true);
-        final refreshed = await _authRefreshProvider!.call();
-        if (refreshed) {
-          final client2 = _clientFactory();
-          final request2 = await client2.getUrl(uri);
-          await _authHeader(request2.headers);
-          final response2 = await request2.close();
-          if (response2.statusCode == 200) {
-            final respBody = await response2.transform(utf8.decoder).join();
-            final Map<String, dynamic> data = jsonDecode(respBody);
-            return Result.ok(Environment.fromJson(data));
-          } else {
-            return const Result.error(
-              HttpException('Failed to get environment'),
-            );
-          }
-        }
-      }
       if (response.statusCode == 200) {
         final respBody = await response.transform(utf8.decoder).join();
         final Map<String, dynamic> data = jsonDecode(respBody);
@@ -174,7 +109,7 @@ class ApiClient {
     try {
       final uri = Uri(
         scheme: 'https',
-        host: _baseUrl,
+        host: _effectiveBaseUrl,
         path: '/api/endpoints/$environmentId/docker/volumes',
       );
       final request = await client.getUrl(uri);
@@ -205,7 +140,7 @@ class ApiClient {
     try {
       final uri = Uri(
         scheme: 'https',
-        host: _baseUrl,
+        host: _effectiveBaseUrl,
         path: '/api/endpoints/$environmentId/docker/volumes/$volumeName',
       );
       final request = await client.getUrl(uri);
@@ -232,7 +167,7 @@ class ApiClient {
     try {
       final uri = Uri(
         scheme: 'https',
-        host: _baseUrl,
+        host: _effectiveBaseUrl,
         path: '/api/endpoints/$environmentId/docker/containers/json',
       );
       final request = await client.getUrl(uri);
@@ -263,7 +198,7 @@ class ApiClient {
     try {
       final uri = Uri(
         scheme: 'https',
-        host: _baseUrl,
+        host: _effectiveBaseUrl,
         path:
             '/api/endpoints/$environmentId/docker/containers/$containerId/json',
       );
@@ -297,7 +232,7 @@ class ApiClient {
     try {
       final uri = Uri(
         scheme: 'https',
-        host: _baseUrl,
+        host: _effectiveBaseUrl,
         path:
             '/api/endpoints/$environmentId/docker/containers/$containerId/logs',
         queryParameters: {
@@ -315,50 +250,55 @@ class ApiClient {
         await for (final chunk in response) {
           bytes.addAll(chunk);
         }
-        
+
         // Process Docker stream format: [stream_type][padding][size][content]
         final logLines = <String>[];
         int offset = 0;
-        
+
         while (offset < bytes.length) {
           if (offset + 8 > bytes.length) break;
-          
+
           // Read header: [stream_type(1)][padding(3)][size(4)]
           final streamType = bytes[offset];
           final sizeBytes = bytes.sublist(offset + 4, offset + 8);
-          
+
           // Convert size bytes to int (big-endian)
           int size = 0;
           for (int i = 0; i < 4; i++) {
             size = (size << 8) | sizeBytes[i];
           }
-          
+
           offset += 8;
-          
+
           if (size > 0 && offset + size <= bytes.length) {
             // Extract content
             final contentBytes = bytes.sublist(offset, offset + size);
-            
+
             // Try to decode as UTF-8, fallback to replacement characters if needed
             String content;
             try {
               content = utf8.decode(contentBytes);
             } catch (e) {
               // If UTF-8 decoding fails, replace non-printable characters
-              content = String.fromCharCodes(contentBytes.map((byte) => 
-                byte < 32 || byte > 126 ? 63 : byte)); // Replace non-printable with '?'
+              content = String.fromCharCodes(
+                contentBytes.map((byte) => byte < 32 || byte > 126 ? 63 : byte),
+              ); // Replace non-printable with '?'
             }
-            
+
             // Add stream type prefix for identification
-            final streamPrefix = streamType == 1 ? '[STDOUT]' : streamType == 2 ? '[STDERR]' : '[STDIN]';
+            final streamPrefix = streamType == 1
+                ? '[STDOUT]'
+                : streamType == 2
+                ? '[STDERR]'
+                : '[STDIN]';
             logLines.add('$streamPrefix $content');
-            
+
             offset += size;
           } else {
             break;
           }
         }
-        
+
         final respBody = logLines.join('\n');
         return Result.ok(ContainerLogsApiModel(logs: respBody));
       } else {

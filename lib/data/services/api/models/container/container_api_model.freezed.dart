@@ -15,7 +15,8 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ContainerApiModel {
 
- String get command; int get created; HostConfig get hostConfig; String get id; String get image; String get imageID; Map<String, String>? get labels; List<Mount> get mounts; List<String> get names; NetworkSettings get networkSettings; PortainerInfo? get portainer; List<Port> get ports; String get state; String get status;@JsonKey(name: 'IsPortainer') bool? get isPortainer;
+ String get command; int get created; HostConfig get hostConfig; String get id; String get image; String get imageID; Map<String, String>? get labels; List<Mount> get mounts; List<String> get names; NetworkSettings get networkSettings; PortainerInfo? get portainer; List<Port> get ports; String get state; String get status;// ignore: invalid_annotation_target
+@JsonKey(name: 'IsPortainer') bool? get isPortainer;
 /// Create a copy of ContainerApiModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -296,6 +297,7 @@ class _ContainerApiModel implements ContainerApiModel {
 
 @override final  String state;
 @override final  String status;
+// ignore: invalid_annotation_target
 @override@JsonKey(name: 'IsPortainer') final  bool? isPortainer;
 
 /// Create a copy of ContainerApiModel

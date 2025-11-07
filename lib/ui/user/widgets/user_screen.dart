@@ -20,6 +20,12 @@ class UserScreen extends StatefulWidget {
 class _UserScreenState extends State<UserScreen> {
   AppTheme _selected = AppTheme.light;
 
+  @override
+  void initState() {
+    super.initState();
+    widget.viewModel.logout.addListener(_onLogoutResult);
+  }
+
   Future<void> _select(AppTheme t) async {
     setState(() => _selected = t);
     // Update the global theme via ThemeSettingChange so main listens and updates settings
@@ -66,164 +72,190 @@ class _UserScreenState extends State<UserScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // Listen for logout command results
-    widget.viewModel.logout.addListener(_onLogoutResult);
-    
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: ListenableBuilder(
-          listenable: widget.viewModel,
-          builder: (context, child) {
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // Contributor style card (example)
-                        FancyCard(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  CircleAvatar(
-                                    radius: 20,
-                                    backgroundColor: Theme.of(
-                                      context,
-                                    ).colorScheme.surfaceContainerHighest,
-                                    child: const Icon(Icons.person),
-                                  ),
-                                  const SizedBox(width: 12),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: ListenableBuilder(
+            listenable: widget.viewModel,
+            builder: (context, child) {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          // User Profile Card
+                          FancyCard(
+                            child: Row(
+                              children: [
+                                CircleAvatar(
+                                  radius: 28,
+                                  backgroundColor: Theme.of(context).colorScheme.surfaceContainerHighest,
+                                  backgroundImage: widget.viewModel.photoUrl != null
+                                      ? NetworkImage(widget.viewModel.photoUrl!)
+                                      : null,
+                                  child: widget.viewModel.photoUrl == null
+                                      ? const Icon(Icons.person, size: 32)
+                                      : null,
+                                ),
+                                const SizedBox(width: 16),
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        widget.viewModel.user.username,
-                                        style: Theme.of(
-                                          context,
-                                        ).textTheme.titleMedium,
+                                        widget.viewModel.displayName,
+                                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
                                       const SizedBox(height: 4),
                                       Text(
-                                        'Local Guide Level 3',
-                                        style: Theme.of(
-                                          context,
-                                        ).textTheme.bodySmall,
+                                        widget.viewModel.email,
+                                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                          color: Theme.of(context).colorScheme.onSurfaceVariant,
+                                        ),
                                       ),
                                     ],
                                   ),
-                                ],
-                              ),
-                              const SizedBox(height: 12),
-                              LinearProgressIndicator(value: 0.6),
-                              const SizedBox(height: 8),
-                              Text(
-                                '150 points away from Level 4',
-                                style: Theme.of(context).textTheme.bodySmall,
-                              ),
-                            ],
-                          ),
-                        ),
-
-                        const SizedBox(height: 16),
-                        FancyCard(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'Theme',
-                                style: Theme.of(context).textTheme.titleMedium,
-                              ),
-                              ConstrainedBox(
-                                constraints: const BoxConstraints(
-                                  maxWidth: 220,
                                 ),
-                                child: SegmentedButton<AppTheme>(
-                                  segments: const <ButtonSegment<AppTheme>>[
-                                    ButtonSegment<AppTheme>(
-                                      value: AppTheme.light,
-                                      label: Text('Light'),
-                                      icon: Icon(Icons.wb_sunny_outlined),
+                              ],
+                            ),
+                          ),
+
+                          const SizedBox(height: 16),
+                          FancyCard(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'Theme',
+                                  style: Theme.of(context).textTheme.titleMedium,
+                                ),
+                                ConstrainedBox(
+                                  constraints: const BoxConstraints(
+                                    maxWidth: 220,
+                                  ),
+                                  child: SegmentedButton<AppTheme>(
+                                    segments: const <ButtonSegment<AppTheme>>[
+                                      ButtonSegment<AppTheme>(
+                                        value: AppTheme.light,
+                                        label: Text('Light'),
+                                        icon: Icon(Icons.wb_sunny_outlined),
+                                      ),
+                                      ButtonSegment<AppTheme>(
+                                        value: AppTheme.dark,
+                                        label: Text('Dark'),
+                                        icon: Icon(Icons.nights_stay_outlined),
+                                      ),
+                                    ],
+                                    selected: <AppTheme>{_selected},
+                                    onSelectionChanged:
+                                        (Set<AppTheme> newSelection) {
+                                          if (newSelection.isNotEmpty) {
+                                            _select(newSelection.first);
+                                          }
+                                        },
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+
+                          const SizedBox(height: 16),
+                          // Portainer Settings Card
+                          FancyCard(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Icon(
+                                          Icons.cloud_outlined,
+                                          color: Theme.of(context).colorScheme.primary,
+                                        ),
+                                        const SizedBox(width: 8),
+                                        Text(
+                                          'Portainer Settings',
+                                          style: Theme.of(context).textTheme.titleMedium,
+                                        ),
+                                      ],
                                     ),
-                                    ButtonSegment<AppTheme>(
-                                      value: AppTheme.dark,
-                                      label: Text('Dark'),
-                                      icon: Icon(Icons.nights_stay_outlined),
-                                    ),
+                                    if (widget.viewModel.portainerConfig != null)
+                                      TextButton.icon(
+                                        onPressed: () {
+                                          context.push(Routes.portainerConfig).then((_) {
+                                            // Reload config after returning from config screen
+                                            widget.viewModel.loadPortainerConfig.execute();
+                                          });
+                                        },
+                                        icon: const Icon(Icons.edit_outlined, size: 18),
+                                        label: const Text('Edit'),
+                                      ),
                                   ],
-                                  selected: <AppTheme>{_selected},
-                                  onSelectionChanged:
-                                      (Set<AppTheme> newSelection) {
-                                        if (newSelection.isNotEmpty) {
-                                          _select(newSelection.first);
-                                        }
-                                      },
                                 ),
-                              ),
-                            ],
-                          ),
-                        ),
-
-                        const SizedBox(height: 16),
-                        // Example place card
-                        FancyCard(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Tropical Smoothie Cafe',
-                                style: Theme.of(context).textTheme.titleLarge,
-                              ),
-                              const SizedBox(height: 8),
-                              Text(
-                                'You visited 3 weeks ago · Juice',
-                                style: Theme.of(context).textTheme.bodySmall,
-                              ),
-                              const SizedBox(height: 12),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    'Rate this place',
-                                    style: Theme.of(
-                                      context,
-                                    ).textTheme.bodyMedium,
+                                const SizedBox(height: 12),
+                                if (widget.viewModel.portainerConfig != null) ...[
+                                  _buildConfigRow(
+                                    context,
+                                    'Domain',
+                                    widget.viewModel.portainerConfig!.domain,
+                                    Icons.domain,
                                   ),
-                                  TextButton(
-                                    onPressed: () {},
-                                    child: const Text('Skip'),
+                                ] else ...[
+                                  Text(
+                                    'No Portainer configuration found.',
+                                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                      color: Theme.of(context).colorScheme.onSurfaceVariant,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 12),
+                                  SizedBox(
+                                    width: double.infinity,
+                                    child: OutlinedButton.icon(
+                                      onPressed: () {
+                                        context.push(Routes.portainerConfig).then((_) {
+                                          // Reload config after returning from config screen
+                                          widget.viewModel.loadPortainerConfig.execute();
+                                        });
+                                      },
+                                      icon: const Icon(Icons.add),
+                                      label: const Text('Configure Portainer'),
+                                    ),
                                   ),
                                 ],
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
-                        ),
-                        const SizedBox(height: 16),
-                      ],
+
+                          const SizedBox(height: 16),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-                const SizedBox(height: 8),
-                SizedBox(
-                  width: double.infinity,
-                  child: FilledButton.tonal(
-                    onPressed: _logout,
-                    style: FilledButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(vertical: 14),
+                  const SizedBox(height: 8),
+                  SizedBox(
+                    width: double.infinity,
+                    child: FilledButton.tonal(
+                      onPressed: _logout,
+                      style: FilledButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(vertical: 14),
+                      ),
+                      child: const Text('Logout'),
                     ),
-                    child: const Text('Logout'),
                   ),
-                ),
-                const SizedBox(height: 10),
-              ],
-            );
-          },
+                  const SizedBox(height: 10),
+                ],
+              );
+            },
+          ),
         ),
       ),
     );
@@ -257,26 +289,56 @@ class _UserScreenState extends State<UserScreen> {
   }
 
   void _onLogoutResult() {
+    if (!mounted) return;
+    
     if (widget.viewModel.logout.completed) {
       widget.viewModel.logout.clearResult();
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Logged out successfully'),
-          backgroundColor: Colors.green,
-        ),
-      );
       // Navigation will be handled automatically by the router's redirect logic
-      context.go(Routes.login);
+      // No need to show SnackBar or navigate manually as the router handles it
     }
 
     if (widget.viewModel.logout.error) {
       widget.viewModel.logout.clearResult();
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Failed to logout. Please try again.'),
-          backgroundColor: Colors.red,
-        ),
-      );
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: const Text('Failed to logout. Please try again.'),
+            backgroundColor: Theme.of(context).colorScheme.errorContainer,
+          ),
+        );
+      }
     }
+  }
+
+  Widget _buildConfigRow(BuildContext context, String label, String value, IconData icon) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    
+    return Row(
+      children: [
+        Icon(icon, size: 18, color: colorScheme.onSurfaceVariant),
+        const SizedBox(width: 8),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                label,
+                style: theme.textTheme.bodySmall?.copyWith(
+                  color: colorScheme.onSurfaceVariant,
+                ),
+              ),
+              const SizedBox(height: 2),
+              Text(
+                value,
+                style: theme.textTheme.bodyMedium,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
   }
 }

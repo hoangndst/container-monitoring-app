@@ -15,12 +15,21 @@ class DashboardViewmodel extends ChangeNotifier {
   final _log = Logger('DashboardViewmodel');
 
   EnvironmentSummary? _environment;
+  String? _errorMessage;
+  bool _isConfigError = false;
 
   EnvironmentSummary? get environment => _environment;
+  String? get errorMessage => _errorMessage;
+  bool get isConfigError => _isConfigError;
+  bool get isLoading => _environment == null && _errorMessage == null;
 
   late final Command1<void, int> loadEnvironments;
 
   Future<Result<void>> _load(int id) async {
+    _errorMessage = null;
+    _isConfigError = false;
+    notifyListeners();
+
     final result = await _environmentRepository.getEnvironment(id);
     switch (result) {
       case Ok<EnvironmentSummary>():
@@ -28,10 +37,15 @@ class DashboardViewmodel extends ChangeNotifier {
         _log.fine('Loaded environment details for ID: $id');
         notifyListeners();
       case Error<EnvironmentSummary>():
+        final error = result.error;
         _log.warning(
           'Failed to load environment details for ID: $id',
-          result.error,
+          error,
         );
+        
+        _isConfigError = true;
+        _errorMessage = 'Failed to load environment details. Please check your Portainer configuration (domain and API token) in settings.';
+        notifyListeners();
     }
     return result;
   }

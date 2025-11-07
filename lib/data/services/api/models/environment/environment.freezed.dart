@@ -5069,6 +5069,7 @@ as int,
 /// @nodoc
 mixin _$DockerInfo {
 
+// ignore: invalid_annotation_target
 @JsonKey(name: "ID") String get id; int get containers; int get containersRunning; int get containersPaused; int get containersStopped; int get images; String get driver; int get nCPU; int get memTotal; String get name; String get serverVersion;
 /// Create a copy of DockerInfo
 /// with the given fields replaced by the non-null parameter values.
@@ -5276,6 +5277,7 @@ class _DockerInfo implements DockerInfo {
   const _DockerInfo({@JsonKey(name: "ID") required this.id, required this.containers, required this.containersRunning, required this.containersPaused, required this.containersStopped, required this.images, required this.driver, required this.nCPU, required this.memTotal, required this.name, required this.serverVersion});
   factory _DockerInfo.fromJson(Map<String, dynamic> json) => _$DockerInfoFromJson(json);
 
+// ignore: invalid_annotation_target
 @override@JsonKey(name: "ID") final  String id;
 @override final  int containers;
 @override final  int containersRunning;

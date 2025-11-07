@@ -8,20 +8,19 @@ import '../../../../utils/command.dart';
 class LoginViewModel {
   LoginViewModel({required AuthRepository authRepository})
     : _authRepository = authRepository {
-    login = Command1<void, (String username, String password)>(_login);
+    signInWithGoogle = Command0<void>(_signInWithGoogle);
   }
 
   final AuthRepository _authRepository;
   final _log = Logger('LoginViewModel');
 
-  late Command1 login;
+  late Command0 signInWithGoogle;
 
-  Future<Result<void>> _login((String, String) credentials) async {
-    final (username, password) = credentials;
-    final result = await _authRepository.login(username: username, password: password);
+  Future<Result<void>> _signInWithGoogle() async {
+    final result = await _authRepository.signInWithGoogle();
 
     if (result is Error<void>) {
-      _log.warning('Login failed', result.error);
+      _log.warning('Google Sign-In failed', result.error);
     }
     return result;
   }

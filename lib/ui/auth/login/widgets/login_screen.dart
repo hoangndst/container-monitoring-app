@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
-import '../../../../routing/routes.dart';
 import '../view_models/login_viewmodel.dart';
 import '../../../core/localization/applocalization.dart';
+import '../../../../utils/result.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key, required this.viewModel});
@@ -15,143 +14,94 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final TextEditingController _username = TextEditingController(text: '');
-  final TextEditingController _password = TextEditingController(text: '');
-
-  bool _isPasswordVisible = false;
-  bool _rememberMe = false;
-
   @override
   void initState() {
     super.initState();
-    widget.viewModel.login.addListener(_onResult);
+    widget.viewModel.signInWithGoogle.addListener(_onGoogleSignInResult);
   }
 
   @override
   void didUpdateWidget(covariant LoginScreen oldWidget) {
     super.didUpdateWidget(oldWidget);
-    oldWidget.viewModel.login.removeListener(_onResult);
-    widget.viewModel.login.addListener(_onResult);
+    oldWidget.viewModel.signInWithGoogle.removeListener(_onGoogleSignInResult);
+    widget.viewModel.signInWithGoogle.addListener(_onGoogleSignInResult);
   }
 
   @override
   void dispose() {
-    widget.viewModel.login.removeListener(_onResult);
+    widget.viewModel.signInWithGoogle.removeListener(_onGoogleSignInResult);
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Form(
-        key: _formKey,
-        child: Center(
-          child: Container(
-            padding: const EdgeInsets.all(15.0),
-            constraints: const BoxConstraints(maxWidth: 750),
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                    child: Text(
-                      "Container Monitoring",
-                      style: Theme.of(context).textTheme.titleMedium,
-                    ),
-                  ),
-                  _gap(),
-                  TextFormField(
-                    controller: _username,
-                    validator: (value) {
-                      // add username validation
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter some text';
-                      }
-                      return null;
-                    },
-                    decoration: const InputDecoration(
-                      labelText: 'Username',
-                      hintText: 'Enter your username',
-                      prefixIcon: Icon(Icons.person_outline),
-                      border: OutlineInputBorder(),
-                    ),
-                  ),
-                  _gap(),
-                  TextFormField(
-                    controller: _password,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter some text';
-                      }
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
 
-                      if (value.length < 6) {
-                        return 'Password must be at least 6 characters';
-                      }
-                      return null;
-                    },
-                    obscureText: !_isPasswordVisible,
-                    decoration: InputDecoration(
-                      labelText: 'Password',
-                      hintText: 'Enter your password',
-                      prefixIcon: const Icon(Icons.lock_outline_rounded),
-                      border: const OutlineInputBorder(),
-                      suffixIcon: IconButton(
-                        icon: Icon(
-                          _isPasswordVisible
-                              ? Icons.visibility_off
-                              : Icons.visibility,
-                        ),
-                        onPressed: () {
-                          setState(() {
-                            _isPasswordVisible = !_isPasswordVisible;
-                          });
-                        },
-                      ),
-                    ),
+    return Scaffold(
+      body: Center(
+        child: Container(
+          padding: const EdgeInsets.all(24.0),
+          constraints: const BoxConstraints(maxWidth: 400),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.cloud_outlined,
+                  size: 64,
+                  color: colorScheme.primary,
+                ),
+                const SizedBox(height: 24),
+                Text(
+                  "Container Monitoring",
+                  style: theme.textTheme.headlineSmall?.copyWith(
+                    fontWeight: FontWeight.bold,
                   ),
-                  _gap(),
-                  CheckboxListTile(
-                    value: _rememberMe,
-                    onChanged: (value) {
-                      if (value == null) return;
-                      setState(() {
-                        _rememberMe = value;
-                      });
-                    },
-                    title: const Text('Remember me'),
-                    controlAffinity: ListTileControlAffinity.leading,
-                    dense: true,
-                    contentPadding: const EdgeInsets.all(0),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  "Sign in to continue",
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    color: colorScheme.onSurfaceVariant,
                   ),
-                  _gap(),
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      child: const Padding(
-                        padding: EdgeInsets.all(10.0),
-                        child: Text(
-                          'Login',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
+                ),
+                const SizedBox(height: 32),
+                SizedBox(
+                  width: double.infinity,
+                  child: OutlinedButton.icon(
+                    onPressed: widget.viewModel.signInWithGoogle.running
+                        ? null
+                        : () => widget.viewModel.signInWithGoogle.execute(),
+                    icon: widget.viewModel.signInWithGoogle.running
+                        ? SizedBox(
+                            width: 20,
+                            height: 20,
+                            child: CircularProgressIndicator(
+                              strokeWidth: 2,
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                colorScheme.primary,
+                              ),
+                            ),
+                          )
+                        : 
+                          Icon(
+                            Icons.login,
+                            color: colorScheme.primary,
                           ),
-                        ),
-                      ),
-                      onPressed: () {
-                        if (_formKey.currentState?.validate() ?? false) {
-                          widget.viewModel.login.execute((
-                            _username.value.text,
-                            _password.value.text,
-                          ));
-                        }
-                      },
+                    label: Text(
+                      widget.viewModel.signInWithGoogle.running
+                          ? 'Signing in...'
+                          : 'Sign in with Google',
+                      style: const TextStyle(fontSize: 16),
+                    ),
+                    style: OutlinedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(vertical: 16),
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),
@@ -159,28 +109,27 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Widget _gap() => const SizedBox(height: 16);
-
-  void _onResult() {
-    if (widget.viewModel.login.completed) {
-      widget.viewModel.login.clearResult();
-      context.go(Routes.home);
+  void _onGoogleSignInResult() {
+    if (widget.viewModel.signInWithGoogle.completed) {
+      widget.viewModel.signInWithGoogle.clearResult();
+      // Navigation will be handled by router redirect logic
     }
 
-    if (widget.viewModel.login.error) {
-      widget.viewModel.login.clearResult();
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(AppLocalization.of(context).errorWhileLogin),
-          action: SnackBarAction(
-            label: AppLocalization.of(context).tryAgain,
-            onPressed: () => widget.viewModel.login.execute((
-              _username.value.text,
-              _password.value.text,
-            )),
+    if (widget.viewModel.signInWithGoogle.error) {
+      final error = widget.viewModel.signInWithGoogle.result;
+      widget.viewModel.signInWithGoogle.clearResult();
+      if (mounted) {
+        final errorMessage = switch (error) {
+          Error() => error.error.toString(),
+          _ => AppLocalization.of(context).errorWhileLogin,
+        };
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(errorMessage),
+            backgroundColor: Theme.of(context).colorScheme.error,
           ),
-        ),
-      );
+        );
+      }
     }
   }
 }

@@ -22,6 +22,11 @@ class MainBottomNavigation extends StatelessWidget {
           label: 'Home',
         ),
         NavigationDestination(
+          selectedIcon: Icon(Icons.chat),
+          icon: Icon(Icons.chat_outlined),
+          label: 'Buddy',
+        ),
+        NavigationDestination(
           selectedIcon: Icon(Icons.person),
           icon: Icon(Icons.person_outlined),
           label: 'Profile',

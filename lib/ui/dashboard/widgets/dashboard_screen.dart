@@ -22,6 +22,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
       listenable: vm,
       builder: (context, _) {
         final env = vm.environment;
+        final errorMessage = vm.errorMessage;
+        final isConfigError = vm.isConfigError;
+
         return Scaffold(
           appBar: AppBar(
             leading: IconButton(
@@ -30,9 +33,52 @@ class _DashboardScreenState extends State<DashboardScreen> {
             ),
             title: Text('Dashboard'),
           ),
-          body: env == null
+          body: vm.isLoading
               ? const Center(child: CircularProgressIndicator())
-              : LayoutBuilder(
+              : errorMessage != null
+              ? Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(24.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          isConfigError
+                              ? Icons.settings_outlined
+                              : Icons.error_outline,
+                          size: 64,
+                          color: Theme.of(context).colorScheme.error,
+                        ),
+                        const SizedBox(height: 16),
+                        Text(
+                          'Error',
+                          style: Theme.of(context).textTheme.headlineSmall
+                              ?.copyWith(
+                                color: Theme.of(context).colorScheme.error,
+                              ),
+                        ),
+                        const SizedBox(height: 8),
+                        Text(
+                          errorMessage,
+                          textAlign: TextAlign.center,
+                          style: Theme.of(context).textTheme.bodyLarge,
+                        ),
+                        if (isConfigError) ...[
+                          const SizedBox(height: 24),
+                          FilledButton.icon(
+                            onPressed: () {
+                              context.go(Routes.portainerConfig);
+                            },
+                            icon: const Icon(Icons.settings),
+                            label: const Text('Configure Portainer'),
+                          ),
+                        ],
+                      ],
+                    ),
+                  ),
+                )
+              : env != null
+              ? LayoutBuilder(
                   builder: (context, constraints) {
                     final width = constraints.maxWidth;
                     final crossAxisCount = width >= 1200
@@ -114,7 +160,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       ),
                     );
                   },
-                ),
+                )
+              : const Center(child: CircularProgressIndicator()),
         );
       },
     );

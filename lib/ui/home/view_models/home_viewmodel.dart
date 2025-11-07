@@ -16,13 +16,22 @@ class HomeViewModel extends ChangeNotifier {
   final EnvironmentRepository _environmentRepository;
   final _log = Logger('HomeViewModel');
   List<EnvironmentSummary> _environments = [];
+  String? _errorMessage;
+  bool _isConfigError = false;
   
   late Command0 load;
 
   List<EnvironmentSummary> get environments => _environments;
+  String? get errorMessage => _errorMessage;
+  bool get isConfigError => _isConfigError;
+  bool get isLoading => _environments.isEmpty && _errorMessage == null;
 
 
   Future<Result> _load() async {
+    _errorMessage = null;
+    _isConfigError = false;
+    notifyListeners();
+
     try {
       final result = await _environmentRepository.listEnvironments();
       switch (result) {
@@ -30,7 +39,11 @@ class HomeViewModel extends ChangeNotifier {
           _environments = result.value;
           _log.fine('Loaded environments');
         case Error<List<EnvironmentSummary>>():
-          _log.warning('Failed to load environments', result.error);
+          final error = result.error;
+          _log.warning('Failed to load environments', error);
+          _isConfigError = true;
+          _errorMessage = 'Failed to load environments. Please check your Portainer configuration (domain and API token) in settings.';
+          notifyListeners();
           return result;
       }
       return result;

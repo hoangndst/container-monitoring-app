@@ -1,133 +1,163 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:logging/logging.dart';
 
 import 'auth_repository.dart';
 import '../../../utils/result.dart';
-import '../../services/api/api_client.dart';
-import '../../services/api/auth_api_client.dart';
-import '../../services/api/models/login_request/login_request.dart';
-import '../../services/api/models/login_response/login_response.dart';
-import '../../services/shared_preferences_service.dart';
 
 class AuthRepositoryRemote extends AuthRepository {
   AuthRepositoryRemote({
-    required ApiClient apiClient,
-    required AuthApiClient authApiClient,
-    required SharedPreferencesService sharedPreferencesService,
-  }) : _apiClient = apiClient,
-       _authApiClient = authApiClient,
-       _sharedPreferencesService = sharedPreferencesService {
-    _apiClient.authHeaderProvider = _authHeaderProvider;
+    FirebaseAuth? firebaseAuth,
+    GoogleSignIn? googleSignIn,
+  }) : _firebaseAuth = firebaseAuth ?? FirebaseAuth.instance,
+       _googleSignIn = googleSignIn ?? GoogleSignIn(scopes: ['email', 'profile']) {
+    _firebaseAuth.authStateChanges().listen((user) {
+      _isAuthenticated = user != null;
+      notifyListeners();
+    });
   }
 
-  final AuthApiClient _authApiClient;
-  final ApiClient _apiClient;
-  final SharedPreferencesService _sharedPreferencesService;
+  final FirebaseAuth _firebaseAuth;
+  final GoogleSignIn _googleSignIn;
 
   bool? _isAuthenticated;
-  String? _jwt;
   final _log = Logger('AuthRepositoryRemote');
 
   Future<void> _fetch() async {
-    final result = await _sharedPreferencesService.fetchJWT();
-    switch (result) {
-      case Ok<String?>():
-        _jwt = result.value;
-        _isAuthenticated = result.value != null;
-      case Error<String?>():
-        _log.severe(
-          'Failed to fetch Token from SharedPreferences',
-          result.error,
-        );
-    }
+    final user = _firebaseAuth.currentUser;
+    _isAuthenticated = user != null;
   }
 
   @override
   Future<bool> get isAuthenticated async {
-    // Status is cached
-    if (_isAuthenticated != null) {
-      return _isAuthenticated!;
+    // Check Firebase auth state
+    if (_isAuthenticated == null) {
+      await _fetch();
     }
-    // No status cached, fetch from storage
-    await _fetch();
     return _isAuthenticated ?? false;
   }
 
   @override
-  Future<Result<void>> login({
-    required String username,
-    required String password,
-  }) async {
+  Future<Result<void>> signInWithGoogle() async {
     try {
-      final result = await _authApiClient.login(
-        LoginRequest(username: username, password: password),
-      );
-      switch (result) {
-        case Ok<LoginResponse>():
-          _log.info('User logged int');
-          // Set auth status
-          _isAuthenticated = true;
-          _jwt = result.value.jwt;
-          // Store in Shared preferences
-          return await _sharedPreferencesService.saveJWT(result.value.jwt);
-        case Error<LoginResponse>():
-          _log.warning('Error logging in: ${result.error}');
-          return Result.error(result.error);
+      _log.info('Starting Google Sign-In flow');
+      
+      // Check if user is already signed in to Google
+      final currentGoogleUser = await _googleSignIn.signInSilently();
+      GoogleSignInAccount? googleUser;
+      
+      if (currentGoogleUser != null) {
+        _log.info('Found existing Google account: ${currentGoogleUser.email}');
+        googleUser = currentGoogleUser;
+      } else {
+        // Trigger the authentication flow
+        _log.info('Requesting Google Sign-In');
+        googleUser = await _googleSignIn.signIn();
       }
-    } finally {
+
+      if (googleUser == null) {
+        // User canceled the sign-in
+        _log.info('Google Sign-In canceled by user');
+        return Result.error(Exception('Sign-in canceled by user'));
+      }
+
+      // Obtain the auth details from the request
+      _log.info('Obtaining Google authentication credentials');
+      final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+
+      if (googleAuth.idToken == null) {
+        _log.warning('Google Sign-In returned null idToken');
+        return Result.error(Exception('Failed to obtain Google ID token'));
+      }
+
+      // Create a new credential for Firebase Auth
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+
+      // Sign in to Firebase with the Google credential
+      _log.info('Signing in to Firebase with Google credential');
+      final userCredential = await _firebaseAuth.signInWithCredential(credential);
+
+      if (userCredential.user == null) {
+        _log.warning('Firebase Sign-In returned null user');
+        return Result.error(Exception('Failed to sign in to Firebase'));
+      }
+
+      _isAuthenticated = true;
+      _log.info('Successfully signed in with Google: ${userCredential.user?.email}');
+      
       notifyListeners();
+      return Result.ok(null);
+    } on FirebaseAuthException catch (e) {
+      _log.severe('Firebase Auth error during Google Sign-In', e);
+      _isAuthenticated = false;
+      notifyListeners();
+      
+      String errorMessage;
+      switch (e.code) {
+        case 'account-exists-with-different-credential':
+          errorMessage = 'An account already exists with a different sign-in method';
+          break;
+        case 'invalid-credential':
+          errorMessage = 'Invalid Google credentials';
+          break;
+        case 'operation-not-allowed':
+          errorMessage = 'Google Sign-In is not enabled. Please enable it in Firebase Console';
+          break;
+        case 'user-disabled':
+          errorMessage = 'This account has been disabled';
+          break;
+        case 'user-not-found':
+          errorMessage = 'User not found';
+          break;
+        default:
+          errorMessage = 'Firebase authentication error: ${e.message ?? e.code}';
+      }
+      
+      return Result.error(Exception(errorMessage));
+    } catch (e) {
+      _log.severe('Error signing in with Google', e);
+      _isAuthenticated = false;
+      notifyListeners();
+      
+      // Handle PlatformException (Android/iOS specific errors)
+      String errorMessage = 'Failed to sign in with Google';
+      if (e.toString().contains('ApiException: 10')) {
+        errorMessage = 'Google Sign-In configuration error. Please ensure:\n'
+            '1. SHA-1 fingerprint is added to Firebase Console\n'
+            '2. Google Sign-In is enabled in Firebase Authentication\n'
+            '3. OAuth client is configured in Firebase Console\n'
+            '${e.toString()}';
+      } else if (e.toString().contains('sign_in_failed')) {
+        errorMessage = 'Google Sign-In failed. Please check your Firebase configuration.\n'
+            '${e.toString()}';
+      }
+      
+      return Result.error(Exception(errorMessage));
     }
   }
 
   @override
-  Future<bool> refreshToken() async {
+  Future<Result<void>> signOut() async {
     try {
-      final result = await _authApiClient.refresh(_jwt);
-      switch (result) {
-        case Ok<LoginResponse>():
-          _log.info('Token refreshed');
-          _jwt = result.value.jwt;
-          _isAuthenticated = true;
-          await _sharedPreferencesService.saveJWT(_jwt);
-          return true;
-        case Error<LoginResponse>():
-          _log.warning('Failed to refresh token: ${result.error}');
-          _isAuthenticated = false;
-          _jwt = null;
-          await _sharedPreferencesService.saveJWT(null);
-          return false;
-      }
-    } on Exception catch (e) {
-      _log.severe('Exception during token refresh', e);
-      _isAuthenticated = false;
-      _jwt = null;
-      await _sharedPreferencesService.saveJWT(null);
-      return false;
-    } finally {
-      notifyListeners();
-    }
-  }
-
-   @override
-  Future<Result<void>> logout() async {
-    _log.info('User logged out');
-    try {
-      // Clear stored auth token
-      final result = await _sharedPreferencesService.saveJWT(null);
-      if (result is Error<void>) {
-        _log.severe('Failed to clear stored auth token');
-      }
-
-      // Clear token in ApiClient
-      _jwt = null;
+      _log.info('User signing out');
+      
+      // Sign out from Firebase
+      await _firebaseAuth.signOut();
+      
+      // Sign out from Google
+      await _googleSignIn.signOut();
 
       // Clear authenticated status
       _isAuthenticated = false;
-      return result;
-    } finally {
+      
       notifyListeners();
+      return Result.ok(null);
+    } catch (e) {
+      _log.severe('Error signing out', e);
+      return Result.error(e is Exception ? e : Exception(e.toString()));
     }
   }
-
-  String? _authHeaderProvider() =>
-      _jwt != null ? 'Bearer $_jwt' : null;
 }

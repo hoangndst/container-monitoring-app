@@ -9,9 +9,7 @@ import 'routing/router.dart';
 import 'ui/core/localization/applocalization.dart';
 import 'ui/core/themes/theme_provider.dart';
 
-/// Default main method
 void main() {
-  // Launch development config by default
   staging.main();
 }
 
